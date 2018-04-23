@@ -1,0 +1,18 @@
+Pages:
+
+    => Page login
+        https://www.joshmorony.com/creating-role-based-authentication-with-passport-in-ionic-2-part-2/
+    => Menu
+         => Description Gurdil
+                => lien creation gurdil
+         => Création d'un gurdil
+                => creation rapide!!
+                    => invitation des autres
+                    => demandes de participation
+                    => lancement chrono
+                        => fin lancement deuxieme chrono
+         => Palmares
+    => Page profil
+
+    => Page jeu
+        chat https://www.londonappdeveloper.com/how-to-build-a-websocket-multi-client-chat-using-ionic-and-node-js/

@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Palmares</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <h2>Liste des joueurs</h2>
+    <p>
+        Voici le classement pour cette année {{annee}}
+    </p>
+    <ion-list>
+        <ion-row ion-list *ngFor="let drawf of drawes, let i = index">
+            <ion-col col-2>
+                <ion-icon [name]="(i == 0 ? 'icon-king' : 'icon-beers')" [ngClass]="{'active': i == 0, 'second': i == 1, 'third': i == 2}"></ion-icon>
+            </ion-col>
+            <ion-col col-8>
+                {{drawf.name}}
+            </ion-col>
+            <ion-col text-right col-2>
+                {{drawf.score}}
+            </ion-col>
+        </ion-row>
+    </ion-list>
+    <div *ngIf="selectedItem" padding>
+        You navigated here from <b>{{selectedItem.title}}</b>
+    </div>
+</ion-content>
