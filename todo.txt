@@ -1,5 +1,9 @@
 Pages:
 
+    => installation DataBase
+            => Mysql (PHP)
+            => Base de données Symfony
+
     => Page login
         https://www.joshmorony.com/creating-role-based-authentication-with-passport-in-ionic-2-part-2/
     => Menu
