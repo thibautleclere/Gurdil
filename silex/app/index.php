@@ -42,7 +42,7 @@ $app->register(new DoctrineOrmServiceProvider(), [
     ]
 ]);
 
-$app->get('', function ($name) use ($app) {
+$app->get('', function () use ($app) {
     return 'Hello Gurdil';
 });
 
@@ -50,12 +50,5 @@ $app->get('/hello/{name}', function ($name) use ($app) {
     return 'Hello '.$app->escape($name);
 });
 
-/*$app->get('/', function (Application $app) {
-    $foo = new \App\Entity\Foo();
-    $foo->setName('Hello');
-    $entityManager = $app['orm.em'];
-    $entityManager->persist($foo);
-    $entityManager->flush();
-    return new \Symfony\Component\HttpFoundation\Response('Successfully inserted!');
-});*/
+
 $app->run();

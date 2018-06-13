@@ -34,5 +34,5 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 
-server/vendor
-server/vendor/*
+silex/vendor
+silex/vendor/*
