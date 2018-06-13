@@ -4,8 +4,48 @@ require __DIR__.'/vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
 
+use Silex\Application as SilexApp;
+use Silex\Provider\DoctrineServiceProvider;
+use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+
 $application = new Application();
-//$application->add(new GreetCommand());
+
+$app = new SilexApp();
+$app->register(
+    new DoctrineServiceProvider(),
+    [
+        'db.options' => [
+            'driver'        => 'pdo_mysql',
+            'host'          => '127.0.0.1',
+            'dbname'        => 'gurdil',
+            'user'          => 'root',
+            'password'      => '',
+            'charset'       => 'utf8',
+            'driverOptions' => [
+                1002 => 'SET NAMES utf8',
+            ],
+        ],
+    ]
+);
+$app->register(new DoctrineOrmServiceProvider(), [
+    'orm.proxies_dir'             => $baseDir . 'src/App/Entity/Proxy',
+    'orm.auto_generate_proxies'   => $app['debug'],
+    'orm.em.options'              => [
+        'mappings' => [
+            [
+                'type'                         => 'annotation',
+                'namespace'                    => 'App',
+                'path'                         => __DIR__ . '/App',
+                'use_simple_annotation_reader' => false,
+            ],
+        ],
+    ]
+]);
+
+$application->setHelperSet(new Symfony\Component\Console\Helper\HelperSet(array(
+    'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($app["orm.em"])
+)));
+
 $application->addCommands(array(
     new \Doctrine\ORM\Tools\Console\Command\ClearCache\MetadataCommand,
     new \Doctrine\ORM\Tools\Console\Command\ClearCache\QueryCommand,
