@@ -8,7 +8,7 @@ services:
         ports:
             - "8000:80"
         environment:
-            - NGINX_HOST=${NGINX_HOST}
+            - NGINX_HOST=$${NGINX_HOST}
         depends_on:
             - php
             - mysqldb
@@ -22,24 +22,20 @@ services:
         container_name: phpmyadmin
         ports:
             - "8080:80"
-        environment:
-            - PMA_ARBITRARY=1
-            - PMA_HOST=${MYSQL_HOST}
         depends_on:
             - mysqldb
     mysqldb:
         image: mysql:latest
-        container_name: ${MYSQL_HOST}
+        container_name: "mysql"
         env_file:
             - "./docker/.env"
         environment:
-            - MYSQL_DATABASE=${MYSQL_DATABASE}
-            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-            - MYSQL_USER=${MYSQL_USER}
-            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-            - MYSQL_ROOT_PASSWORD=root
-            - MYSQL_ALLOW_EMPTY_PASSWORD=true
-            - MYSQL_RANDOM_ROOT_PASSWORD=lalala
+            - MYSQL_DATABASE=$${DATABASE}
+            - MYSQL_ROOT_PASSWORD=$${ROOT_PASSWORD}
+            - MYSQL_USER=$${USER}
+            - MYSQL_PASSWORD=$${PASSWORD}
+            - MYSQL_ALLOW_EMPTY_PASSWORD=$${ALLOW_EMPTY_PASSWORD}
+            - MYSQL_RANDOM_ROOT_PASSWORD=$${RANDOM_ROOT_PASSWORD}
         ports:
             - "8990:3306"
         volumes:
