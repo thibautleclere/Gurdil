@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api', 'throttle:rate_limit,1')->group(function () {
+Route::middleware('auth:api')->group(function () {
     Route::get('/haa', function () {
         echo "lsqkdjlqskdjlsqdjklsqkdjqlsdkjlqskdjlqsjkdlsjdlkqsjdlsqkjdlsdjlqsk";
     });

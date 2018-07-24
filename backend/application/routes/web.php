@@ -17,3 +17,5 @@ Route::get('/', function () {
 Route::get('/api', function () {
     echo "lkqslqkqlksqlks";
 });
+
+Route::post('/new-user', 'SignupController@signup');
