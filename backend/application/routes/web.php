@@ -14,8 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/api', function () {
+Route::get('/test-web', function () {
     echo "lkqslqkqlksqlks";
 });
 
-Route::post('/new-user', 'SignupController@signup');
+Route::get('/new-user', 'SignupController@signup');
+Route::post('/get-user', 'LoginController@login')->name('getUser');

@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Nain;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use App\Nain;
-use Illuminate\Http\JsonResponse;
 
-class SignupController extends BaseController
+class LoginController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public function signup(Request $request)
+    public function login(Request $request)
     {
-        $user = Nain::find(2)->get();
+        $login = $request->input('login');
+        $password = $request->input('password');
+
+        $user = Nain::where(
+            array('email' => $login),
+            array('password' => $password)
+        )->get();
 
         $data = array($user);
         return new JsonResponse($data);
