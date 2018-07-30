@@ -21,7 +21,11 @@ class LoginController extends BaseController
         $user = Nain::where(
             array('email' => $login),
             array('password' => $password)
-        )->get();
+            )
+            ->get(array(
+                'id','name','email','created_at','updated_at'
+            ))
+            ->first();
 
         $data = array($user);
         return new JsonResponse($data);

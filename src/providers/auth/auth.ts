@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import {Http, Headers, RequestOptions} from '@angular/http';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
+import { NainInterface } from "../../models/nain.interface";
 
 @Injectable()
 export class AuthProvider {
 
     public token: any;
+
+    public nain: NainInterface
 
     constructor(public http: Http, public storage: Storage) {
 
@@ -66,20 +69,19 @@ export class AuthProvider {
     login(credentials){
 
         return new Promise((resolve, reject) => {
+            debugger;
 
             let headers = new Headers();
-            headers.append('Content-Type', 'application/json');
+            headers.append('content-type','application/json');
+            let options = new RequestOptions({ headers:headers,withCredentials: true});
 
-            this.http.post('https://YOUR_HEROKU_APP.herokuapp.com/api/auth/login', JSON.stringify(credentials), {headers: headers})
+            this.http.post('http://localhost:8000/get-user', credentials, options)
                 .subscribe(res => {
-
-                    let data = res.json();
-                    this.token = data.token;
-                    this.storage.set('token', data.token);
-                    resolve(data);
-
-                    resolve(res.json());
-                }, (err) => {
+                    debugger;
+                    let nain: NainInterface = res.json();
+                    this.storage.set('nain', nain);
+                    resolve(res);
+                }, (err) => {debugger;
                     reject(err);
                 });
 
