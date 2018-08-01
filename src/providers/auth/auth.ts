@@ -75,7 +75,7 @@ export class AuthProvider {
             headers.append('content-type','application/json');
             let options = new RequestOptions({ headers:headers,withCredentials: true});
 
-            this.http.post('http://localhost:8000/get-user', credentials, options)
+            this.http.post('http://127.0.0.1:8000/get-user', credentials, options)
                 .subscribe(res => {
                     debugger;
                     let nain: NainInterface = res.json();
