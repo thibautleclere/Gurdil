@@ -3,5 +3,11 @@
   "app_id": "",
   "type": "ionic-angular",
   "integrations": {},
-  "description": "Jeux du gurdil via l'application"
+  "description": "Jeux du gurdil via l'application",
+  "proxies": [
+    {
+      "path": "/get-user",
+      "proxyUrl": "http://localhost:8000/get-user"
+    }
+  ]
 }

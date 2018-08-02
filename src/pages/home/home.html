@@ -9,5 +9,6 @@
   <p>
     On va vous expliquer le jeu tabernacle!!
   </p>
-  <button ion-button (click)="Login()" title="Page de Connexion">Login</button>
+  <button *ngIf="!nain" ion-button (click)="Login()" title="Page de Connexion">Login</button>
+  <gurdil-menu-component *ngIf="nain"></gurdil-menu-component>
 </ion-content>

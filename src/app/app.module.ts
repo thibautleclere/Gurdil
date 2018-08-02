@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+
 import { TabsPage } from '../pages/tabs/tabs';
 import { PalmaresPage } from "../pages/palmares/palmares";
 import { FormsPage } from "../pages/form/form";
@@ -15,11 +15,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { HomePageModule } from "../pages/home/home.module";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     TabsPage,
     PalmaresPage,
     FormsPage,
@@ -27,6 +27,7 @@ import { IonicStorageModule } from '@ionic/storage';
     SignupPage
   ],
   imports: [
+    HomePageModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
@@ -35,7 +36,6 @@ import { IonicStorageModule } from '@ionic/storage';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     TabsPage,
     PalmaresPage,
     FormsPage,

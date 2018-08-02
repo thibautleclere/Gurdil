@@ -2,14 +2,11 @@ import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
-import { NainInterface } from "../../models/nain.interface";
 
 @Injectable()
 export class AuthProvider {
 
     public token: any;
-
-    public nain: NainInterface
 
     constructor(public http: Http, public storage: Storage) {
 
@@ -69,19 +66,16 @@ export class AuthProvider {
     login(credentials){
 
         return new Promise((resolve, reject) => {
-            debugger;
 
             let headers = new Headers();
             headers.append('content-type','application/json');
             let options = new RequestOptions({ headers:headers,withCredentials: true});
 
-            this.http.post('http://127.0.0.1:8000/get-user', credentials, options)
+            this.http.post('/get-user', credentials, options)
                 .subscribe(res => {
-                    debugger;
-                    let nain: NainInterface = res.json();
-                    this.storage.set('nain', nain);
+                    this.storage.set('nain', res.json());
                     resolve(res);
-                }, (err) => {debugger;
+                }, (err) => {
                     reject(err);
                 });
 
@@ -90,7 +84,8 @@ export class AuthProvider {
     }
 
     logout(){
-        this.storage.set('token', '');
+        this.storage.set('nain', '');
+        this.storage.clear();
     }
 
 }

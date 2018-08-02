@@ -1,11 +1,5 @@
 Pages:
 
-    => installation DataBase
-            => Mysql (PHP)
-            => Base de données Symfony
-
-    => Page login
-        https://www.joshmorony.com/creating-role-based-authentication-with-passport-in-ionic-2-part-2/
     => Menu
          => Description Gurdil
                 => lien creation gurdil
@@ -20,3 +14,7 @@ Pages:
 
     => Page jeu
         chat https://www.londonappdeveloper.com/how-to-build-a-websocket-multi-client-chat-using-ionic-and-node-js/
+
+        https://ionicframework.com/docs/native/push/
+
+        https://ionicframework.com/docs/native/social-sharing/

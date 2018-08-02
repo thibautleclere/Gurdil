@@ -15,7 +15,7 @@ class LoginController extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function login(Request $request)
     {
-        $login = $request->input('login');
+        $login = $request->input('email');
         $password = $request->input('password');
 
         $user = Nain::where(
