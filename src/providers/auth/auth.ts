@@ -1,12 +1,16 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
+import { NainInterface } from "../../models/nain.interface";
 
 @Injectable()
 export class AuthProvider {
 
     public token: any;
+
+    @Output() public onLogin = new EventEmitter<NainInterface>();
+    @Output() public onLogout = new EventEmitter<boolean>();
 
     constructor(public http: Http, public storage: Storage) {
 
@@ -63,7 +67,7 @@ export class AuthProvider {
 
     }
 
-    login(credentials){
+    login(credentials) {
 
         return new Promise((resolve, reject) => {
 
@@ -73,7 +77,9 @@ export class AuthProvider {
 
             this.http.post('/get-user', credentials, options)
                 .subscribe(res => {
+                    const nain = res.json();
                     this.storage.set('nain', res.json());
+                    this.onLogin.emit(nain);
                     resolve(res);
                 }, (err) => {
                     reject(err);
@@ -83,9 +89,11 @@ export class AuthProvider {
 
     }
 
-    logout(){
-        this.storage.set('nain', '');
-        this.storage.clear();
+    logout() {
+        this.storage.remove('nain').then(() => {
+            console.warn('Disconnection');
+            this.onLogout.emit(true);
+        });
     }
 
 }
