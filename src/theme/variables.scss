@@ -43,6 +43,13 @@ $colors: (
   silver:     #7f8793,
 );
 
+$gold1: #ffd483;
+$gold2: #ffda68;
+$gold3: #a98c46;
+$gold4: #fff381;
+$gold5: #b4a14f;
+$silver: #7f8793;
+
 
 // App iOS Variables
 // --------------------------------------------------
@@ -91,3 +98,5 @@ $colors: (
 
 @import "ionicons";
 @import "../assets/scss/iconmoon";
+@import "../assets/scss/gurdil";
+@import "../assets/scss/design";

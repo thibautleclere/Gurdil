@@ -1,14 +1,25 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Gurdil</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <h2>Description du jeu</h2>
-  <p>
-    On va vous expliquer le jeu tabernacle!!
-  </p>
-  <button *ngIf="!nain" ion-button (click)="Login()" title="Page de Connexion">Login</button>
-  <gurdil-menu-component *ngIf="nain"></gurdil-menu-component>
+<ion-content padding class="gold-back">
+  <div *ngIf="!nain" class="center-content">
+    <button ion-button icon-start color="gold" (click)="Login()" title="Page de Connexion" class="center-button margintop80 silver-text">
+      <ion-icon name="icon-gurdil"></ion-icon>
+      Login
+    </button>
+  </div>
+  <div *ngIf="nain" class="center-content">
+    <button ion-button icon-start color="gold" (click)="Login()" title="Page de Connexion" class="center-button silver-text">
+      <ion-icon name="icon-gurdil"></ion-icon>
+      Gurdil dans 10 min!
+    </button>
+    <ion-list>
+      <ion-list-header>
+        Bières
+        <ion-badge item-end color="danger">{{beers}}</ion-badge>
+      </ion-list-header>
+      <ion-item>
+        <ion-range min="0" max="12" step="1" [(ngModel)]="beers" color="silver">
+          <ion-icon name="icon-beer" range-right color="danger"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

@@ -1,20 +1,30 @@
 Pages:
 
-    => Menu
-         => Description Gurdil
-                => lien creation gurdil
-         => Création d'un gurdil
-                => creation rapide!!
-                    => invitation des autres
-                    => demandes de participation
-                    => lancement chrono
-                        => fin lancement deuxieme chrono
-         => Palmares
-    => Page profil
+    chat https://www.londonappdeveloper.com/how-to-build-a-websocket-multi-client-chat-using-ionic-and-node-js/
 
-    => Page jeu
-        chat https://www.londonappdeveloper.com/how-to-build-a-websocket-multi-client-chat-using-ionic-and-node-js/
+    https://ionicframework.com/docs/native/push/
 
-        https://ionicframework.com/docs/native/push/
+    https://ionicframework.com/docs/native/social-sharing/
 
-        https://ionicframework.com/docs/native/social-sharing/
+    => Page Accueil / Jeu
+            => Bouton "Gurdil dans 10 minutes"
+                => Notification whatsapp / Lien pour s'inscrire au gurdils
+                => au bout des 10 minutes => bouton "Gurdil" => Creation Partie (Back)
+            => Liste des Joueurs participant au gurdil
+                => Boutons ajouts joueurs
+            => Nombre de bières perso à tenter
+            => Paramètres liens gurdils whatsapp (groupe)
+            => lien Règles du jeux
+
+    => Sous Menu => Bouton Accueil / Palmares / Parametres / Deconnexion
+
+    => Page Gurdil / Deroulement du jeu
+        => Chronometre de 4:03 s
+        => Joueur + Boutons + 1 de bière
+        => Boutons Bonus => ...
+        => Liste des joueurs => Boutons whatsapp / notification => envoie de messages + blagues
+
+    => Fin Partie
+        => Classement des joueurs
+            => boutons notifications
+            => Envois des resultats via whatsapp

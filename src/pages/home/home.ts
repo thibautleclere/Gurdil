@@ -13,6 +13,7 @@ export class HomePage implements OnInit{
   @ViewChild('menu') menuComponent: MenuComponent;
 
   public nain: NainInterface;
+  public beers: number = 0;
 
   constructor(public navCtrl: NavController, public storage: Storage) {
 

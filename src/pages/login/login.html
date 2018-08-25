@@ -1,10 +1,4 @@
-<ion-header>
-  <ion-navbar color="silver">
-    <ion-title>Gurdiling</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content>
+<ion-content padding class="gold-back">
 
   <ion-row class="login-form">
     <ion-col>
@@ -22,14 +16,10 @@
 
       </ion-list>
 
-      <button ion-button full (click)="login()" color="primary" class="login-button">Connecte-toi Nain</button>
+      <button ion-button (click)="login()" color="gold" class="login-button silver-text center-button">
+        Connecte-toi Nain
+      </button>
 
-    </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col>
-      <button ion-button round (click)="launchSignup()">Nouveau Nain</button>
     </ion-col>
   </ion-row>
 
