@@ -6,6 +6,9 @@ Pages:
 
     https://ionicframework.com/docs/native/social-sharing/
 
+    => Page Login
+       => Refaire les fonts icons svg => icomoon app
+
     => Page Accueil / Jeu
             => Bouton "Gurdil dans 10 minutes"
                 => Notification whatsapp / Lien pour s'inscrire au gurdils

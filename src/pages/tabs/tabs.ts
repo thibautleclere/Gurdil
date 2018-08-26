@@ -1,16 +1,16 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import {Component, ViewChild, AfterViewInit, OnInit} from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { FormsPage } from '../form/form';
 import { HomePage } from '../home/home';
 import { PalmaresPage } from '../palmares/palmares';
 import { NainInterface } from '../../models/nain.interface';
 import { AuthProvider } from '../../providers/auth/auth';
-import { Tabs } from "ionic-angular";
+import { NavController, Tabs } from "ionic-angular";
 
 @Component({
     templateUrl: 'tabs.html'
 })
-export class TabsPage implements AfterViewInit {
+export class TabsPage implements OnInit, AfterViewInit {
 
     @ViewChild('myTabs') tabRef: Tabs;
 
@@ -20,16 +20,20 @@ export class TabsPage implements AfterViewInit {
 
     public nain: NainInterface;
 
-    constructor(public storage: Storage, public authService: AuthProvider) {
+    constructor(public storage: Storage, public authService: AuthProvider, public navCtrl: NavController) {
+    }
 
+    ngOnInit() {
+        this.storage.get('nain').then((nain) => this.nain = nain);
     }
 
     public ngAfterViewInit() {
+        this.storage.get('nain').then((nain) => this.nain = nain);
         this.authService.onLogin.subscribe((data: NainInterface) => {
             this.nain = data;
         });
         this.authService.onLogout.subscribe((data: boolean) => {
-            this.tabRef.select(1);
+            this.navCtrl.setRoot(this.navCtrl.getActive().component);
         });
     }
 

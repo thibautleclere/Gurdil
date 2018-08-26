@@ -1,15 +1,5 @@
-.center-content {
-  height: 100%;
-  display: block;
-  vertical-align: middle;
-}
-.margintop80 {
-  margin: 80% auto;
-}
-.center-button {
-  width: 80%;
-  display: block;
-  margin: 0 auto;
+.loginBtn {
+  width: 100%;
 }
 .silver {
   background-color: $silver;
@@ -19,4 +9,15 @@
 }
 .gold-back {
   background-color: $gold3;
+}
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 70%;
+  height: 10%;
+
+  text-align: center;
 }

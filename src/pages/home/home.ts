@@ -4,6 +4,7 @@ import { LoginPage} from '../login/login';
 import { NainInterface } from "../../models/nain.interface";
 import { Storage } from '@ionic/storage';
 import { MenuComponent } from "../../components/menu/menu";
+import { TimerCountdownComponent } from "../../components/timer-countdown/timer-countdown";
 
 @Component({
   selector: 'page-home',
@@ -11,6 +12,7 @@ import { MenuComponent } from "../../components/menu/menu";
 })
 export class HomePage implements OnInit{
   @ViewChild('menu') menuComponent: MenuComponent;
+    @ViewChild('menu') timerComponent: TimerCountdownComponent;
 
   public nain: NainInterface;
   public beers: number = 0;

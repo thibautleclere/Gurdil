@@ -13,6 +13,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
+import { Gurdil } from '../services/gurdil';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { HomePageModule } from "../pages/home/home.module";
@@ -46,7 +47,8 @@ import { HomePageModule } from "../pages/home/home.module";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    Gurdil
   ]
 })
 export class AppModule {}

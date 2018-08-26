@@ -1,15 +1,14 @@
 <ion-content padding class="gold-back">
-  <div *ngIf="!nain" class="center-content">
-    <button ion-button icon-start color="gold" (click)="Login()" title="Page de Connexion" class="center-button margintop80 silver-text">
+
+
+  <div class="center">
+    <button *ngIf="!nain" ion-button color="gold" (click)="Login()" title="Page de Connexion" class="silver-text loginBtn">
       <ion-icon name="icon-gurdil"></ion-icon>
       Login
     </button>
   </div>
-  <div *ngIf="nain" class="center-content">
-    <button ion-button icon-start color="gold" (click)="Login()" title="Page de Connexion" class="center-button silver-text">
-      <ion-icon name="icon-gurdil"></ion-icon>
-      Gurdil dans 10 min!
-    </button>
+
+  <div *ngIf="nain">
     <ion-list>
       <ion-list-header>
         Bières
@@ -21,5 +20,10 @@
         </ion-range>
       </ion-item>
     </ion-list>
+
+    <gurdil-10-min *ngIf="nain"></gurdil-10-min>
+
   </div>
+
+
 </ion-content>
