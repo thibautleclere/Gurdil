@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoginPage} from '../login/login';
-import { NainInterface } from "../../models/nain.interface";
+import { NainInterface } from '../../models/nain.interface';
 import { Storage } from '@ionic/storage';
-import { MenuComponent } from "../../components/menu/menu";
-import { TimerCountdownComponent } from "../../components/timer-countdown/timer-countdown";
+import { MenuComponent } from '../../components/menu/menu';
+import { TimerCountdownComponent } from '../../components/timer-countdown/timer-countdown';
+import { Gurdil } from '../../services/gurdil';
+import { GurdilPage } from '../gurdil/gurdil';
 
 @Component({
   selector: 'page-home',
@@ -12,13 +14,18 @@ import { TimerCountdownComponent } from "../../components/timer-countdown/timer-
 })
 export class HomePage implements OnInit{
   @ViewChild('menu') menuComponent: MenuComponent;
-    @ViewChild('menu') timerComponent: TimerCountdownComponent;
+  @ViewChild('menu') timerComponent: TimerCountdownComponent;
 
   public nain: NainInterface;
   public beers: number = 0;
 
-  constructor(public navCtrl: NavController, public storage: Storage) {
-
+  constructor(public navCtrl: NavController, public storage: Storage, public gurdil: Gurdil) {
+    this.gurdil.onEndCountDown.subscribe((start: boolean) => {
+      console.log("event end countdown");
+    });
+    this.gurdil.onStartGurdil.subscribe((start: boolean) => {
+        this.navCtrl.setRoot(GurdilPage);
+    });
   }
 
   ngOnInit() {

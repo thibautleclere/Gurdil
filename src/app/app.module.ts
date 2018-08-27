@@ -17,6 +17,7 @@ import { Gurdil } from '../services/gurdil';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { HomePageModule } from "../pages/home/home.module";
+import {GurdilPage} from "../pages/gurdil/gurdil";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HomePageModule } from "../pages/home/home.module";
     PalmaresPage,
     FormsPage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    GurdilPage,
   ],
   imports: [
     HomePageModule,
@@ -41,7 +43,8 @@ import { HomePageModule } from "../pages/home/home.module";
     PalmaresPage,
     FormsPage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    GurdilPage,
   ],
   providers: [
     StatusBar,
