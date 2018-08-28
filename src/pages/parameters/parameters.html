@@ -1,0 +1,25 @@
+<ion-header color="silver">
+
+  <ion-navbar>
+    <ion-title color="gold">Paramètres</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="gold-back">
+
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Notification via Whatsapp</ion-label>
+      <ion-toggle disabled checked="false" [(ngModel)]="viawhatsapp"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Notification via SMS</ion-label>
+      <ion-toggle disabled checked="false" [(ngModel)]="viasms"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>
+

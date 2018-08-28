@@ -8,12 +8,12 @@ Pages:
 
     => Page Accueil / Jeu
             => Bouton "Gurdil dans 10 minutes"
-                => Notification whatsapp / Lien pour s'inscrire au gurdils
                 => au bout des 10 minutes => bouton "Gurdil" => Creation Partie (Back)
+                => musique du gurdil joué
             => Liste des Joueurs participant au gurdil
                 => Boutons ajouts joueurs
             => Nombre de bières perso à tenter
-            => Paramètres liens gurdils whatsapp (groupe)
+            => Page Parametres => Paramètres liens gurdils whatsapp (groupe)
             => lien Règles du jeux
 
     => Sous Menu => Bouton Accueil / Palmares / Parametres / Deconnexion
@@ -31,3 +31,6 @@ Pages:
 
     => Page Login
            => Refaire les fonts icons svg => icomoon app
+
+    => Cordova / Telephone test
+        => Notification whatsapp / Lien pour s'inscrire au gurdils

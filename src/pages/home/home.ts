@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { NavController } from 'ionic-angular';
 import { LoginPage} from '../login/login';
 import { NainInterface } from '../../models/nain.interface';
@@ -19,12 +20,12 @@ export class HomePage implements OnInit{
   public nain: NainInterface;
   public beers: number = 0;
 
-  constructor(public navCtrl: NavController, public storage: Storage, public gurdil: Gurdil) {
+  constructor(public navCtrl: NavController, public storage: Storage, public gurdil: Gurdil, private socialSharing: SocialSharing) {
     this.gurdil.onEndCountDown.subscribe((start: boolean) => {
       console.log("event end countdown");
     });
     this.gurdil.onStartGurdil.subscribe((start: boolean) => {
-        this.navCtrl.setRoot(GurdilPage);
+      this.navCtrl.setRoot(GurdilPage);
     });
   }
 

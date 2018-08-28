@@ -6,7 +6,6 @@ import { MyApp } from './app.component';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { PalmaresPage } from "../pages/palmares/palmares";
-import { FormsPage } from "../pages/form/form";
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 
@@ -17,14 +16,16 @@ import { Gurdil } from '../services/gurdil';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { HomePageModule } from "../pages/home/home.module";
-import {GurdilPage} from "../pages/gurdil/gurdil";
+import { GurdilPage } from "../pages/gurdil/gurdil";
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { ParametersPage } from "../pages/parameters/parameters";
 
 @NgModule({
   declarations: [
     MyApp,
     TabsPage,
     PalmaresPage,
-    FormsPage,
+    ParametersPage,
     LoginPage,
     SignupPage,
     GurdilPage,
@@ -41,7 +42,7 @@ import {GurdilPage} from "../pages/gurdil/gurdil";
     MyApp,
     TabsPage,
     PalmaresPage,
-    FormsPage,
+    ParametersPage,
     LoginPage,
     SignupPage,
     GurdilPage,
@@ -51,7 +52,8 @@ import {GurdilPage} from "../pages/gurdil/gurdil";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    Gurdil
+    Gurdil,
+    SocialSharing
   ]
 })
 export class AppModule {}

@@ -2,7 +2,9 @@
   "name": "Gurdil",
   "app_id": "",
   "type": "ionic-angular",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "description": "Jeux du gurdil via l'application",
   "proxies": [
     {

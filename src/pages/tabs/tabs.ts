@@ -1,11 +1,11 @@
 import {Component, ViewChild, AfterViewInit, OnInit} from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { FormsPage } from '../form/form';
 import { HomePage } from '../home/home';
 import { PalmaresPage } from '../palmares/palmares';
 import { NainInterface } from '../../models/nain.interface';
 import { AuthProvider } from '../../providers/auth/auth';
 import { NavController, Tabs } from "ionic-angular";
+import { ParametersPage } from "../parameters/parameters";
 
 @Component({
     templateUrl: 'tabs.html'
@@ -15,7 +15,7 @@ export class TabsPage implements OnInit, AfterViewInit {
     @ViewChild('myTabs') tabRef: Tabs;
 
     tab1Root = HomePage;
-    tab2Root = FormsPage;
+    tab2Root = ParametersPage;
     tab3Root = PalmaresPage;
 
     public nain: NainInterface;
