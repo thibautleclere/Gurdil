@@ -20,6 +20,18 @@
     </ion-item>
   </ion-list>
 
+  <form (ngSubmit)="uploadAvatar">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Avatar</ion-label>
+        <ion-input type="file" value=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button item-end icon-start color="silver">Enregistrer votre avatar</button>
+      </ion-item>
+    </ion-list>
+
+  </form>
 
 </ion-content>
 

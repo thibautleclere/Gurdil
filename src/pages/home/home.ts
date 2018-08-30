@@ -19,6 +19,7 @@ export class HomePage implements OnInit{
   @ViewChild('menu') timerComponent: TimerCountdownComponent;
 
   public nain: NainInterface;
+  public liste: NainInterface[] = [];
   public beers: number = 0;
 
   constructor(
@@ -51,6 +52,7 @@ export class HomePage implements OnInit{
 
   ngOnInit() {
     this.storage.get('nain').then((nain) => this.nain = nain);
+    this.storage.get('gurdiliens').then((liste) => this.liste = liste);
   }
 
   Login() {
