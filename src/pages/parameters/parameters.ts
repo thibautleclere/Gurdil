@@ -15,11 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ParametersPage {
 
+
+  public viawhatsapp: boolean;
+  public viasms: boolean;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ParametersPage');
+
   }
 
 }

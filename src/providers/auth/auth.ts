@@ -11,6 +11,7 @@ export class AuthProvider {
 
     @Output() public onLogin = new EventEmitter<NainInterface>();
     @Output() public onLogout = new EventEmitter<boolean>();
+    @Output() public onLoadPlayers = new EventEmitter<boolean>();
 
     constructor(public http: Http, public storage: Storage) {
 
@@ -41,7 +42,7 @@ export class AuthProvider {
 
     }
 
-    createAccount(details){
+    public createAccount(details){
 
         return new Promise((resolve, reject) => {
 
@@ -67,7 +68,7 @@ export class AuthProvider {
 
     }
 
-    login(credentials) {
+    public login(credentials) {
 
         return new Promise((resolve, reject) => {
 
@@ -89,10 +90,27 @@ export class AuthProvider {
 
     }
 
-    logout() {
+    public logout() {
         this.storage.remove('nain').then(() => {
             console.warn('Disconnection');
             this.onLogout.emit(true);
+        });
+    }
+
+    public loadUsers() {
+        return new Promise((resolve, reject) => {
+            let headers = new Headers();
+            headers.append('content-type','application/json');
+            let options = new RequestOptions({ headers:headers,withCredentials: true});
+
+            this.http.get('/les-nains', options)
+                .subscribe(res => {
+                    this.storage.set('gurdiliens', res.json());
+                    this.onLoadPlayers.emit(true);
+                    resolve(res);
+                }, (error) => {
+                    reject(error);
+                })
         });
     }
 

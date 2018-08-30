@@ -10,6 +10,10 @@
     {
       "path": "/get-user",
       "proxyUrl": "http://localhost:8000/get-user"
+    },
+    {
+      "path": "/les-nains",
+      "proxyUrl": "http://localhost:8000/les-nains"
     }
   ]
 }

@@ -20,3 +20,4 @@ Route::get('/test-web', function () {
 
 Route::get('/new-user', 'SignupController@signup');
 Route::post('/get-user', 'LoginController@login')->name('getUser');
+Route::get('/les-nains', 'GurdilController@getPlayers');
