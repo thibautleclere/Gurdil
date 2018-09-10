@@ -11,7 +11,7 @@ class Nain extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name', 'email', 'password','telephone'
+        'name', 'email', 'password', 'telephone', 'avatar'
     ];
 
     public function getScore()

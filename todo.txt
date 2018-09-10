@@ -6,6 +6,8 @@ Pages:
 
     https://ionicframework.com/docs/native/social-sharing/
 
+    https://devdactic.com/ionic-2-images/
+
     => Page Accueil / Jeu
             => Bouton "Gurdil dans 10 minutes"
                 => au bout des 10 minutes => bouton "Gurdil" => Creation Partie (Back)

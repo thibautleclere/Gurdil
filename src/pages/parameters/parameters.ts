@@ -16,8 +16,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ParametersPage {
 
 
-  public viawhatsapp: boolean;
-  public viasms: boolean;
+  public viawhatsapp: boolean = false;
+  public viasms: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

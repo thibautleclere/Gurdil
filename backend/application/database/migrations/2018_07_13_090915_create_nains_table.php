@@ -19,6 +19,7 @@ class CreateNainsTable extends Migration
             $table->string('email', 500);
             $table->string('password', 200);
             $table->string('telephone', 20);
+            $table->string('avatar', 500);
             $table->integer('level_id')->nullable()->unsigned();
             $table->foreign('level_id')->references('id')->on('levels');
             $table->integer('score_id')->nullable()->unsigned();
