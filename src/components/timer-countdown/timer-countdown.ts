@@ -1,24 +1,26 @@
 import { Component } from '@angular/core';
 import { Gurdil } from '../../services/gurdil';
+import { ITimer } from "./timer-countdown.interface";
 
 
 @Component({
-  selector: 'gurdil-10-min',
+  selector: 'timercountdown',
   templateUrl: 'timer-countdown.html'
 })
 export class TimerCountdownComponent {
 
-  public timeLeft: number = 10;//10 minutes
+  public timeLeft: number = 10;
   public interval;
-  public timeShown: string = "Gurdil dans 10 minutes!";
+  public timeShown: ITimer = null;
   public startGurdil: string = "GURDIL!!!";
+  public typeTimer: string = 'gurdilBtn';
 
   constructor(public gurdilservice: Gurdil) {
 
   }
 
-  startCountDown() {
-      if (this.timeShown === this.startGurdil) {
+  public startCountDown() {
+      if (this.timeShown && this.timeShown.end) {
           this.gurdilservice.emitGurdil();
       }
       this.gurdilservice.emit10minutes();
@@ -28,24 +30,31 @@ export class TimerCountdownComponent {
               this.timeShown = this.convertTimeToString(this.timeLeft);
           } else {
               clearInterval(this.interval);
-              //todo emit event gurdil ready!
-              this.timeShown = this.startGurdil;
+              this.timeShown.end = true;
+              this.timeShown.begin = false;
               this.gurdilservice.emitEnd10minutes();
           }
       },1000)
 
   }
 
-  pauseCountDown() {
+  public pauseCountDown() {
       clearInterval(this.interval);
   }
 
-  convertTimeToString(time) {
+  public convertTimeToString(time) : ITimer {
 
     let minutes = Math.floor(time / 60);
     let secondes = time % 60;
-    return minutes + " min " + secondes + " s ";
+    return {'minutes': minutes, 'secondes': secondes, begin: true, end: false};
 
+  }
+
+  public setTimeLeft(seconds: number) {
+      this.timeLeft = seconds;
+  }
+  public setTypeTimer(typeTimer) {
+      this.typeTimer = typeTimer;
   }
 
 }

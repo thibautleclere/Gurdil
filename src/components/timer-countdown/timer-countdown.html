@@ -1,4 +1,28 @@
-<button ion-button icon-start color="gold" (click)="startCountDown()" class="center-button silver-text">
+
+<button ion-button icon-start color="gold" (click)="startCountDown()" class="center-button silver-text" *ngIf="typeTimer === 'gurdilBtn'">
   <ion-icon name="icon-gurdil"></ion-icon>
-  {{ timeShown }}
+  <span *ngIf="!timeShown">
+    Gurdil dans 10 minutes !!!
+  </span>
+  <span *ngIf="timeShown && !timeShown.end">
+    {{ timeShown.minutes }} min {{ timeShown.secondes }} s
+  </span>
+  <span *ngIf="timeShown && timeShown.end">
+    {{ startGurdil }}
+  </span>
 </button>
+
+
+<ng-template *ngIf="typeTimer === 'chrono'">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            {{ timeShown.minutes }} <span> : </span> {{ timeShown.secondes }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-template>

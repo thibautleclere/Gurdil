@@ -4,19 +4,17 @@ import {LoadingController, NavController} from 'ionic-angular';
 import { LoginPage} from '../login/login';
 import { NainInterface } from '../../models/nain.interface';
 import { Storage } from '@ionic/storage';
-import { MenuComponent } from '../../components/menu/menu';
 import { TimerCountdownComponent } from '../../components/timer-countdown/timer-countdown';
 import { Gurdil } from '../../services/gurdil';
 import { GurdilPage } from '../gurdil/gurdil';
-import {AuthProvider} from "../../providers/auth/auth";
+import { AuthProvider } from "../../providers/auth/auth";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage implements OnInit{
-  @ViewChild('menu') menuComponent: MenuComponent;
-  @ViewChild('menu') timerComponent: TimerCountdownComponent;
+  @ViewChild('timer') timerComponent: TimerCountdownComponent;
 
   public nain: NainInterface;
   public liste: NainInterface[] = [];

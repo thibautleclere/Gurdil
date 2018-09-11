@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from './home';
-import { ComponentsModule } from '../../components/components.module';
+import { TimerCountdownComponent } from '../../components/timer-countdown/timer-countdown';
 
 
 @NgModule({
-    declarations: [HomePage],
+    declarations: [HomePage, TimerCountdownComponent],
     imports: [
-        IonicPageModule.forChild(HomePage),
-        ComponentsModule
+        IonicPageModule.forChild(HomePage)
     ]
 })
 export class HomePageModule {}
