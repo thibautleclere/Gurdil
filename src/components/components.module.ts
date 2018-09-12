@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import {IonicModule, IonicPageModule} from 'ionic-angular';
 import { TimerCountdownComponent } from './timer-countdown/timer-countdown';
+import {HomePageModule} from "../pages/home/home.module";
+import {GurdilPageModule} from "../pages/gurdil/gurdil.module";
 @NgModule({
 	declarations: [TimerCountdownComponent],
 	imports: [IonicPageModule.forChild(TimerCountdownComponent)],

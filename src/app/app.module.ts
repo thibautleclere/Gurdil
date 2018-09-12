@@ -19,6 +19,7 @@ import { HomePageModule } from "../pages/home/home.module";
 import { GurdilPage } from "../pages/gurdil/gurdil";
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { ParametersPage } from "../pages/parameters/parameters";
+import {ComponentsModule} from "../components/components.module";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ParametersPage } from "../pages/parameters/parameters";
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+      ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Gurdil } from '../../services/gurdil';
 import { ITimer } from "./timer-countdown.interface";
 
@@ -7,17 +7,22 @@ import { ITimer } from "./timer-countdown.interface";
   selector: 'timercountdown',
   templateUrl: 'timer-countdown.html'
 })
-export class TimerCountdownComponent {
+export class TimerCountdownComponent implements OnInit{
 
-  public timeLeft: number = 10;
   public interval;
   public timeShown: ITimer = null;
   public startGurdil: string = "GURDIL!!!";
-  public typeTimer: string = 'gurdilBtn';
+
+  @Input()
+  public typeTimer: string;
+
+  @Input()
+  public timeLeft: number = 10;
 
   constructor(public gurdilservice: Gurdil) {
-
   }
+
+  public ngOnInit(){}
 
   public startCountDown() {
       if (this.timeShown && this.timeShown.end) {
@@ -52,9 +57,6 @@ export class TimerCountdownComponent {
 
   public setTimeLeft(seconds: number) {
       this.timeLeft = seconds;
-  }
-  public setTypeTimer(typeTimer) {
-      this.typeTimer = typeTimer;
   }
 
 }

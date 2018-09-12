@@ -14,7 +14,7 @@ import { AuthProvider } from "../../providers/auth/auth";
   templateUrl: 'home.html'
 })
 export class HomePage implements OnInit{
-  @ViewChild('timer') timerComponent: TimerCountdownComponent;
+  @ViewChild('gurdil10min') timerComponent: TimerCountdownComponent;
 
   public nain: NainInterface;
   public liste: NainInterface[] = [];
