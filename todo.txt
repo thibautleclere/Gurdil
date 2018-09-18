@@ -18,13 +18,10 @@ Pages:
             => Page Parametres => Paramètres liens gurdils whatsapp (groupe)
             => lien Règles du jeux
 
-    => Sous Menu => Bouton Accueil / Palmares / Parametres / Deconnexion
-
     => Page Gurdil / Deroulement du jeu
-        => Chronometre de 4:03 s
-        => Joueur + Boutons + 1 de bière
         => Boutons Bonus => ...
         => Liste des joueurs => Boutons whatsapp / notification => envoie de messages + blagues
+        => nombre de bières a initialiser
 
     => Fin Partie
         => Classement des joueurs
@@ -36,3 +33,10 @@ Pages:
 
     => Cordova / Telephone test
         => Notification whatsapp / Lien pour s'inscrire au gurdils
+
+
+    Terminé:
+
+       => Sous Menu => Bouton Accueil / Palmares / Parametres / Deconnexion
+       => Chronometre de 4:03 s
+       => Joueur + Boutons + 1 de bière

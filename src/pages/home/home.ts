@@ -8,13 +8,14 @@ import { TimerCountdownComponent } from '../../components/timer-countdown/timer-
 import { Gurdil } from '../../services/gurdil';
 import { GurdilPage } from '../gurdil/gurdil';
 import { AuthProvider } from "../../providers/auth/auth";
+import { Beer } from "../../services/beer";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage implements OnInit{
-  @ViewChild('gurdil10min') timerComponent: TimerCountdownComponent;
+  @ViewChild('TimerCountdownComponent') timerComponent: TimerCountdownComponent;
 
   public nain: NainInterface;
   public liste: NainInterface[] = [];
@@ -26,12 +27,14 @@ export class HomePage implements OnInit{
       public gurdil: Gurdil,
       private socialSharing: SocialSharing,
       public authService: AuthProvider,
-      public loadCtrl: LoadingController) {
+      public loadCtrl: LoadingController,
+      public beerService: Beer) {
 
     this.gurdil.onEndCountDown.subscribe((start: boolean) => {
       console.log("event end countdown");
     });
     this.gurdil.onStartGurdil.subscribe((start: boolean) => {
+      this.storage.set('beers', this.beers);
       this.navCtrl.setRoot(GurdilPage);
     });
     this.authService.onLogin.subscribe((login: boolean) => {
@@ -40,7 +43,6 @@ export class HomePage implements OnInit{
       });
       loading.present();
       this.authService.loadUsers().then((ok: boolean) => {
-        debugger;
         loading.dismiss();
       }, (error) => {
         console.log(error);
@@ -48,13 +50,20 @@ export class HomePage implements OnInit{
     });
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.storage.get('nain').then((nain) => this.nain = nain);
     this.storage.get('gurdiliens').then((liste) => this.liste = liste);
   }
 
-  Login() {
+  public Login() {
     this.navCtrl.setRoot(LoginPage);
+  }
+
+  public addBeer() {
+    this.beers++;
+  }
+  public delBeer() {
+    this.beers--;
   }
 
 }

@@ -7,6 +7,7 @@ export class Gurdil {
     @Output() public onEndCountDown = new EventEmitter<boolean>();
     @Output() public onStartGurdil = new EventEmitter<boolean>();
     @Output() public onEndGurdil = new EventEmitter<boolean>();
+    @Output() public onAfterGurdil = new EventEmitter<boolean>();
 
     emit10minutes () {
         this.onStartCountDown.emit(true);
@@ -22,6 +23,10 @@ export class Gurdil {
 
     emitEndGurdil() {
         this.onEndGurdil.emit(true);
+    }
+
+    emitEndAfterGurdil() {
+        this.onAfterGurdil.emit(true);
     }
 
 }

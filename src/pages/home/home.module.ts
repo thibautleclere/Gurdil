@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from './home';
-import { TimerCountdownComponent } from '../../components/timer-countdown/timer-countdown';
-import {ComponentsModule} from "../../components/components.module";
+import { ComponentsModule } from "../../components/components.module";
 
 
 @NgModule({

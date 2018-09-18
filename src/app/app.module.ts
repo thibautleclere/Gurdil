@@ -19,7 +19,8 @@ import { HomePageModule } from "../pages/home/home.module";
 import { GurdilPage } from "../pages/gurdil/gurdil";
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { ParametersPage } from "../pages/parameters/parameters";
-import {ComponentsModule} from "../components/components.module";
+import { ComponentsModule } from "../components/components.module";
+import { Beer } from "../services/beer";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import {ComponentsModule} from "../components/components.module";
     IonicModule.forRoot(MyApp),
     HttpModule,
     IonicStorageModule.forRoot(),
-      ComponentsModule
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,7 +56,8 @@ import {ComponentsModule} from "../components/components.module";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     Gurdil,
-    SocialSharing
+    SocialSharing,
+    Beer
   ]
 })
 export class AppModule {}

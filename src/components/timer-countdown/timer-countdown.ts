@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Injectable} from '@angular/core';
 import { Gurdil } from '../../services/gurdil';
 import { ITimer } from "./timer-countdown.interface";
 
@@ -12,6 +12,9 @@ export class TimerCountdownComponent implements OnInit{
   public interval;
   public timeShown: ITimer = null;
   public startGurdil: string = "GURDIL!!!";
+  public timeRunning: boolean = false;
+  public timeStart: number;
+  public afterGurdil: boolean = false;
 
   @Input()
   public typeTimer: string;
@@ -22,9 +25,13 @@ export class TimerCountdownComponent implements OnInit{
   constructor(public gurdilservice: Gurdil) {
   }
 
-  public ngOnInit(){}
+  public ngOnInit() {
+      this.timeStart = this.timeLeft;
+      this.timeShown = this.convertTimeToString(this.timeLeft);
+  }
 
   public startCountDown() {
+      this.timeRunning = true;
       if (this.timeShown && this.timeShown.end) {
           this.gurdilservice.emitGurdil();
       }
@@ -34,10 +41,17 @@ export class TimerCountdownComponent implements OnInit{
               this.timeLeft--;
               this.timeShown = this.convertTimeToString(this.timeLeft);
           } else {
+              debugger;
               clearInterval(this.interval);
               this.timeShown.end = true;
               this.timeShown.begin = false;
-              this.gurdilservice.emitEnd10minutes();
+              if (this.typeTimer === 'chrono' && !this.afterGurdil) {
+                this.gurdilservice.emitEndGurdil();
+              } else if (this.afterGurdil) {
+                this.gurdilservice.emitEndAfterGurdil();
+              } else {
+                this.gurdilservice.emitEnd10minutes();
+              }
           }
       },1000)
 
@@ -55,8 +69,9 @@ export class TimerCountdownComponent implements OnInit{
 
   }
 
-  public setTimeLeft(seconds: number) {
-      this.timeLeft = seconds;
+  public reset() {
+      clearInterval(this.interval);
+      this.timeShown = this.convertTimeToString(this.timeStart);
   }
 
 }
