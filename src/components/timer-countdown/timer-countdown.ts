@@ -41,24 +41,12 @@ export class TimerCountdownComponent implements OnInit{
               this.timeLeft--;
               this.timeShown = this.convertTimeToString(this.timeLeft);
           } else {
-              debugger;
-              clearInterval(this.interval);
+              this.reset();
               this.timeShown.end = true;
-              this.timeShown.begin = false;
-              if (this.typeTimer === 'chrono' && !this.afterGurdil) {
-                this.gurdilservice.emitEndGurdil();
-              } else if (this.afterGurdil) {
-                this.gurdilservice.emitEndAfterGurdil();
-              } else {
-                this.gurdilservice.emitEnd10minutes();
-              }
+              this.gurdilservice.emitEnd10minutes();
           }
       },1000)
 
-  }
-
-  public pauseCountDown() {
-      clearInterval(this.interval);
   }
 
   public convertTimeToString(time) : ITimer {

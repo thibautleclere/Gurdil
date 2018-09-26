@@ -83,7 +83,9 @@ export class AuthProvider {
                     this.onLogin.emit(nain);
                     resolve(res);
                 }, (err) => {
-                    reject(err);
+                    this.storage.set('nain', 'lalala');
+                    this.onLogin.emit(null);
+                    //reject(err);
                 });
 
         });

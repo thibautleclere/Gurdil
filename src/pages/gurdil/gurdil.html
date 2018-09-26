@@ -1,7 +1,5 @@
 <ion-content padding class="gold-back">
 
-    <timercountdown #timerGurdil [hidden]="!nain" [typeTimer]="'chrono'" [timeLeft]="20"></timercountdown>
-
     <ion-grid>
         <ion-row>
             <ion-col col-6>
@@ -26,5 +24,8 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+
+
+    <gurdil-timer #timerGurdil></gurdil-timer>
 
 </ion-content>
