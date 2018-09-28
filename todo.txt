@@ -9,9 +9,8 @@ Pages:
     https://devdactic.com/ionic-2-images/
 
     => Page Accueil / Jeu
-            => Bouton "Gurdil dans 10 minutes"
-                => au bout des 10 minutes => bouton "Gurdil" => Creation Partie (Back)
-                => musique du gurdil joué
+            => au bout des 10 minutes => bouton "Gurdil" => Creation Partie (Back)
+            => musique du gurdil joué
             => Liste des Joueurs participant au gurdil
                 => Boutons ajouts joueurs
             => Nombre de bières perso à tenter

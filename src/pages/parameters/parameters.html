@@ -30,8 +30,18 @@
         <button ion-button item-end icon-start color="silver">Enregistrer votre avatar</button>
       </ion-item>
     </ion-list>
-
   </form>
+
+  <pre>{{info | json}}</pre>
+  <ion-list>
+      <ion-item ngFor="let contact in allContacts">
+        <ion-avatar item-start>
+          <img src="../../assets/imgs/gurdil3.svg">
+        </ion-avatar>
+        <h2>lalala</h2>
+        <p>Ugh. As if.</p>
+      </ion-item>
+  </ion-list>
 
 </ion-content>
 

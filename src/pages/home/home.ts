@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SocialSharing } from '@ionic-native/social-sharing';
 import {LoadingController, NavController} from 'ionic-angular';
 import { LoginPage} from '../login/login';
 import { NainInterface } from '../../models/nain.interface';
@@ -9,6 +8,7 @@ import { Gurdil } from '../../services/gurdil';
 import { GurdilPage } from '../gurdil/gurdil';
 import { AuthProvider } from "../../providers/auth/auth";
 import { Beer } from "../../services/beer";
+import { SMS, SmsOptions } from "@ionic-native/sms";
 
 @Component({
   selector: 'page-home',
@@ -21,11 +21,18 @@ export class HomePage implements OnInit{
   public liste: NainInterface[] = [];
   public beers: number = 0;
 
+  public phones = ['0678971941', '0620142847', '0633224869', '0626033128'];
+  public options: SmsOptions = {
+      android: {
+        intent: 'INTENT'
+      }
+  };
+
   constructor(
       public navCtrl: NavController,
       public storage: Storage,
       public gurdil: Gurdil,
-      private socialSharing: SocialSharing,
+      private socialSharing: SMS,
       public authService: AuthProvider,
       public loadCtrl: LoadingController,
       public beerService: Beer) {
@@ -34,6 +41,7 @@ export class HomePage implements OnInit{
       console.log("event end countdown");
     });
     this.gurdil.onStartGurdil.subscribe((start: boolean) => {
+      this.socialSharing.send(this.phones, `Test: Gurdil dans 10 minutes! ${this.beers} pour moi`, this.options);
       this.storage.set('beers', this.beers);
       this.navCtrl.setRoot(GurdilPage);
     });

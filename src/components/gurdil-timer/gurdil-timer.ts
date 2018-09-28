@@ -16,7 +16,6 @@ export class GurdilTimerComponent implements OnInit {
 
   public interval;
   public timeShown: ITimer = null;
-  public startGurdil: string = "GURDIL!!!";
   public timeRunning: boolean = false;
   public timeStart: number;
   public afterGurdil: boolean = false;

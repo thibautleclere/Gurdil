@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { SMS} from '@ionic-native/sms';
 
 import { MyApp } from './app.component';
 
@@ -9,18 +12,16 @@ import { PalmaresPage } from "../pages/palmares/palmares";
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
 import { Gurdil } from '../services/gurdil';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { HomePageModule } from "../pages/home/home.module";
-import { GurdilPage } from "../pages/gurdil/gurdil";
-import { SocialSharing } from '@ionic-native/social-sharing';
-import { ParametersPage } from "../pages/parameters/parameters";
-import { ComponentsModule } from "../components/components.module";
-import { Beer } from "../services/beer";
+import { HomePageModule } from '../pages/home/home.module';
+import { GurdilPage } from '../pages/gurdil/gurdil';
+import { ParametersPage } from '../pages/parameters/parameters';
+import { ComponentsModule } from '../components/components.module';
+import { Beer } from '../services/beer';
+import { Sim } from '@ionic-native/sim';
 
 @NgModule({
   declarations: [
@@ -56,8 +57,9 @@ import { Beer } from "../services/beer";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     Gurdil,
-    SocialSharing,
-    Beer
+    Beer,
+    SMS,
+    Sim,
   ]
 })
 export class AppModule {}
