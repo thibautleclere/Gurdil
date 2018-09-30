@@ -1,10 +1,9 @@
-
-
 export interface NainInterface {
-    id: number;
+    id?: number;
     name: string;
-    email: string;
-    created_at: string;
-    updated_at: string;
+    email?: string;
+    created_at?: string;
+    updated_at?: string;
+    phone?: string;
 
 }

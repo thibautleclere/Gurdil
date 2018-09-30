@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
+import {NainInterface} from "../models/nain.interface";
 
 @Injectable()
 export class Gurdil {
@@ -9,24 +10,30 @@ export class Gurdil {
     @Output() public onEndGurdil = new EventEmitter<boolean>();
     @Output() public onAfterGurdil = new EventEmitter<boolean>();
 
-    emit10minutes () {
+    public listNains: NainInterface[] = [];
+
+    public emit10minutes () {
         this.onStartCountDown.emit(true);
     }
 
-    emitEnd10minutes () {
+    public emitEnd10minutes () {
         this.onEndCountDown.emit(true);
     }
 
-    emitGurdil () {
+    public emitGurdil () {
         this.onStartGurdil.emit(true);
     }
 
-    emitEndGurdil() {
+    public emitEndGurdil() {
         this.onEndGurdil.emit(true);
     }
 
-    emitEndAfterGurdil() {
+    public emitEndAfterGurdil() {
         this.onAfterGurdil.emit(true);
+    }
+
+    public addNains(nain: NainInterface) {
+        this.listNains.push(nain);
     }
 
 }

@@ -20,26 +20,32 @@
     </ion-item>
   </ion-list>
 
-  <form (ngSubmit)="uploadAvatar">
+  <form (ngSubmit)="addDwarf()" [formGroup]="dwarfForm">
     <ion-list>
       <ion-item>
-        <ion-label fixed>Avatar</ion-label>
-        <ion-input type="file" value=""></ion-input>
+        <ion-input placeholder="Nom" type="text" formControlName="nom"></ion-input>
       </ion-item>
       <ion-item>
-        <button ion-button item-end icon-start color="silver">Enregistrer votre avatar</button>
+        <ion-input placeholder="Mobile" type="telephone" formControlName="phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button color="dark">Ajouter</button>
       </ion-item>
     </ion-list>
   </form>
 
-  <pre>{{info | json}}</pre>
   <ion-list>
-      <ion-item ngFor="let contact in allContacts">
+      <ion-item *ngFor="let nain of listNains">
         <ion-avatar item-start>
           <img src="../../assets/imgs/gurdil3.svg">
         </ion-avatar>
-        <h2>lalala</h2>
-        <p>Ugh. As if.</p>
+        <h2>
+          {{ nain?.name }}
+          <button ion-button color="danger" class="float-right" (click)="addDwarfToGurdil()">Gurdil</button>
+        </h2>
+        <p>
+          {{ nain?.phone }}
+        </p>
       </ion-item>
   </ion-list>
 

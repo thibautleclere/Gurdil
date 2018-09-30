@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { ReactiveFormsModule } from "@angular/forms";
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { SMS} from '@ionic-native/sms';
+import { SMS } from '@ionic-native/sms';
+import { Camera } from '@ionic-native/camera';
 
 import { MyApp } from './app.component';
 
@@ -21,7 +23,6 @@ import { GurdilPage } from '../pages/gurdil/gurdil';
 import { ParametersPage } from '../pages/parameters/parameters';
 import { ComponentsModule } from '../components/components.module';
 import { Beer } from '../services/beer';
-import { Sim } from '@ionic-native/sim';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { Sim } from '@ionic-native/sim';
     IonicModule.forRoot(MyApp),
     HttpModule,
     IonicStorageModule.forRoot(),
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -59,7 +61,7 @@ import { Sim } from '@ionic-native/sim';
     Gurdil,
     Beer,
     SMS,
-    Sim,
+    Camera
   ]
 })
 export class AppModule {}
