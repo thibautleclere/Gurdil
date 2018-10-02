@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import {NainInterface} from "../models/nain.interface";
+import { NainInterface } from "../models/nain.interface";
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class Gurdil {
@@ -9,8 +10,13 @@ export class Gurdil {
     @Output() public onStartGurdil = new EventEmitter<boolean>();
     @Output() public onEndGurdil = new EventEmitter<boolean>();
     @Output() public onAfterGurdil = new EventEmitter<boolean>();
+    @Output() public dwarfAdded = new EventEmitter<NainInterface>();
 
     public listNains: NainInterface[] = [];
+
+    public constructor(
+      public storage: Storage
+    ){}
 
     public emit10minutes () {
         this.onStartCountDown.emit(true);
@@ -34,6 +40,18 @@ export class Gurdil {
 
     public addNains(nain: NainInterface) {
         this.listNains.push(nain);
+    }
+
+    public addNainToGurdil(nain: NainInterface) {
+        this.storage.get('joueurs').then((data: string) => {
+           if (data) {
+               this.listNains = JSON.parse(data);
+           }
+           this.listNains.push(nain);
+           this.storage.set('joueurs', JSON.stringify(this.listNains)).then(() => {
+               this.dwarfAdded.emit(nain);
+           });
+        });
     }
 
 }

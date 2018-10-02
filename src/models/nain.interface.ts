@@ -5,5 +5,5 @@ export interface NainInterface {
     created_at?: string;
     updated_at?: string;
     phone?: string;
-
+    beers?: number;
 }

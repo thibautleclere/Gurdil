@@ -41,6 +41,11 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-grid>
+    <ng-container *ngFor="let nain of liste">
+      <addingbeers [nain]="nain"></addingbeers>
+    </ng-container>
+  </ion-grid>
 
 
 </ion-content>

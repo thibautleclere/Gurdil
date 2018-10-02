@@ -60,7 +60,7 @@ export class HomePage implements OnInit{
 
   public ngOnInit() {
     this.storage.get('nain').then((nain) => this.nain = nain);
-    this.storage.get('gurdiliens').then((liste) => this.liste = liste);
+    this.storage.get('joueurs').then((liste) => this.liste = JSON.parse(liste));
   }
 
   public Login() {
