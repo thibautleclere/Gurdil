@@ -25,8 +25,10 @@ export class AddingbeersComponent {
   }
 
   public rmBeer() {
-    this.beers--;
-    this.beerService.beerAddedToDwarf(this.beers, this.nain);
+    if (this.beers > 0) {
+      this.beers--;
+      this.beerService.beerAddedToDwarf(this.beers, this.nain);
+    }
   }
 
 }

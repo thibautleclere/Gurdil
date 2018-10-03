@@ -1,18 +1,15 @@
 <ion-row [hidden]="!nain">
   <ion-col col-4>
-    <ion-card>
-      <ion-item>{{ nain.name }}</ion-item>
-    </ion-card>
-    <!--<button ion-button color="light" outline>{{ nain.name }}</button>-->
+    <button ion-button color="light" outline>{{ nain.name }}</button>
   </ion-col>
   <ion-col col-3>
-    <button ion-button color="gold" class="silver-text loginBtn" (click)="addBeer()">
-      <ion-icon name="icon-beer"></ion-icon>+
+    <button ion-button icon-only color="gold" class="silver-text loginBtn" (click)="addBeer()">
+      <ion-icon name="icon-beer"></ion-icon>
     </button>
   </ion-col>
   <ion-col col-3>
-    <button ion-button color="gold" class="silver-text loginBtn" (click)="rmBeer()">
-      <ion-icon name="icon-beer"></ion-icon>-
+    <button ion-button icon-only color="gold" class="silver-text loginBtn" (click)="rmBeer()">
+      <ion-icon name="icon-beer"></ion-icon>
     </button>
   </ion-col>
   <ion-col col-2>
