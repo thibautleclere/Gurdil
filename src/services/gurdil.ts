@@ -11,6 +11,7 @@ export class Gurdil {
     @Output() public onEndGurdil = new EventEmitter<boolean>();
     @Output() public onAfterGurdil = new EventEmitter<boolean>();
     @Output() public dwarfAdded = new EventEmitter<NainInterface>();
+    @Output() public dwarfRemoved = new EventEmitter<NainInterface>();
 
     public listNains: NainInterface[] = [];
 
@@ -51,6 +52,18 @@ export class Gurdil {
            this.storage.set('joueurs', JSON.stringify(this.listNains)).then(() => {
                this.dwarfAdded.emit(nain);
            });
+        });
+    }
+
+    public deleteToGurdil(nain: NainInterface) {
+        this.storage.get('joueurs').then((data: string) => {
+            if (data) {
+                this.listNains = JSON.parse(data);
+            }
+            this.listNains.splice(this.listNains.indexOf(nain), 1);
+            this.storage.set('joueurs', JSON.stringify(this.listNains)).then(() => {
+                this.dwarfRemoved.emit(nain);
+            });
         });
     }
 

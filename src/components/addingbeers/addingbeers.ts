@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NainInterface } from '../../models/nain.interface';
 import { Beer } from '../../services/beer';
+import {Gurdil} from "../../services/gurdil";
 
 
 @Component({
@@ -15,7 +16,8 @@ export class AddingbeersComponent {
   public beers: number = 0;
 
   constructor(
-      public beerService: Beer
+      public beerService: Beer,
+      public gurdilService: Gurdil
   ) {}
 
 
@@ -29,6 +31,10 @@ export class AddingbeersComponent {
       this.beers--;
       this.beerService.beerAddedToDwarf(this.beers, this.nain);
     }
+  }
+
+  public deletePlayer() {
+    this.gurdilService.deleteToGurdil(this.nain);
   }
 
 }

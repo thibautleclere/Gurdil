@@ -1,0 +1,20 @@
+<ion-grid>
+  <ion-row>
+    <ion-col col-12 text-center>
+      <button ion-button color="gold" (click)="slideUp()">
+        <ion-icon name="{{ icon }}"></ion-icon>
+        {{ text }}
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<input id="check" type="checkbox" [checked]="toogle" hidden/>
+
+<div class="toogle">
+  <ion-grid>
+    <ng-container *ngFor="let nain of players">
+      <gurdil-player [nain]="nain"></gurdil-player>
+    </ng-container>
+  </ion-grid>
+</div>

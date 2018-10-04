@@ -1,0 +1,16 @@
+.toogle {
+  position: absolute;
+  -webkit-transition: bottom .3s ease;
+  height: 0;
+  overflow: hidden;
+  margin-top: 15px;
+  padding: 5px;
+  bottom: -500px;
+  width: 100%;
+}
+
+input:checked + .toogle {
+  height: auto;
+  overflow-y: scroll;
+  bottom: 0;
+}

@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild, ContentChildren, ViewChildren, QueryList} from '@angular/core';
+import { Component, OnInit, ViewChild, ContentChildren, ViewChildren, QueryList } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { NainInterface } from '../../models/nain.interface';
 import { Storage } from '@ionic/storage';
 import { Gurdil } from '../../services/gurdil';
-import {GurdilTimerComponent} from "../../components/gurdil-timer/gurdil-timer";
-import {PlayerComponent} from "../../components/player/player";
+import { GurdilTimerComponent } from '../../components/gurdil-timer/gurdil-timer';
+import { PlayerComponent } from '../../components/player/player';
 
 
 @IonicPage()
@@ -21,19 +21,16 @@ export class GurdilPage implements OnInit{
 
   public beers: number;
   public nain: NainInterface;
-  public players: NainInterface[] = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public storage: Storage,
               public gurdilService: Gurdil,
-              public alertCtrl: AlertController) {
-  }
+              public alertCtrl: AlertController) {}
 
   public ngOnInit() {
       this.storage.get('nain').then((nain) => this.nain = nain);
       this.storage.get('beers').then((beers) => this.beers = beers);
-      this.storage.get('joueurs').then((liste) => this.players = JSON.parse(liste));
 
       this.listenEvents();
   }

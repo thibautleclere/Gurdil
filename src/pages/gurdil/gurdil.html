@@ -28,10 +28,6 @@
 
     <gurdil-timer #timerGurdil></gurdil-timer>
 
-    <ion-grid>
-        <ng-container *ngFor="let nain of players">
-            <gurdil-player [nain]="nain"></gurdil-player>
-        </ng-container>
-    </ion-grid>
+    <gurdil-slideup [icon]="'icon-jonjon'" [text]="'Voir la liste des nains'"></gurdil-slideup>
 
 </ion-content>

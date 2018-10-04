@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, Injectable} from '@angular/core';
 import { Gurdil } from '../../services/gurdil';
 import { ITimer } from "./timer-countdown.interface";
+import {NainInterface} from "../../models/nain.interface";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class TimerCountdownComponent implements OnInit{
   public afterGurdil: boolean = false;
 
   @Input()
-  public typeTimer: string;
+  public listePLayers: NainInterface[];
 
   @Input()
   public timeLeft: number = 10;
