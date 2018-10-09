@@ -21,7 +21,7 @@ export class HomePage implements OnInit{
   public liste: NainInterface[] = [];
   public beers: number = 0;
 
-  public phones: string[];
+  public phones: string[] = [];
   public options: SmsOptions = {
       android: {
         intent: 'INTENT'
@@ -55,9 +55,9 @@ export class HomePage implements OnInit{
 
       });
 
-      if (this.platform.is('cordova')) {
+      //if (this.platform.is('cordova')) {
         this.listeninEventsWithCordova();
-      }
+      //}
 
       this.updateListeNain();
 

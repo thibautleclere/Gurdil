@@ -1,6 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import { NainInterface } from '../../models/nain.interface';
-import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -13,15 +12,13 @@ export class SlideupComponent implements OnInit {
   @Input() public text: string;
   @Input() public icon: string;
   @Input() public element: string;
+  @Input() public players: NainInterface[] = [];
 
   public toogle: boolean;
 
-  public players: NainInterface[] = [];
-
-  public constructor(public storage: Storage) {}
+  public constructor() {}
 
   public ngOnInit() {
-      this.storage.get('joueurs').then((liste) => this.players = JSON.parse(liste));
       this.toogle = false;
   }
 

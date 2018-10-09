@@ -2,12 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ITimer} from "../timer-countdown/timer-countdown.interface";
 import {Gurdil} from "../../services/gurdil";
 
-/**
- * Generated class for the GurdilTimerComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'gurdil-timer',
   templateUrl: 'gurdil-timer.html'
@@ -66,9 +61,10 @@ export class GurdilTimerComponent implements OnInit {
     },1000)
   }
 
-  public reset() {
+  public reset(timeStart?: number): void {
+      timeStart = timeStart || 0;
       clearInterval(this.interval);
-      this.timeShown = this.convertTimeToString(this.timeStart);
+      this.timeShown = this.convertTimeToString(timeStart);
   }
 
 

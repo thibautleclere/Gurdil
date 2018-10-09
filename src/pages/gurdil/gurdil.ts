@@ -21,6 +21,7 @@ export class GurdilPage implements OnInit{
 
   public beers: number;
   public nain: NainInterface;
+  public players: NainInterface[] = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -31,6 +32,7 @@ export class GurdilPage implements OnInit{
   public ngOnInit() {
       this.storage.get('nain').then((nain) => this.nain = nain);
       this.storage.get('beers').then((beers) => this.beers = beers);
+      this.storage.get('joueurs').then((liste) => this.players = JSON.parse(liste));
 
       this.listenEvents();
   }
@@ -59,6 +61,10 @@ export class GurdilPage implements OnInit{
           });
           alert.present();
       });
+
+  }
+
+  public getPlayerTurn() {
 
   }
 
