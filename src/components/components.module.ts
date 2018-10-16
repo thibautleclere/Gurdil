@@ -5,6 +5,7 @@ import { GurdilTimerComponent } from './gurdil-timer/gurdil-timer';
 import { AddingbeersComponent } from './addingbeers/addingbeers';
 import { PlayerComponent } from './player/player';
 import { SlideupComponent } from './slideup/slideup';
+import { ModalplayerComponent } from './modalplayer/modalplayer';
 
 @NgModule({
 	declarations: [TimerCountdownComponent,
@@ -12,14 +13,17 @@ import { SlideupComponent } from './slideup/slideup';
     AddingbeersComponent,
     PlayerComponent,
     PlayerComponent,
-    SlideupComponent],
+    SlideupComponent,
+    ModalplayerComponent],
 	imports: [IonicPageModule.forChild(TimerCountdownComponent)],
 	exports: [TimerCountdownComponent,
     GurdilTimerComponent,
     AddingbeersComponent,
     PlayerComponent,
     PlayerComponent,
-    SlideupComponent],
-    schemas: []
+    SlideupComponent,
+    ModalplayerComponent],
+    schemas: [],
+    entryComponents: [ModalplayerComponent]
 })
 export class ComponentsModule {}
