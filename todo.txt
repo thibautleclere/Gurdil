@@ -2,6 +2,8 @@ Pages:
 
     chat https://www.londonappdeveloper.com/how-to-build-a-websocket-multi-client-chat-using-ionic-and-node-js/
 
+    https://firebase.google.com/docs/firestore/quickstart?authuser=0
+
     => Page Accueil / Jeu
             => musique du gurdil joué
             => lien Règles du jeux
