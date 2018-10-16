@@ -7,6 +7,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { SMS } from '@ionic-native/sms';
 import { Camera } from '@ionic-native/camera';
 
+
+// Import the AF2 Module
+
+
+// AF2 Settings
+export const firebaseConfig = {
+    apiKey: "AIzaSyDFJXVMQXXNreBggFgQUmBEijqyaqffYsE",
+    authDomain: "gurdil-219612.firebaseapp.com",
+    databaseURL: "https://gurdil-219612.firebaseio.com",
+    projectId: "gurdil-219612",
+    storageBucket: "gurdil-219612.appspot.com",
+    messagingSenderId: "244136901639"
+};
+
 import { MyApp } from './app.component';
 
 import { TabsPage } from '../pages/tabs/tabs';

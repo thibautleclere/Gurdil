@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NainInterface } from "../../models/nain.interface";
 import { Storage } from '@ionic/storage';
-import { NavParams } from "ionic-angular";
+import { NavParams, ViewController } from "ionic-angular";
 
 
 @Component({
@@ -13,7 +13,8 @@ export class ModalplayerComponent implements OnInit {
   public players: NainInterface[] = [];
 
   constructor(
-      data: NavParams
+      public data: NavParams,
+      public viewCtrl: ViewController
   ) {
     this.players = data.get('players');
   }
@@ -21,6 +22,10 @@ export class ModalplayerComponent implements OnInit {
 
   public ngOnInit() {
     this.players;debugger;
+  }
+
+  public dismiss() {
+    this.viewCtrl.dismiss();
   }
 
 }

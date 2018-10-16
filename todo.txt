@@ -2,25 +2,12 @@ Pages:
 
     chat https://www.londonappdeveloper.com/how-to-build-a-websocket-multi-client-chat-using-ionic-and-node-js/
 
-    https://ionicframework.com/docs/native/push/
-
-    https://ionicframework.com/docs/native/social-sharing/
-
-    https://devdactic.com/ionic-2-images/
-
     => Page Accueil / Jeu
-            => au bout des 10 minutes => bouton "Gurdil" => Creation Partie (Back)
             => musique du gurdil joué
-            => Liste des Joueurs participant au gurdil
-                => Boutons ajouts joueurs
-            => Nombre de bières perso à tenter
-            => Page Parametres => Paramètres liens gurdils whatsapp (groupe)
             => lien Règles du jeux
 
     => Page Gurdil / Deroulement du jeu
-        => Boutons Bonus => ...
-        => Liste des joueurs => Boutons whatsapp / notification => envoie de messages + blagues
-        => nombre de bières a initialiser
+        => Boutons Bonus
 
     => Fin Partie
         => Classement des joueurs
@@ -29,10 +16,6 @@ Pages:
 
     => Page Login
            => Refaire les fonts icons svg => icomoon app
-
-    => Cordova / Telephone test
-        => Notification whatsapp / Lien pour s'inscrire au gurdils
-
 
     Terminé:
 

@@ -1,6 +1,8 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NainInterface } from '../../models/nain.interface';
 import { Storage } from '@ionic/storage';
+import { ModalController } from "ionic-angular";
+import { ModalplayerComponent } from "../modalplayer/modalplayer";
 
 
 @Component({
@@ -13,19 +15,15 @@ export class SlideupComponent implements OnInit {
   @Input() public text: string;
   @Input() public icon: string;
   @Input() public element: string;
-
-  public players: NainInterface[] = [];
+  @Input() public players: NainInterface[] = [];
 
   public constructor(
       public storage: Storage,
       public modalCtrl: ModalController) {}
 
-  public ngOnInit() {
-      this.storage.get('joueurs').then((liste) => this.players = JSON.parse(liste));
-  }
+  public ngOnInit() {}
 
   public slideUp() {
-    debugger;
     const modal = this.modalCtrl.create(ModalplayerComponent, { players: this.players });
     modal.present();
   }

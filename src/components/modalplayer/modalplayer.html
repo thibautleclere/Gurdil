@@ -1,5 +1,19 @@
-<ion-grid>
-  <ng-container *ngFor="let nain of players">
-    <gurdil-player [nain]="nain"></gurdil-player>
-  </ng-container>
-</ion-grid>
+<ion-header>
+  <ion-navbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button (click)="dismiss()">Fermer</button>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ng-container *ngFor="let nain of players">
+      <gurdil-player [nain]="nain"></gurdil-player>
+    </ng-container>
+  </ion-grid>
+</ion-content>
