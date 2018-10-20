@@ -11,3 +11,13 @@
     </ion-col>
   </ion-row>
 </ion-grid>
+<ion-grid *ngIf="timeShown.end">
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button large (click)="resetGurdil()">
+        <ion-icon name="icon-victory"></ion-icon>
+        Done!
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

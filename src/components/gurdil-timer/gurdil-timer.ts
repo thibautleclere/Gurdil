@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ITimer} from "../timer-countdown/timer-countdown.interface";
 import {Gurdil} from "../../services/gurdil";
+import {NavController} from "ionic-angular";
+import {HomePage} from "../../pages/home/home";
 
 
 @Component({
@@ -14,6 +16,7 @@ export class GurdilTimerComponent implements OnInit {
   public timeRunning: boolean = false;
   public timeStart: number;
   public afterGurdil: boolean = false;
+  public gurdilFinished: boolean = false;
 
 
   @Input()
@@ -21,7 +24,9 @@ export class GurdilTimerComponent implements OnInit {
   @Input()
   public timeAfter: number = 20;
 
-  constructor(public gurdilservice: Gurdil) {
+  constructor(
+      public gurdilservice: Gurdil,
+      public navCtrl: NavController) {
   }
 
 
@@ -74,6 +79,10 @@ export class GurdilTimerComponent implements OnInit {
       let secondes = time % 60;
       return {'minutes': minutes, 'secondes': secondes, begin: true, end: false};
 
+  }
+
+  public resetGurdil(): void {
+      this.navCtrl.setRoot(HomePage);
   }
 
 }

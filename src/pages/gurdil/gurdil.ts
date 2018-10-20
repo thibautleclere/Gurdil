@@ -22,6 +22,7 @@ export class GurdilPage implements OnInit{
   public beers: number;
   public nain: NainInterface;
   public players: NainInterface[] = [];
+  public gurdilEnded: boolean = false;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -54,6 +55,7 @@ export class GurdilPage implements OnInit{
       });
 
       this.gurdilService.onAfterGurdil.subscribe((end: boolean) => {
+          this.gurdilEnded = true;
           let alert = this.alertCtrl.create({
               title: "Tu n'as pas vomi? ...Champion! ",
               subTitle: 'ou pas...',
