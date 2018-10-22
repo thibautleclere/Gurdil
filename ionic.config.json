@@ -14,5 +14,6 @@
       "path": "/les-nains",
       "proxyUrl": "http://localhost:8000/les-nains"
     }
-  ]
+  ],
+  "app_id": ""
 }

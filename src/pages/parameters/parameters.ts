@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NainInterface } from '../../models/nain.interface';
 import { Gurdil } from '../../services/gurdil';
+import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 
 
 @IonicPage()
@@ -19,6 +20,7 @@ export class ParametersPage implements OnInit {
   public viasms: boolean = false;
   public dwarfForm: FormGroup;
   public listNains: NainInterface[] = [];
+  public savedDwarves: AngularFireList<NainInterface>;
 
   constructor(
       public navCtrl: NavController,
@@ -26,14 +28,20 @@ export class ParametersPage implements OnInit {
       public camera: Camera,
       public storage: Storage,
       public gurdilService: Gurdil,
-      public alertCtrl: AlertController) {
+      public alertCtrl: AlertController,
+      public afDatabase: AngularFireDatabase) {
+      this.savedDwarves = this.afDatabase.list('/groupes/players');
     }
 
   public ngOnInit() {
-      this.storage.get('nains').then((nains: string) => {
-          if (nains) {
-              this.listNains = JSON.parse(nains);
-          }
+      this.savedDwarves.valueChanges().subscribe((dwarves: NainInterface[]) => {
+          dwarves.forEach((dwarf: NainInterface) => {
+             if (this.listNains.map((element) => element.phone).indexOf(dwarf.phone) === -1) {
+                 this.listNains.push(dwarf);
+             }
+          });
+      }, (err) => {
+          console.warn(err);
       });
       this.dwarfForm = new FormGroup({
           nom: new FormControl('',[Validators.required]),
@@ -71,15 +79,10 @@ export class ParametersPage implements OnInit {
       const name = this.dwarfForm.controls['nom'].value;
       const phone = this.dwarfForm.controls['phone'].value;
       const nain: NainInterface = { name: name, phone: phone };
-
-      this.storage.get('nains').then((nains: string) => {
-          if (nains) {
-              this.listNains = JSON.parse(nains);
-          }
-          this.listNains.push(nain);
-          this.storage.set('nains', JSON.stringify(this.listNains));
-          this.dwarfForm.reset();
-      });
+      this.listNains.push(nain);
+      this.storage.set('nains', JSON.stringify(this.listNains));
+      this.dwarfForm.reset();
+      this.savedDwarves.push(nain);
   }
 
   public addDwarfToGurdil(nain: NainInterface) {
