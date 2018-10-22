@@ -9,7 +9,7 @@ Pages:
             => lien Règles du jeux
 
     => Page Gurdil / Deroulement du jeu
-        => Boutons Bonus
+        => Boutons Bonus (Lombard + Bouton Autistes)
 
     => Fin Partie
         => Classement des joueurs

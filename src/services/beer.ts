@@ -27,7 +27,7 @@ export class Beer {
             if (data) {
                 this.listNains = JSON.parse(data);
             }
-            this.listNains.splice(this.listNains.indexOf(nain), 1);
+            this.listNains.splice(this.listNains.findIndex((dwarf) => dwarf.phone === nain.phone), 1);
             nain.beers = beers;
             this.listNains.push(nain);
             this.storage.set('joueurs', JSON.stringify(this.listNains))
