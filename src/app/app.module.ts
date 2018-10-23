@@ -9,7 +9,8 @@ import { Camera } from '@ionic-native/camera';
 
 
 // Import the AF2 Module
-
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
 
 // AF2 Settings
 export const firebaseConfig = {
@@ -55,7 +56,9 @@ import { Beer } from '../services/beer';
     HttpModule,
     IonicStorageModule.forRoot(),
     ComponentsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

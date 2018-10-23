@@ -98,6 +98,9 @@ export class HomePage implements OnInit{
       this.gurdil.dwarfRemoved.subscribe((nain: NainInterface) => {
           this.liste.splice(this.liste.indexOf(nain), 1);
       });
+      this.gurdil.dwarfAdded.subscribe((nain: NainInterface) => {
+         this.liste.push(nain);
+      });
   }
 
 }
