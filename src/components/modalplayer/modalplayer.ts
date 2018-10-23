@@ -11,17 +11,25 @@ import { NavParams, ViewController } from "ionic-angular";
 export class ModalplayerComponent implements OnInit {
 
   public players: NainInterface[] = [];
+  public blagues: string[] = [];
 
   constructor(
       public data: NavParams,
-      public viewCtrl: ViewController
+      public viewCtrl: ViewController,
+      public storage: Storage
   ) {
     this.players = data.get('players');
   }
 
 
   public ngOnInit() {
-    this.players;debugger;
+      this.storage.get('blagues').then((sBlagues: string) => {
+          if (sBlagues) {
+              this.blagues = JSON.parse(sBlagues);
+          }
+      }).catch((err) => {
+          console.warn(err);
+      });
   }
 
   public dismiss() {

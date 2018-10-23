@@ -11,6 +11,7 @@ import { Storage } from '@ionic/storage';
 export class PlayerComponent implements OnInit {
 
   @Input() public nain: NainInterface;
+  @Input() public blagues: string[] = [];
 
   public options: SmsOptions = {
       android: {
@@ -23,7 +24,6 @@ export class PlayerComponent implements OnInit {
       public storage: Storage) {}
 
   public ngOnInit() {
-
   }
 
   public randLombard() {
@@ -31,6 +31,12 @@ export class PlayerComponent implements OnInit {
     const message = rand % 2 ? `Cheval` : `Un shooter dans ta gueule ${this.nain.name}. Gurdilement`;
     console.log(message);
     this.sms.send(this.nain.phone, message, this.options);
+  }
+
+  public randJokes() {
+      const message = this.blagues[Math.floor(Math.random() * this.blagues.length)];
+      console.log(message);
+      this.sms.send(this.nain.phone, message, this.options);
   }
 
 }

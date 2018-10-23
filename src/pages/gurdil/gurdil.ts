@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { Gurdil } from '../../services/gurdil';
 import { GurdilTimerComponent } from '../../components/gurdil-timer/gurdil-timer';
 import { PlayerComponent } from '../../components/player/player';
+import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 
 
 @IonicPage()
@@ -23,12 +24,17 @@ export class GurdilPage implements OnInit{
   public nain: NainInterface;
   public players: NainInterface[] = [];
   public gurdilEnded: boolean = false;
+  public jokes: AngularFireList<string>;
+  public blagues: string[] = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public storage: Storage,
               public gurdilService: Gurdil,
-              public alertCtrl: AlertController) {}
+              public alertCtrl: AlertController,
+              public afDatabase: AngularFireDatabase) {
+      this.jokes = this.afDatabase.list('/blagues');
+  }
 
   public ngOnInit() {
       this.storage.get('nain').then((nain) => this.nain = nain);
@@ -36,6 +42,7 @@ export class GurdilPage implements OnInit{
       this.storage.get('joueurs').then((liste) => this.players = JSON.parse(liste));
 
       this.listenEvents();
+      this.getJokes();
   }
 
   public ionViewDidLoad() {}
@@ -66,8 +73,21 @@ export class GurdilPage implements OnInit{
 
   }
 
-  public getPlayerTurn() {
-
+  public getJokes() {
+      this.storage.get('blagues').then((sBlagues: string) => {
+          if (sBlagues) {
+              this.blagues = JSON.parse(sBlagues);
+          } else {
+              this.jokes.valueChanges().subscribe((blagues: string[]) => {
+                  this.blagues = blagues;
+                  this.storage.set('blagues', JSON.stringify(this.blagues));
+              }, (err) => {
+                  console.warn(err);
+              });
+          }
+      }).catch((reason) => {
+          console.warn(reason);
+      });
   }
 
 }
