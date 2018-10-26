@@ -27,6 +27,9 @@ export class GurdilPage implements OnInit{
   public jokes: AngularFireList<string>;
   public blagues: string[] = [];
 
+  public subscriptionEndGurdil;
+  public subscriptionAfterGurdil;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public storage: Storage,
@@ -45,12 +48,16 @@ export class GurdilPage implements OnInit{
       this.getJokes();
   }
 
-  public ionViewDidLoad() {}
+  public ionViewDidLeave(): void {
+    console.log('did leave gurdil page');
+    this.subscriptionEndGurdil.unsubscribe();
+    this.subscriptionAfterGurdil.unsubscribe();
+  }
 
 
   public listenEvents() {
 
-      this.gurdilService.onEndGurdil.subscribe((end: boolean) => {
+      this.subscriptionEndGurdil = this.gurdilService.onEndGurdil.subscribe((end: boolean) => {
           console.log('end gurdil');
           this.timerComponent.startAfter();
           let alert = this.alertCtrl.create({
@@ -61,7 +68,7 @@ export class GurdilPage implements OnInit{
           alert.present();
       });
 
-      this.gurdilService.onAfterGurdil.subscribe((end: boolean) => {
+      this.subscriptionAfterGurdil = this.gurdilService.onAfterGurdil.subscribe((end: boolean) => {
           this.gurdilEnded = true;
           let alert = this.alertCtrl.create({
               title: "Tu n'as pas vomi? ...Champion! ",

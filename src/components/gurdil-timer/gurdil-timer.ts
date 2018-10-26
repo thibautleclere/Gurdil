@@ -20,9 +20,9 @@ export class GurdilTimerComponent implements OnInit {
 
 
   @Input()
-  public timeLeft: number = 10;
+  public timeLeft: number = 1;
   @Input()
-  public timeAfter: number = 20;
+  public timeAfter: number = 1;
 
   constructor(
       public gurdilservice: Gurdil,

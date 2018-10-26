@@ -14,7 +14,7 @@ import { SMS, SmsOptions } from "@ionic-native/sms";
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage implements OnInit{
+export class HomePage implements OnInit {
   @ViewChild('TimerCountdownComponent') timerComponent: TimerCountdownComponent;
 
   public nain: NainInterface;
@@ -28,6 +28,11 @@ export class HomePage implements OnInit{
       }
   };
 
+  public subscriptionEndCountDown;
+  public subscriptiononStartGurdil;
+  public subscriptiononDwarfRemoved;
+  public subscriptiononDwarfAdded;
+
   constructor(
       public navCtrl: NavController,
       public storage: Storage,
@@ -38,7 +43,7 @@ export class HomePage implements OnInit{
       public beerService: Beer,
       public platform: Platform) {
 
-      this.gurdil.onEndCountDown.subscribe((start: boolean) => {
+      this.subscriptionEndCountDown = this.gurdil.onEndCountDown.subscribe((start: boolean) => {
         console.log("event end countdown");
       });
 
@@ -81,26 +86,32 @@ export class HomePage implements OnInit{
 
 
   public listeninEventsWithCordova() {
-      this.gurdil.onStartGurdil.subscribe((start: boolean) => {
+      this.subscriptiononStartGurdil = this.gurdil.onStartGurdil.subscribe((start: boolean) => {
           this.liste.forEach((nain) => this.phones.push(nain.phone));
           this.socialSharing.send(this.phones, `Test: Gurdil dans 10 minutes! ${this.beers} pour moi`, this.options);
           this.storage.set('beers', this.beers);
           this.navCtrl.setRoot(GurdilPage);
       });
-      this.gurdil.dwarfRemoved.subscribe((nain: NainInterface) => {
+  }
+
+  public updateListeNain() {
+      this.subscriptiononDwarfRemoved = this.gurdil.dwarfRemoved.subscribe((nain: NainInterface) => {
+          this.liste.splice(this.liste.indexOf(nain), 1);
           if (nain.phone) {
               this.socialSharing.send(nain.phone, `Refuser un gurdil...pauvre merde`);
           }
       });
-  }
-
-  public updateListeNain() {
-      this.gurdil.dwarfRemoved.subscribe((nain: NainInterface) => {
-          this.liste.splice(this.liste.indexOf(nain), 1);
-      });
-      this.gurdil.dwarfAdded.subscribe((nain: NainInterface) => {
+      this.subscriptiononDwarfAdded = this.gurdil.dwarfAdded.subscribe((nain: NainInterface) => {
          this.liste.push(nain);
       });
+  }
+
+  public ionViewDidLeave(): void {
+      console.log('did leave');
+      this.subscriptionEndCountDown.unsubscribe();
+      this.subscriptiononStartGurdil.unsubscribe();
+      this.subscriptiononDwarfAdded.unsubscribe();
+      this.subscriptiononDwarfRemoved.unsubscribe();
   }
 
 }
