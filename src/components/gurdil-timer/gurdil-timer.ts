@@ -1,8 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ITimer} from "../timer-countdown/timer-countdown.interface";
-import {Gurdil} from "../../services/gurdil";
-import {NavController} from "ionic-angular";
-import {HomePage} from "../../pages/home/home";
+import { Component, Input, OnInit } from '@angular/core';
+import { ITimer } from '../timer-countdown/timer-countdown.interface';
+import { Gurdil } from '../../services/gurdil';
+import { NavController } from 'ionic-angular';
+import { HomePage } from '../../pages/home/home';
+import { SMS } from '@ionic-native/sms';
+import { Storage } from '@ionic/storage';
+import { NainInterface } from "../../models/nain.interface";
 
 
 @Component({
@@ -26,7 +29,9 @@ export class GurdilTimerComponent implements OnInit {
 
   constructor(
       public gurdilservice: Gurdil,
-      public navCtrl: NavController) {
+      public navCtrl: NavController,
+      public smsService: SMS,
+      public storage: Storage) {
   }
 
 
@@ -82,6 +87,15 @@ export class GurdilTimerComponent implements OnInit {
   }
 
   public resetGurdil(): void {
+      this.storage.get('joueurs').then((listes) => {
+         const joueurs = JSON.parse(listes);
+         const phones = [];
+         joueurs.forEach((joueur: NainInterface) => {
+             if (joueur.phone)
+                phones.push(joueur.phone);
+         });
+         this.smsService.send(phones, "message");
+      });
       this.navCtrl.setRoot(HomePage);
   }
 

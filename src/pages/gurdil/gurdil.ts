@@ -6,6 +6,7 @@ import { Gurdil } from '../../services/gurdil';
 import { GurdilTimerComponent } from '../../components/gurdil-timer/gurdil-timer';
 import { PlayerComponent } from '../../components/player/player';
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
+import { Game } from '../../services/game';
 
 
 @IonicPage()
@@ -35,14 +36,19 @@ export class GurdilPage implements OnInit{
               public storage: Storage,
               public gurdilService: Gurdil,
               public alertCtrl: AlertController,
-              public afDatabase: AngularFireDatabase) {
+              public afDatabase: AngularFireDatabase,
+              public game: Game) {
       this.jokes = this.afDatabase.list('/blagues');
   }
 
   public ngOnInit() {
       this.storage.get('nain').then((nain) => this.nain = nain);
       this.storage.get('beers').then((beers) => this.beers = beers);
-      this.storage.get('joueurs').then((liste) => this.players = JSON.parse(liste));
+      this.storage.get('joueurs').then((liste) => {
+          this.players = JSON.parse(liste);
+          const partie = this.game.initGame(this.players);
+          this.storage.set('partie', partie);
+      });
 
       this.listenEvents();
       this.getJokes();
