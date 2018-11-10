@@ -27,17 +27,6 @@ export class LoginPage {
 
   ionViewDidLoad() {
 
-      this.showLoader();
-
-      //Check if already authenticated
-      this.authService.checkAuthentication().then((res) => {
-          console.log("Already authorized");
-          this.loading.dismiss();
-          this.navCtrl.setRoot(HomePage);
-      }, (err) => {
-          console.log("Not already authorized");
-          this.loading.dismiss();
-      });
   }
 
 
@@ -45,11 +34,7 @@ export class LoginPage {
 
       this.showLoader();
 
-      let credentials = {
-          telephone: this.telephone
-      };
-
-      this.authService.login(credentials).then((result) => {
+      this.authService.login(this.telephone).then((result) => {
           this.loading.dismiss();
           console.log(result);
           this.navCtrl.setRoot(HomePage);

@@ -3,18 +3,22 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 import { NainInterface } from "../../models/nain.interface";
+import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 
 @Injectable()
 export class AuthProvider {
 
-    public token: any;
+    public dwarves: AngularFireList<NainInterface>;
 
     @Output() public onLogin = new EventEmitter<NainInterface>();
     @Output() public onLogout = new EventEmitter<boolean>();
     @Output() public onLoadPlayers = new EventEmitter<boolean>();
 
-    constructor(public http: Http, public storage: Storage) {
-
+    constructor(
+        public http: Http,
+        public storage: Storage,
+        public afDatabase: AngularFireDatabase) {
+        this.dwarves = this.afDatabase.list('/groupes/players');
     }
 
     checkAuthentication(){
@@ -22,7 +26,7 @@ export class AuthProvider {
         return new Promise((resolve, reject) => {
 
             //Load token if exists
-            this.storage.get('token').then((value) => {
+            /*this.storage.get('token').then((value) => {
 
                 this.token = value;
 
@@ -36,7 +40,7 @@ export class AuthProvider {
                         reject(err);
                     });
 
-            });
+            });*/
 
         });
 
@@ -68,25 +72,22 @@ export class AuthProvider {
 
     }
 
-    public login(credentials) {
+    public login(telephone) {
 
         return new Promise((resolve, reject) => {
 
-            let headers = new Headers();
-            headers.append('content-type','application/json');
-            let options = new RequestOptions({ headers:headers,withCredentials: true});
-
-            this.http.post('/get-user', credentials, options)
-                .subscribe(res => {
-                    const nain = res.json();
-                    this.storage.set('nain', res.json());
-                    this.onLogin.emit(nain);
-                    resolve(res);
-                }, (err) => {
-                    this.storage.set('nain', 'lalala');
-                    this.onLogin.emit(null);
-                    //reject(err);
+            this.dwarves.valueChanges().subscribe((nains: NainInterface[]) => {
+                nains.forEach((nain: NainInterface) => {
+                    if (nain.phone === telephone) {
+                        this.storage.set('nain', JSON.stringify(nain));
+                        this.onLogin.emit(nain);
+                        resolve();
+                    }
                 });
+            }, (err) => {
+                console.warn(err);
+                reject(err);
+            });
 
         });
 
