@@ -46,8 +46,7 @@ export class GurdilPage implements OnInit{
       this.storage.get('beers').then((beers) => this.beers = beers);
       this.storage.get('joueurs').then((liste) => {
           this.players = JSON.parse(liste);
-          const partie = this.game.initGame(this.players);
-          this.storage.set('partie', partie);
+          this.game.initGame(this.players);
       });
 
       this.listenEvents();
@@ -55,7 +54,6 @@ export class GurdilPage implements OnInit{
   }
 
   public ionViewDidLeave(): void {
-    console.log('did leave gurdil page');
     this.subscriptionEndGurdil.unsubscribe();
     this.subscriptionAfterGurdil.unsubscribe();
   }

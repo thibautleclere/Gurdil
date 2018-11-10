@@ -6,6 +6,7 @@ import { HomePage } from '../../pages/home/home';
 import { SMS } from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
 import { NainInterface } from "../../models/nain.interface";
+import { Game } from '../../services/game';
 
 
 @Component({
@@ -23,15 +24,16 @@ export class GurdilTimerComponent implements OnInit {
 
 
   @Input()
-  public timeLeft: number = 1;
+  public timeLeft: number = 10;
   @Input()
-  public timeAfter: number = 1;
+  public timeAfter: number = 10;
 
   constructor(
       public gurdilservice: Gurdil,
       public navCtrl: NavController,
       public smsService: SMS,
-      public storage: Storage) {
+      public storage: Storage,
+      public game: Game) {
   }
 
 
@@ -94,9 +96,13 @@ export class GurdilTimerComponent implements OnInit {
              if (joueur.phone)
                 phones.push(joueur.phone);
          });
-         this.smsService.send(phones, "message");
+         this.game.getGameResume().then((resume: string) => {
+             this.smsService.send(phones, resume);
+             console.log(resume);
+             this.game.removeGame();
+             this.navCtrl.setRoot(HomePage);
+         });
       });
-      this.navCtrl.setRoot(HomePage);
   }
 
 }

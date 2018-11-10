@@ -49,14 +49,10 @@ export class HomePage implements OnInit {
 
       this.authService.onLogin.subscribe((login: boolean) => {
         const loading = this.loadCtrl.create({
-           content: "Chargement des nains..."
+           content: "Chargement des jeux..."
         });
         loading.present();
-        this.authService.loadUsers().then((ok: boolean) => {
-          loading.dismiss();
-        }, (error) => {
-          console.log(error);
-        });
+        loading.dismiss();
 
       });
 
@@ -70,7 +66,6 @@ export class HomePage implements OnInit {
 
   public ngOnInit() {
     this.storage.get('nain').then((nain) => this.nain = nain);
-    this.storage.get('joueurs').then((liste) => this.liste = JSON.parse(liste));
   }
 
   public Login() {
@@ -112,6 +107,10 @@ export class HomePage implements OnInit {
       this.subscriptiononStartGurdil.unsubscribe();
       this.subscriptiononDwarfAdded.unsubscribe();
       this.subscriptiononDwarfRemoved.unsubscribe();
+  }
+
+  public ionViewDidEnter(): void {
+      this.storage.get('joueurs').then((liste) => this.liste = JSON.parse(liste));
   }
 
 }

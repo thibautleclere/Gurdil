@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NainInterface } from '../../models/nain.interface';
 import { SMS, SmsOptions } from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
+import { Game } from '../../services/game';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class PlayerComponent implements OnInit {
 
   constructor(
       public sms: SMS,
-      public storage: Storage) {}
+      public storage: Storage,
+      public game: Game) {}
 
   public ngOnInit() {
   }
@@ -31,12 +33,14 @@ export class PlayerComponent implements OnInit {
     const message = rand % 2 ? `Cheval` : `Un shooter dans ta gueule ${this.nain.name}. Gurdilement`;
     console.log(message);
     this.sms.send(this.nain.phone, message, this.options);
+    this.game.updateGame('Attaque Lombard: ' + this.nain.name + ' a reçu ' + message);
   }
 
   public randJokes() {
       const message = this.blagues[Math.floor(Math.random() * this.blagues.length)];
       console.log(message);
       this.sms.send(this.nain.phone, message, this.options);
+      this.game.updateGame('Aussi: ' + this.nain.name + ' a reçu ' + message);
   }
 
 }

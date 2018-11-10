@@ -38,6 +38,7 @@ import { GurdilPage } from '../pages/gurdil/gurdil';
 import { ParametersPage } from '../pages/parameters/parameters';
 import { ComponentsModule } from '../components/components.module';
 import { Beer } from '../services/beer';
+import { Game } from '../services/game';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { Beer } from '../services/beer';
     Gurdil,
     Beer,
     SMS,
-    Camera
+    Camera,
+    Game
   ]
 })
 export class AppModule {}

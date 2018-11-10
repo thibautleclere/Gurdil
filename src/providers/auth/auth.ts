@@ -99,21 +99,4 @@ export class AuthProvider {
         });
     }
 
-    public loadUsers() {
-        return new Promise((resolve, reject) => {
-            let headers = new Headers();
-            headers.append('content-type','application/json');
-            let options = new RequestOptions({ headers:headers,withCredentials: true});
-
-            this.http.get('/les-nains', options)
-                .subscribe(res => {
-                    this.storage.set('gurdiliens', res.json());
-                    this.onLoadPlayers.emit(true);
-                    resolve(res);
-                }, (error) => {
-                    reject(error);
-                })
-        });
-    }
-
 }

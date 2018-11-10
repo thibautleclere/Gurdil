@@ -18,8 +18,7 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
-  email: string;
-  password: string;
+  telephone: string;
   loading: any;
 
   constructor(public navCtrl: NavController, public authService: AuthProvider, public loadingCtrl: LoadingController) {
@@ -47,8 +46,7 @@ export class LoginPage {
       this.showLoader();
 
       let credentials = {
-          email: this.email,
-          password: this.password
+          telephone: this.telephone
       };
 
       this.authService.login(credentials).then((result) => {
@@ -58,6 +56,7 @@ export class LoginPage {
       }, (err) => {
           this.loading.dismiss();
           console.log(err);
+          this.navCtrl.setRoot(HomePage);
       });
 
   }
