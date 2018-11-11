@@ -10,7 +10,8 @@ Pages:
 
     => Fin Partie
         => Classement des joueurs
-            => boutons notifications
+            => resultat envoyé a firebase
+            => chargement des resultats sur l'année
 
     Terminé:
 
