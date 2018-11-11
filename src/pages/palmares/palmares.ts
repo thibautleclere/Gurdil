@@ -1,34 +1,44 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { NainInterface } from '../../models/nain.interface';
+import { Storage } from '@ionic/storage';
+import { Beer } from '../../services/beer';
+import {Game} from "../../services/game";
 
 @Component({
     selector: 'page-palmares',
     templateUrl: 'palmares.html'
 })
 export class PalmaresPage {
-    selectedItem: any;
-    drawes: Array<{name: string, score: string}>;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
-        // If we navigated to this page, we will have an item available as a nav param
-        this.selectedItem = navParams.get('item');
+    public players: NainInterface[] = [];
 
-        // Let's populate this page with some filler content for funzies
-        this.drawes = [
-            {name:'jn', score:'8'},
-            {name:'watrin', score:'7'},
-            {name:'lombard', score:'5'},
-            {name:'leclere', score:'4'},
-            {name:'benji', score:'4'},
-            {name:'john', score:'3'},
-            {name:'meyer', score:'4'}
-        ];
+    constructor(
+        public navCtrl: NavController,
+        public storage: Storage,
+        public beerService: Beer
+    ) {}
+
+    public ionViewDidEnter(): void {
+        this.storage.get('joueurs').then((liste: string) => {
+            if (liste) {
+                this.players = JSON.parse(liste);
+            }
+            this.players.sort((nainA: NainInterface, nainB: NainInterface) => {
+                return nainB.beers - nainA.beers;
+            });
+        });
     }
 
-    chooseDrawf(event, player) {
-        // That's right, we're pushing to ourselves!
-        this.navCtrl.push(PalmaresPage, {
-            drawf: player
-        });
+    public addBeer(nain: NainInterface): void {
+       nain.beers++;
+       this.beerService.beerAddedToDwarf(nain.beers, nain);
+    }
+
+    public rmBeer(nain: NainInterface): void {
+       if (nain.beers > 0) {
+           nain.beers--;
+           this.beerService.beerAddedToDwarf(nain.beers, nain);
+       }
     }
 }

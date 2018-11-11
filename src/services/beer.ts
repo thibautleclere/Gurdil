@@ -8,8 +8,6 @@ export class Beer {
     @Output() public onSetBeers = new EventEmitter<number>();
     @Output() public onDoneBeers = new EventEmitter<number>();
 
-    public listNains: NainInterface[] = [];
-
     public constructor(
         public storage: Storage
     ){}
@@ -24,13 +22,14 @@ export class Beer {
 
     public beerAddedToDwarf(beers: number, nain: NainInterface) {
         this.storage.get('joueurs').then((data: string) => {
+            let listNains = [];
             if (data) {
-                this.listNains = JSON.parse(data);
+                listNains = JSON.parse(data);
             }
-            this.listNains.splice(this.listNains.findIndex((dwarf) => dwarf.phone === nain.phone), 1);
+            listNains.splice(listNains.findIndex((dwarf) => dwarf.phone === nain.phone), 1);
             nain.beers = beers;
-            this.listNains.push(nain);
-            this.storage.set('joueurs', JSON.stringify(this.listNains))
+            listNains.push(nain);
+            this.storage.set('joueurs', JSON.stringify(listNains))
                 .catch((err) => console.warn(err))
         });
     }

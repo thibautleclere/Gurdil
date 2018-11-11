@@ -12,19 +12,6 @@ Pages:
         => Classement des joueurs
             => boutons notifications
 
-    => Page Login
-           => Refaire les fonts icons svg => icomoon app
-                => icon login
-                => icon biere+, biere-
-                => icon parametres
-                => icon lombard
-                => icon blagues
-                => icon palmares
-                => icon home
-                => icon suppression joueurs
-                => icon deconnexion
-                => icon DONE
-
     Terminé:
 
        => Sous Menu => Bouton Accueil / Palmares / Parametres / Deconnexion
@@ -33,3 +20,15 @@ Pages:
        => Envois des resultats via whatsapp
        => Page Gurdil / Deroulement du jeu
                => Boutons Bonus (Lombard + Bouton Autistes)
+        => Page Login
+                  => Refaire les fonts icons svg => icomoon app
+                       => icon login
+                       => icon biere+, biere-
+                       => icon parametres
+                       => icon lombard
+                       => icon blagues
+                       => icon palmares
+                       => icon home
+                       => icon suppression joueurs
+                       => icon deconnexion
+                       => icon DONE

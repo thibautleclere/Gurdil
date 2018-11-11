@@ -1,28 +1,34 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title>Palmares</ion-title>
-    </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-    <h2>Liste des joueurs</h2>
+<ion-content padding class="gold-back">
+    <h2>Palmarès</h2>
     <p>
         Voici le classement pour cette année {{annee}}
     </p>
     <ion-list>
-        <ion-row ion-list *ngFor="let drawf of drawes, let i = index">
+        <ion-row ion-list *ngFor="let nain of players, let i = index">
             <ion-col col-2>
-                <ion-icon [name]="(i == 0 ? 'icon-king' : 'icon-beers')" [ngClass]="{'active': i == 0, 'second': i == 1, 'third': i == 2}"></ion-icon>
+                <ion-icon [name]="(i == 0 ? 'icon-gurdil' : 'icon-dwarf')" [ngClass]="{'active': i == 0, 'second': i == 1, 'third': i == 2}"></ion-icon>
             </ion-col>
             <ion-col col-8>
-                {{drawf.name}}
+                <ion-row>
+                    <ion-col col-6>
+                        {{ nain.name }}
+                    </ion-col>
+                    <ion-col col-3>
+                        <button ion-button icon-only color="gold" class="silver-text loginBtn" (click)="addBeer(nain)">
+                            <ion-icon name="add-circle"></ion-icon>
+                        </button>
+                    </ion-col>
+                    <ion-col col-3>
+                        <button ion-button icon-only color="gold" class="silver-text loginBtn" (click)="rmBeer(nain)">
+                            <ion-icon name="remove-circle"></ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
             </ion-col>
             <ion-col text-right col-2>
-                {{drawf.score}}
+                {{ nain.beers }}
             </ion-col>
         </ion-row>
     </ion-list>
-    <div *ngIf="selectedItem" padding>
-        You navigated here from <b>{{selectedItem.title}}</b>
-    </div>
+    <!-- todo afficher la modal du palmares de l'année -->
 </ion-content>

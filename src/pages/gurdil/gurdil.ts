@@ -46,7 +46,6 @@ export class GurdilPage implements OnInit{
       this.storage.get('beers').then((beers) => this.beers = beers);
       this.storage.get('joueurs').then((liste) => {
           this.players = JSON.parse(liste);
-          this.game.initGame(this.players);
       });
 
       this.listenEvents();

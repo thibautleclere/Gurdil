@@ -5,19 +5,18 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class Game {
 
-    public listNains: NainInterface[] = [];
-    public static INTRO: string = "Phrase d'intro";
+    public static INTRO: string = "Resultat du Gurdil: ";
 
     public constructor(
         public storage: Storage
     ){}
 
-    public initGame(listeNain: NainInterface[]): void {
-        let content: string = Game.INTRO;
+    public setGame(listeNain: NainInterface[]): string {
+        let content =  Game.INTRO;
         listeNain.forEach((nain: NainInterface) => {
             content += '; '+ nain.name + ' ' + nain.phone + ' ' + nain.beers + ' bières';
         });
-        this.storage.set('partie', content);
+        return content;
     }
 
     public updateGame(message: string): void {
@@ -34,6 +33,15 @@ export class Game {
     }
 
     public getGameResume(): Promise<string> {
-        return this.storage.get('partie').then((content) => content);
+        return this.storage.get('partie').then((content) => {
+            return this.storage.get('joueurs').then((liste: string) => {
+                let players = [];
+                if (liste) {
+                    players = JSON.parse(liste);
+                }
+                const jeu = this.setGame(players);
+                return jeu + " ; " + content;
+            });
+        });
     }
 }
