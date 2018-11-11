@@ -8,19 +8,28 @@ Pages:
             => musique du gurdil joué
             => lien Règles du jeux
 
-    => Page Gurdil / Deroulement du jeu
-        => Boutons Bonus (Lombard + Bouton Autistes)
-
     => Fin Partie
         => Classement des joueurs
             => boutons notifications
-            => Envois des resultats via whatsapp
 
     => Page Login
            => Refaire les fonts icons svg => icomoon app
+                => icon login
+                => icon biere+, biere-
+                => icon parametres
+                => icon lombard
+                => icon blagues
+                => icon palmares
+                => icon home
+                => icon suppression joueurs
+                => icon deconnexion
+                => icon DONE
 
     Terminé:
 
        => Sous Menu => Bouton Accueil / Palmares / Parametres / Deconnexion
        => Chronometre de 4:03 s
        => Joueur + Boutons + 1 de bière
+       => Envois des resultats via whatsapp
+       => Page Gurdil / Deroulement du jeu
+               => Boutons Bonus (Lombard + Bouton Autistes)

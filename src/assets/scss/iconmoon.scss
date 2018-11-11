@@ -43,76 +43,176 @@
   }
 }
 
-@include makeIcon(icon-looser, '\e900');
-@include makeIcon(icon-abandon, '\e901');
-@include makeIcon(icon-jonjon, '\e902');
-@include makeIcon(icon-wizard, '\e903');
-@include makeIcon(icon-gurdil, '\e904');
-@include makeIcon(icon-sober, '\e905');
-@include makeIcon(icon-king, '\e906');
-@include makeIcon(icon-joker, '\e907');
-@include makeIcon(icon-queen, '\e908');
-@include makeIcon(icon-canon, '\e909');
-@include makeIcon(icon-robin, '\e90a');
-@include makeIcon(icon-death-fight, '\e90b');
-@include makeIcon(icon-beer, '\e90c');
-@include makeIcon(icon-champions, '\e90d');
-@include makeIcon(icon-tap, '\e90e');
-@include makeIcon(icon-beers, '\e90f');
-@include makeIcon(icon-victory, '\e910');
-@include makeIcon(icon-lombard, '\e911');
+@include makeIcon(icon-beer11, '\e900');
+@include makeIcon(icon-beer2, '\e901');
+@include makeIcon(icon-gurdil, '\e902');
+@include makeIcon(icon-beerplus, '\e903');
+@include makeIcon(icon-beermin, '\e904');
+@include makeIcon(icon-params, '\e905');
+@include makeIcon(icon-tap, '\e906');
+@include makeIcon(icon-water, '\e907');
+@include makeIcon(icon-beer3, '\e90f');
+@include makeIcon(icon-empty, '\e910');
+@include makeIcon(icon-random, '\e911');
+@include makeIcon(icon-dwarf, '\e912');
+@include makeIcon(icon-jack-in-the-box, '\e913');
+@include makeIcon(icon-joker-hat, '\e914');
+@include makeIcon(icon-poison, '\e915');
+@include makeIcon(icon-radiation, '\e916');
+@include makeIcon(icon-settings, '\e917');
+@include makeIcon(icon-home, '\e918');
+@include makeIcon(icon-pencil, '\e919');
+@include makeIcon(icon-camera, '\e91a');
+@include makeIcon(icon-music, '\e91b');
+@include makeIcon(icon-bullhorn, '\e91c');
+@include makeIcon(icon-folder-download, '\e933');
+@include makeIcon(icon-folder-upload, '\e934');
+@include makeIcon(icon-phone, '\e942');
+@include makeIcon(icon-bubble, '\e96b');
+@include makeIcon(icon-bubbles, '\e96c');
+@include makeIcon(icon-user, '\e971');
+@include makeIcon(icon-user-plus, '\e973');
+@include makeIcon(icon-user-minus, '\e974');
+@include makeIcon(icon-cog, '\e994');
+@include makeIcon(icon-cogs, '\e995');
+@include makeIcon(icon-accessibility, '\e9b2');
+@include makeIcon(icon-switch, '\e9b6');
+@include makeIcon(icon-man, '\e9dd');
+@include makeIcon(icon-woman, '\e9dc');
+@include makeIcon(icon-play3, '\ea1c');
+@include makeIcon(icon-stop2, '\ea1e');
+@include makeIcon(icon-volume-high, '\ea26');
+@include makeIcon(icon-volume-medium, '\ea27');
+@include makeIcon(icon-volume-low, '\ea28');
+@include makeIcon(icon-volume-mute, '\ea29');
+@include makeIcon(icon-volume-mute2, '\ea2a');
 
-.icon-looser:before {
+.icon-beer11:before {
   content: "\e900";
 }
-.icon-abandon:before {
+.icon-beer2:before {
   content: "\e901";
 }
-.icon-jonjon:before {
+.icon-gurdil:before {
   content: "\e902";
 }
-.icon-wizard:before {
+.icon-beerplus:before {
   content: "\e903";
 }
-.icon-gurdil:before {
+.icon-beermin:before {
   content: "\e904";
 }
-.icon-sober:before {
+.icon-params:before {
   content: "\e905";
 }
-.icon-king:before {
+.icon-tap:before {
   content: "\e906";
 }
-.icon-joker:before {
+.icon-water:before {
   content: "\e907";
 }
-.icon-queen:before {
-  content: "\e908";
-}
-.icon-canon:before {
-  content: "\e909";
-}
-.icon-robin:before {
-  content: "\e90a";
-}
-.icon-death-fight:before {
-  content: "\e90b";
-}
-.icon-beer:before {
-  content: "\e90c";
-}
-.icon-champions:before {
-  content: "\e90d";
-}
-.icon-tap:before {
-  content: "\e90e";
-}
-.icon-beers:before {
+.icon-beer3:before {
   content: "\e90f";
 }
-.icon-victory:before {
+.icon-empty:before {
   content: "\e910";
 }
-.icon-lombard:before {
+.icon-random:before {
   content: "\e911";
+}
+.icon-dwarf:before {
+  content: "\e912";
+}
+.icon-jack-in-the-box:before {
+  content: "\e913";
+}
+.icon-joker-hat:before {
+  content: "\e914";
+}
+.icon-poison:before {
+  content: "\e915";
+}
+.icon-radiation:before {
+  content: "\e916";
+}
+.icon-settings:before {
+  content: "\e917";
+}
+.icon-home:before {
+  content: "\e918";
+}
+.icon-pencil:before {
+  content: "\e919";
+}
+.icon-camera:before {
+  content: "\e91a";
+}
+.icon-music:before {
+  content: "\e91b";
+}
+.icon-bullhorn:before {
+  content: "\e91c";
+}
+.icon-folder-download:before {
+  content: "\e933";
+}
+.icon-folder-upload:before {
+  content: "\e934";
+}
+.icon-phone:before {
+  content: "\e942";
+}
+.icon-bubble:before {
+  content: "\e96b";
+}
+.icon-bubbles:before {
+  content: "\e96c";
+}
+.icon-user:before {
+  content: "\e971";
+}
+.icon-user-plus:before {
+  content: "\e973";
+}
+.icon-user-minus:before {
+  content: "\e974";
+}
+.icon-cog:before {
+  content: "\e994";
+}
+.icon-cogs:before {
+  content: "\e995";
+}
+.icon-accessibility:before {
+  content: "\e9b2";
+}
+.icon-switch:before {
+  content: "\e9b6";
+}
+.icon-man:before {
+  content: "\e9dd";
+}
+.icon-woman:before {
+  content: "\e9dc";
+}
+.icon-play3:before {
+  content: "\ealc";
+}
+.icon-stop2:before {
+  content: "\eale";
+}
+.icon-volume-high:before {
+  content: "\ea26";
+}
+.icon-volume-medium:before {
+  content: "\ea27";
+}
+.icon-volume-low:before {
+  content: "\ea28";
+}
+.icon-volume-mute:before {
+  content: "\ea29";
+}
+.icon-volume-mute2:before {
+  content: "\ea2a";
 }
