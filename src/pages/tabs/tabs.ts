@@ -6,6 +6,7 @@ import { NainInterface } from '../../models/nain.interface';
 import { AuthProvider } from '../../providers/auth/auth';
 import { NavController, Tabs } from "ionic-angular";
 import { ParametersPage } from "../parameters/parameters";
+import {Game} from "../../services/game";
 
 @Component({
     templateUrl: 'tabs.html'
@@ -20,7 +21,11 @@ export class TabsPage implements OnInit, AfterViewInit {
 
     public nain: NainInterface;
 
-    constructor(public storage: Storage, public authService: AuthProvider, public navCtrl: NavController) {
+    constructor(
+        public storage: Storage,
+        public authService: AuthProvider,
+        public navCtrl: NavController,
+        public game: Game) {
     }
 
     ngOnInit() {
@@ -38,6 +43,7 @@ export class TabsPage implements OnInit, AfterViewInit {
     }
 
     logout() {
+        this.game.removeGame();
         this.authService.logout();
     }
 }

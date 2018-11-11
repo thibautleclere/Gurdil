@@ -13,8 +13,6 @@ export class Gurdil {
     @Output() public dwarfAdded = new EventEmitter<NainInterface>();
     @Output() public dwarfRemoved = new EventEmitter<NainInterface>();
 
-    public listNains: NainInterface[] = [];
-
     public constructor(
       public storage: Storage
     ){}
@@ -39,17 +37,14 @@ export class Gurdil {
         this.onAfterGurdil.emit(true);
     }
 
-    public addNains(nain: NainInterface) {
-        this.listNains.push(nain);
-    }
-
     public addNainToGurdil(nain: NainInterface) {
         this.storage.get('joueurs').then((data: string) => {
-           if (data) {
-               this.listNains = JSON.parse(data);
+            let listNains = [];
+            if (data) {
+               listNains = JSON.parse(data);
            }
-           this.listNains.push(nain);
-           this.storage.set('joueurs', JSON.stringify(this.listNains)).then(() => {
+           listNains.push(nain);
+           this.storage.set('joueurs', JSON.stringify(listNains)).then(() => {
                this.dwarfAdded.emit(nain);
            });
         });
@@ -57,11 +52,13 @@ export class Gurdil {
 
     public deleteToGurdil(nain: NainInterface) {
         this.storage.get('joueurs').then((data: string) => {
+            let listNains = [];
             if (data) {
-                this.listNains = JSON.parse(data);
+                listNains = JSON.parse(data);
             }
-            this.listNains.splice(this.listNains.indexOf(nain), 1);
-            this.storage.set('joueurs', JSON.stringify(this.listNains)).then(() => {
+            const index = listNains.map((dwarf: NainInterface) => dwarf.phone).indexOf(nain.phone);
+            listNains.splice(index, 1);
+            this.storage.set('joueurs', JSON.stringify(listNains)).then(() => {
                 this.dwarfRemoved.emit(nain);
             });
         });

@@ -6,9 +6,9 @@ import { Storage } from '@ionic/storage';
 import { TimerCountdownComponent } from '../../components/timer-countdown/timer-countdown';
 import { Gurdil } from '../../services/gurdil';
 import { GurdilPage } from '../gurdil/gurdil';
-import { AuthProvider } from "../../providers/auth/auth";
-import { Beer } from "../../services/beer";
-import { SMS, SmsOptions } from "@ionic-native/sms";
+import { AuthProvider } from '../../providers/auth/auth';
+import { Beer } from '../../services/beer';
+import { SMS, SmsOptions } from '@ionic-native/sms';
 
 @Component({
   selector: 'page-home',
@@ -18,10 +18,10 @@ export class HomePage implements OnInit {
   @ViewChild('TimerCountdownComponent') timerComponent: TimerCountdownComponent;
 
   public nain: NainInterface;
-  public liste: NainInterface[] = [];
-  public beers: number = 0;
+  public liste: NainInterface[];
+  public beers: number;
 
-  public phones: string[] = [];
+  public phones: string[];
   public options: SmsOptions = {
       android: {
         intent: 'INTENT'
@@ -31,7 +31,7 @@ export class HomePage implements OnInit {
   public subscriptionEndCountDown;
   public subscriptiononStartGurdil;
   public subscriptiononDwarfRemoved;
-  public subscriptiononDwarfAdded;
+  public subscriptionLogin;
 
   constructor(
       public navCtrl: NavController,
@@ -47,7 +47,7 @@ export class HomePage implements OnInit {
         console.log("event end countdown");
       });
 
-      this.authService.onLogin.subscribe((login: boolean) => {
+      this.subscriptionLogin = this.authService.onLogin.subscribe((login: boolean) => {
         const loading = this.loadCtrl.create({
            content: "Chargement des jeux..."
         });
@@ -66,6 +66,9 @@ export class HomePage implements OnInit {
 
   public ngOnInit() {
     this.storage.get('nain').then((nain) => this.nain = nain);
+    this.liste = [];
+    this.phones = [];
+    this.beers = 0;
   }
 
   public Login() {
@@ -82,10 +85,12 @@ export class HomePage implements OnInit {
 
   public listeninEventsWithCordova() {
       this.subscriptiononStartGurdil = this.gurdil.onStartGurdil.subscribe((start: boolean) => {
-          this.liste.forEach((nain) => this.phones.push(nain.phone));
+          this.liste.forEach((nain) => {
+              this.phones.push(nain.phone);
+          });
           this.socialSharing.send(this.phones, `Test: Gurdil dans 10 minutes! ${this.beers} pour moi`, this.options);
           this.storage.set('beers', this.beers);
-          this.navCtrl.setRoot(GurdilPage);
+          this.navCtrl.push(GurdilPage);
       });
   }
 
@@ -96,17 +101,14 @@ export class HomePage implements OnInit {
               this.socialSharing.send(nain.phone, `Refuser un gurdil...pauvre merde`, this.options);
           }
       });
-      this.subscriptiononDwarfAdded = this.gurdil.dwarfAdded.subscribe((nain: NainInterface) => {
-         this.liste.push(nain);
-      });
   }
 
-  public ionViewDidLeave(): void {
-      console.log('did leave');
+  public ionViewWillUnload(): void {
+      console.log('will unload');
       this.subscriptionEndCountDown.unsubscribe();
       this.subscriptiononStartGurdil.unsubscribe();
-      this.subscriptiononDwarfAdded.unsubscribe();
       this.subscriptiononDwarfRemoved.unsubscribe();
+      this.subscriptionLogin.unsubscribe();
   }
 
   public ionViewDidEnter(): void {
