@@ -1,6 +1,6 @@
 <ion-tabs #myTabs>
     <ion-tab [root]="tab1Root" tabTitle="Gurdil" tabIcon="icon-gurdil"></ion-tab>
-    <ion-tab [root]="tab2Root" tabTitle="Begin" tabIcon="icon-beers"></ion-tab>
-    <ion-tab [root]="tab3Root" tabTitle="Palmares" tabIcon="icon-champions"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="Paramètres" tabIcon="icon-settings"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="Palmares" tabIcon="trophy"></ion-tab>
     <ion-tab *ngIf="nain" (ionSelect)="logout()" tabTitle="Logout" tabIcon="power"></ion-tab>
 </ion-tabs>
