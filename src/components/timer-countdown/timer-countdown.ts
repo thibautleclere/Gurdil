@@ -34,19 +34,22 @@ export class TimerCountdownComponent implements OnInit{
   public startCountDown() {
       this.timeRunning = true;
       if (this.timeShown && this.timeShown.end) {
+          console.log('gurdil lancer');
           this.gurdilservice.emitGurdil();
+      } else {
+          this.gurdilservice.emit10minutes();
+          this.interval = setInterval(() => {
+              if (this.timeLeft > 0) {
+                  this.timeLeft--;
+                  this.timeShown = this.convertTimeToString(this.timeLeft);
+              } else {
+                  this.reset();
+                  this.timeShown.end = true;
+                  console.log('fin compte a rebour');
+                  this.gurdilservice.emitEnd10minutes();
+              }
+          }, 1000);
       }
-      this.gurdilservice.emit10minutes();
-      this.interval = setInterval(() => {
-          if(this.timeLeft > 0) {
-              this.timeLeft--;
-              this.timeShown = this.convertTimeToString(this.timeLeft);
-          } else {
-              this.reset();
-              this.timeShown.end = true;
-              this.gurdilservice.emitEnd10minutes();
-          }
-      },1000)
 
   }
 

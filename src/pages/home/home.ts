@@ -93,7 +93,7 @@ export class HomePage implements OnInit {
       this.subscriptiononDwarfRemoved = this.gurdil.dwarfRemoved.subscribe((nain: NainInterface) => {
           this.liste.splice(this.liste.indexOf(nain), 1);
           if (nain.phone) {
-              this.socialSharing.send(nain.phone, `Refuser un gurdil...pauvre merde`);
+              this.socialSharing.send(nain.phone, `Refuser un gurdil...pauvre merde`, this.options);
           }
       });
       this.subscriptiononDwarfAdded = this.gurdil.dwarfAdded.subscribe((nain: NainInterface) => {
