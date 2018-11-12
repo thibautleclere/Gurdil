@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ITimer } from '../timer-countdown/timer-countdown.interface';
 import { Gurdil } from '../../services/gurdil';
 import { NavController } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
 import { SMS } from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
-import { NainInterface } from "../../models/nain.interface";
+import { NainInterface } from '../../models/nain.interface';
 import { Game } from '../../services/game';
 
 
@@ -13,7 +13,7 @@ import { Game } from '../../services/game';
   selector: 'gurdil-timer',
   templateUrl: 'gurdil-timer.html'
 })
-export class GurdilTimerComponent implements OnInit {
+export class GurdilTimerComponent implements OnInit, AfterViewInit {
 
   public interval;
   public timeShown: ITimer = null;
@@ -28,16 +28,20 @@ export class GurdilTimerComponent implements OnInit {
   @Input()
   public timeAfter: number = 10;
 
+  @ViewChild('audioGurdil') public audioGurdil: ElementRef;
+
   constructor(
       public gurdilservice: Gurdil,
       public navCtrl: NavController,
       public smsService: SMS,
       public storage: Storage,
-      public game: Game) {
+      public game: Game,
+      private rd: Renderer2) {
   }
 
-
-  public ngOnInit() {
+  public ngAfterViewInit() {
+      debugger; this.rd;
+      this.audioGurdil.nativeElement;
       this.timeShown = this.convertTimeToString(this.timeLeft);
       this.timeRunning = true;
       if (this.timeShown && this.timeShown.end) {
@@ -55,6 +59,9 @@ export class GurdilTimerComponent implements OnInit {
               this.gurdilservice.emitEndGurdil();
           }
       },1000)
+  }
+
+  public ngOnInit() {
 
   }
 
