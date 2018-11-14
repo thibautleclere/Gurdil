@@ -32,6 +32,7 @@ export class GurdilPage implements OnInit{
   public subscriptionAfterGurdil;
 
   constructor(public navCtrl: NavController,
+              public navparams: NavParams,
               public navParams: NavParams,
               public storage: Storage,
               public gurdilService: Gurdil,
@@ -47,6 +48,8 @@ export class GurdilPage implements OnInit{
       this.storage.get('joueurs').then((liste) => {
           this.players = JSON.parse(liste);
       });
+
+      this.tempsGurdil = parseInt(this.navparams.get('audioDuration'));
 
       this.listenEvents();
       this.getJokes();

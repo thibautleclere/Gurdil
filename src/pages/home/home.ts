@@ -7,8 +7,8 @@ import { TimerCountdownComponent } from '../../components/timer-countdown/timer-
 import { Gurdil } from '../../services/gurdil';
 import { GurdilPage } from '../gurdil/gurdil';
 import { AuthProvider } from '../../providers/auth/auth';
-import { Beer } from '../../services/beer';
 import { SMS, SmsOptions } from '@ionic-native/sms';
+import { GurdilAudio } from "../../services/gurdil.audio";
 
 @Component({
   selector: 'page-home',
@@ -40,7 +40,7 @@ export class HomePage implements OnInit {
       private socialSharing: SMS,
       public authService: AuthProvider,
       public loadCtrl: LoadingController,
-      public beerService: Beer,
+      public audio: GurdilAudio,
       public platform: Platform) {
 
       this.subscriptionEndCountDown = this.gurdil.onEndCountDown.subscribe((start: boolean) => {
@@ -56,9 +56,7 @@ export class HomePage implements OnInit {
 
       });
 
-      //if (this.platform.is('cordova')) {
-        this.listeninEventsWithCordova();
-      //}
+      this.listeninEventsWithCordova();
 
       this.updateListeNain();
 
@@ -69,6 +67,7 @@ export class HomePage implements OnInit {
     this.liste = [];
     this.phones = [];
     this.beers = 0;
+    this.audio.initAudio('/assets/sounds/728.mp3');
   }
 
   public Login() {
@@ -90,7 +89,10 @@ export class HomePage implements OnInit {
           });
           this.socialSharing.send(this.phones, `Test: Gurdil dans 10 minutes! ${this.beers} pour moi`, this.options);
           this.storage.set('beers', this.beers);
-          this.navCtrl.push(GurdilPage);
+          const duration = document.getElementById('audioGurdil');
+          this.navCtrl.push(GurdilPage, {
+              audioDuration: duration.value
+          });
       });
   }
 

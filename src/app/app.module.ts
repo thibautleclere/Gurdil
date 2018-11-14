@@ -39,6 +39,7 @@ import { ParametersPage } from '../pages/parameters/parameters';
 import { ComponentsModule } from '../components/components.module';
 import { Beer } from '../services/beer';
 import { Game } from '../services/game';
+import { GurdilAudio } from '../services/gurdil.audio';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { Game } from '../services/game';
     Beer,
     SMS,
     Camera,
-    Game
+    Game,
+    GurdilAudio
   ]
 })
 export class AppModule {}
