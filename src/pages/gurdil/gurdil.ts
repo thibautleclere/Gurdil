@@ -18,10 +18,9 @@ export class GurdilPage implements OnInit{
   @ViewChild('timerGurdil') timerComponent: GurdilTimerComponent;
   @ViewChildren('listePlayers') playerComponents: QueryList<PlayerComponent>;
 
-  public tempsGurdil: number = 243;//4 min 3 secondes pour le gurdil
-  public tempsAfter: number = 250;// chanson offspring apres le gurdil
+  public tempsGurdil: number = 0;
+  public tempsAfter: number = 600;// chanson offspring apres le gurdil
 
-  public beers: number;
   public nain: NainInterface;
   public players: NainInterface[] = [];
   public gurdilEnded: boolean = false;
@@ -44,7 +43,6 @@ export class GurdilPage implements OnInit{
 
   public ngOnInit() {
       this.storage.get('nain').then((nain) => this.nain = nain);
-      this.storage.get('beers').then((beers) => this.beers = beers);
       this.storage.get('joueurs').then((liste) => {
           this.players = JSON.parse(liste);
       });
@@ -67,7 +65,7 @@ export class GurdilPage implements OnInit{
           console.log('end gurdil');
           this.timerComponent.startAfter();
           let alert = this.alertCtrl.create({
-              title: `Gurdil Terminé avec  ${this.beers} bieres`,
+              title: `Gurdil Terminé`,
               subTitle: 'Désormais, 10 minutes à tenir pour le valider',
               buttons: ['Santé au général!']
           });

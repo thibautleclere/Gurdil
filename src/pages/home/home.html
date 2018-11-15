@@ -8,27 +8,11 @@
     </button>
   </div>
 
-  <ion-grid>
+  <ion-grid *ngIf="nain">
     <ion-row>
-      <ion-col col-6>
-        <ion-row>
-          <ion-col col-6 [hidden]="!nain">
-            <button ion-button color="gold" class="silver-text loginBtn" (click)="addBeer()">
-              <ion-icon name="icon-beerplus"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col col-6 [hidden]="!nain">
-            <button ion-button color="gold" class="silver-text loginBtn" (click)="delBeer()">
-              <ion-icon name="icon-beermin"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-col>
-      <ion-col col-6 [hidden]="!nain">
-        <ion-list-header>
-          Bières
-          <ion-badge item-end color="danger">{{beers}}</ion-badge>
-        </ion-list-header>
+      <ion-col>
+        <ion-icon name="beer"></ion-icon>
+        <h3>{{ nain.name }}</h3>
       </ion-col>
     </ion-row>
     <ion-row><ion-col col-12></ion-col></ion-row>
@@ -41,7 +25,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-grid>
+  <ion-grid *ngIf="nain">
     <ng-container *ngFor="let nain of liste">
       <addingbeers [nain]="nain"></addingbeers>
     </ng-container>

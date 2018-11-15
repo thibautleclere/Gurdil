@@ -19,7 +19,6 @@ export class HomePage implements OnInit {
 
   public nain: NainInterface;
   public liste: NainInterface[];
-  public beers: number;
 
   public phones: string[];
   public options: SmsOptions = {
@@ -63,10 +62,9 @@ export class HomePage implements OnInit {
   }
 
   public ngOnInit() {
-    this.storage.get('nain').then((nain) => this.nain = nain);
+    this.storage.get('nain').then((nain) => {debugger;this.nain = JSON.parse(nain)});
     this.liste = [];
     this.phones = [];
-    this.beers = 0;
     this.audio.initAudio('/assets/sounds/728.mp3');
   }
 
@@ -74,21 +72,12 @@ export class HomePage implements OnInit {
     this.navCtrl.setRoot(LoginPage);
   }
 
-  public addBeer() {
-    this.beers++;
-  }
-  public delBeer() {
-    this.beers--;
-  }
-
-
   public listeninEventsWithCordova() {
       this.subscriptiononStartGurdil = this.gurdil.onStartGurdil.subscribe((start: boolean) => {
           this.liste.forEach((nain) => {
               this.phones.push(nain.phone);
           });
-          this.socialSharing.send(this.phones, `Test: Gurdil dans 10 minutes! ${this.beers} pour moi`, this.options);
-          this.storage.set('beers', this.beers);
+          this.socialSharing.send(this.phones, `Gurdil dans 10 minutes! vous êtes convié`, this.options);
           const duration = <HTMLInputElement>document.getElementById('audioGurdil');
           this.navCtrl.push(GurdilPage, {
               audioDuration: duration.value

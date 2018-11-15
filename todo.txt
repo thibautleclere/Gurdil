@@ -4,32 +4,10 @@ Pages:
 
     https://firebase.google.com/docs/firestore/quickstart?authuser=0
 
-    => Page Accueil / Jeu
-            => musique du gurdil joué
-            => lien Règles du jeux
-
     => Fin Partie
         => Classement des joueurs
             => resultat envoyé a firebase
             => chargement des resultats sur l'année
+            => resume mis en forme
+    => retirer bouton joueur seul
 
-    Terminé:
-
-       => Sous Menu => Bouton Accueil / Palmares / Parametres / Deconnexion
-       => Chronometre de 4:03 s
-       => Joueur + Boutons + 1 de bière
-       => Envois des resultats via whatsapp
-       => Page Gurdil / Deroulement du jeu
-               => Boutons Bonus (Lombard + Bouton Autistes)
-        => Page Login
-                  => Refaire les fonts icons svg => icomoon app
-                       => icon login
-                       => icon biere+, biere-
-                       => icon parametres
-                       => icon lombard
-                       => icon blagues
-                       => icon palmares
-                       => icon home
-                       => icon suppression joueurs
-                       => icon deconnexion
-                       => icon DONE

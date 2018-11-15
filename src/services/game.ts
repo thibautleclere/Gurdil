@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class Game {
 
-    public static INTRO: string = "Resultat du Gurdil: ";
+    public static INTRO: string = `Resultat du Gurdil: \n`;
 
     public constructor(
         public storage: Storage
@@ -14,14 +14,14 @@ export class Game {
     public setGame(listeNain: NainInterface[]): string {
         let content =  Game.INTRO;
         listeNain.forEach((nain: NainInterface) => {
-            content += '; '+ nain.name + ' ' + nain.phone + ' ' + nain.beers + ' bières';
+            content += `${nain.name} a fait ${nain.beers} bières \n`;
         });
         return content;
     }
 
     public updateGame(message: string): void {
         this.storage.get('partie').then((content: string) => {
-            content = content + '; ' + message;
+            content += `${message} \n`;
             this.storage.set('partie', content);
         });
     }

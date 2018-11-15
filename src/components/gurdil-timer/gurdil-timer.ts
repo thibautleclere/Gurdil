@@ -3,7 +3,7 @@ import { ITimer } from '../timer-countdown/timer-countdown.interface';
 import { Gurdil } from '../../services/gurdil';
 import { NavController } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
-import { SMS } from '@ionic-native/sms';
+import {SMS, SmsOptions} from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
 import { NainInterface } from '../../models/nain.interface';
 import { Game } from '../../services/game';
@@ -30,6 +30,12 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
   public timeAfter: number = 10;
   @Input()
   public srcAudio: string = '';
+
+  public options: SmsOptions = {
+    android: {
+        intent: 'INTENT'
+    }
+  };
 
   constructor(
       public gurdilservice: Gurdil,
@@ -103,7 +109,7 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
                 phones.push(joueur.phone);
          });
          this.game.getGameResume().then((resume: string) => {
-             this.smsService.send(phones, resume);
+             this.smsService.send(phones, resume, this.options);
              console.log(resume);
              this.game.removeGame();
              this.navCtrl.setRoot(HomePage);

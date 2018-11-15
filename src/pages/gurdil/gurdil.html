@@ -1,31 +1,5 @@
 <ion-content padding class="gold-back">
 
-    <ion-grid>
-        <ion-row>
-            <ion-col col-6>
-                <ion-row>
-                    <ion-col col-6>
-                        <button ion-button color="gold" class="silver-text loginBtn" (click)="addBeer()">
-                            <ion-icon name="icon-beerplus"></ion-icon>
-                        </button>
-                    </ion-col>
-                    <ion-col col-6>
-                        <button ion-button color="gold" class="silver-text loginBtn" (click)="delBeer()">
-                            <ion-icon name="icon-beermin"></ion-icon>
-                        </button>
-                    </ion-col>
-                </ion-row>
-            </ion-col>
-            <ion-col col-6>
-                <ion-list-header>
-                    Bières
-                    <ion-badge item-end color="danger">{{beers}}</ion-badge>
-                </ion-list-header>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-
-
     <gurdil-timer #timerGurdil [timeLeft]="tempsGurdil" [timeAfter]="6" [srcAudio]="'/assets/sounds/728.mp3'"></gurdil-timer>
 
     <gurdil-slideup [icon]="'icon-radiation'" [text]="'Voir la liste des nains'" [players]="players" [hidden]="gurdilEnded"></gurdil-slideup>
