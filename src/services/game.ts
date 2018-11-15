@@ -21,6 +21,9 @@ export class Game {
 
     public updateGame(message: string): void {
         this.storage.get('partie').then((content: string) => {
+            if (!content) {
+                content = '';
+            }
             content += `${message} \n`;
             this.storage.set('partie', content);
         });

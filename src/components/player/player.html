@@ -1,12 +1,15 @@
 <ion-row>
-  <ion-col col-4>
-    <button ion-button color="dark">
+  <ion-col col-5>
+    <button ion-button color="dark" class="button-name">
       {{ nain.name }}
+    </button>
+    <button ion-button color="danger" class="light">
+      {{ nain.beers || 0 }}
     </button>
   </ion-col>
   <ion-col col-2>
-    <button ion-button color="danger" class="light">
-      {{ nain.beers }}
+    <button ion-button icon-only color="light" class="silver-text" (click)="sendPicture()">
+      <ion-icon name="icon-camera"></ion-icon>
     </button>
   </ion-col>
   <ion-col col-2>
@@ -14,7 +17,7 @@
       <ion-icon name="icon-accessibility"></ion-icon>
     </button>
   </ion-col>
-  <ion-col col-2 offset-1>
+  <ion-col col-2>
     <button ion-button icon-only color="primary" class="silver-text" (click)="randJokes()">
       <ion-icon name="icon-joker-hat"></ion-icon>
     </button>

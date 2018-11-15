@@ -8,6 +8,5 @@ Pages:
         => Classement des joueurs
             => resultat envoyé a firebase
             => chargement des resultats sur l'année
-            => resume mis en forme
-    => retirer bouton joueur seul
+    => bouton camera photo a envoyer a un joueur
 

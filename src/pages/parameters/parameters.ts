@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Storage } from '@ionic/storage';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NainInterface } from '../../models/nain.interface';
@@ -25,7 +24,6 @@ export class ParametersPage implements OnInit {
   constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
-      public camera: Camera,
       public storage: Storage,
       public gurdilService: Gurdil,
       public alertCtrl: AlertController,
@@ -58,20 +56,6 @@ export class ParametersPage implements OnInit {
   }
 
   public ionViewDidLoad() {
-      /*const options: CameraOptions = {
-          quality: 100,
-          destinationType: this.camera.DestinationType.FILE_URI,
-          encodingType: this.camera.EncodingType.JPEG,
-          mediaType: this.camera.MediaType.PICTURE
-      }
-
-      this.camera.getPicture(options).then((imageData) => {
-          // imageData is either a base64 encoded string or a file URI
-          // If it's base64 (DATA_URL):
-          let base64Image = 'data:image/jpeg;base64,' + imageData;
-      }, (err) => {
-          // Handle error
-      });*/
   }
 
   public addDwarf() {

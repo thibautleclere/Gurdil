@@ -62,10 +62,10 @@ export class HomePage implements OnInit {
   }
 
   public ngOnInit() {
-    this.storage.get('nain').then((nain) => {debugger;this.nain = JSON.parse(nain)});
+    this.storage.get('nain').then((nain) => this.nain = JSON.parse(nain));
     this.liste = [];
     this.phones = [];
-    this.audio.initAudio('/assets/sounds/728.mp3');
+    this.audio.initAudio('/assets/sounds/gurdil.mp3');
   }
 
   public Login() {

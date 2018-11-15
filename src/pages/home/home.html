@@ -11,8 +11,12 @@
   <ion-grid *ngIf="nain">
     <ion-row>
       <ion-col>
-        <ion-icon name="beer"></ion-icon>
-        <h3>{{ nain.name }}</h3>
+        <button ion-button icon-only color="dark">
+          <ion-icon name="icon-user"></ion-icon>
+        </button>
+        <button ion-button color="dark">
+          <h3 class="inline">{{ nain.name }}</h3>
+        </button>
       </ion-col>
     </ion-row>
     <ion-row><ion-col col-12></ion-col></ion-row>
