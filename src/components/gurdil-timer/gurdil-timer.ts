@@ -7,6 +7,7 @@ import { SMS } from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
 import { NainInterface } from '../../models/nain.interface';
 import { Game } from '../../services/game';
+import {GurdilAudio} from "../../services/gurdil.audio";
 
 
 @Component({
@@ -27,13 +28,16 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
   public timeLeft: number = 10;
   @Input()
   public timeAfter: number = 10;
+  @Input()
+  public srcAudio: string = '';
 
   constructor(
       public gurdilservice: Gurdil,
       public navCtrl: NavController,
       public smsService: SMS,
       public storage: Storage,
-      public game: Game) {
+      public game: Game,
+      public audio: GurdilAudio) {
   }
 
   public ngAfterViewInit() {
@@ -42,6 +46,7 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
           this.gurdilservice.emitGurdil();
       }
 
+      this.audio.playAudio(this.srcAudio);
       this.interval = setInterval(() => {
           if(this.timeLeft > 0) {
               this.timeLeft--;

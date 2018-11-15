@@ -89,7 +89,7 @@ export class HomePage implements OnInit {
           });
           this.socialSharing.send(this.phones, `Test: Gurdil dans 10 minutes! ${this.beers} pour moi`, this.options);
           this.storage.set('beers', this.beers);
-          const duration = document.getElementById('audioGurdil');
+          const duration = <HTMLInputElement>document.getElementById('audioGurdil');
           this.navCtrl.push(GurdilPage, {
               audioDuration: duration.value
           });

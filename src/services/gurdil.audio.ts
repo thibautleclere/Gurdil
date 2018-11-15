@@ -1,25 +1,26 @@
-import {EventEmitter, Injectable, Output} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class GurdilAudio {
 
-
-    @Output() public onGetDuration = new EventEmitter<number>();
 
     public constructor(){}
 
     public initAudio(src): void {
         const sound = new Audio(src);
         sound.addEventListener('loadedmetadata', function(event) {
-            if (event.currentTarget && event.currentTarget.duration) {
+            const target: HTMLAudioElement = <HTMLAudioElement>event.currentTarget;
+            if (target && target.duration) {
                 let input  = document.getElementById('audioGurdil');
-                input.setAttribute('value', event.currentTarget.duration);
+                input.setAttribute('value', target.duration.toString());
             }
         });
     }
 
-    public sendDuration(duration: number): void {
-        this.onGetDuration.emit(duration);
+    public playAudio(src: string): void {
+        const audio = new Audio(src);
+        audio.load();
+        audio.play();
     }
 
 }
