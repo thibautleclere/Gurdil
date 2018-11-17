@@ -56,7 +56,8 @@ export class PlayerComponent implements OnInit {
 
   public sendPicture() {
     this.camera.getPicture(this.optionsCamera).then((imageData) => {
-        this.socialSharing.shareViaWhatsAppToReceiver(this.nain.phone, '', imageData);
+        console.warn(imageData);
+        this.socialSharing.shareViaEmail('', 'Photo Gurdil', [this.nain.email], [], [], imageData);
     }, (err) => {
         console.log('Erreur camera');
         console.log(err);
