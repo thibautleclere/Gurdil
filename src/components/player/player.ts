@@ -4,6 +4,7 @@ import { SMS, SmsOptions } from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
 import { Game } from '../../services/game';
 import { Camera, CameraOptions } from "@ionic-native/camera";
+import { SocialSharing } from "@ionic-native/social-sharing";
 
 
 @Component({
@@ -32,7 +33,8 @@ export class PlayerComponent implements OnInit {
       public sms: SMS,
       public storage: Storage,
       public game: Game,
-      public camera: Camera) {}
+      public camera: Camera,
+      public socialSharing: SocialSharing) {}
 
   public ngOnInit() {
   }
@@ -54,8 +56,7 @@ export class PlayerComponent implements OnInit {
 
   public sendPicture() {
     this.camera.getPicture(this.optionsCamera).then((imageData) => {
-        let base64Image = 'data:image/jpeg;base64,' + imageData;
-        this.sms.send(this.nain.phone, base64Image, this.options);
+        this.socialSharing.shareViaWhatsAppToReceiver(this.nain.phone, '', imageData);
     }, (err) => {
         console.log('Erreur camera');
         console.log(err);
