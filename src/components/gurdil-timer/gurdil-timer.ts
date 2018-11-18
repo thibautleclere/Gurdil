@@ -7,7 +7,9 @@ import {SMS, SmsOptions} from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
 import { NainInterface } from '../../models/nain.interface';
 import { Game } from '../../services/game';
-import {GurdilAudio} from "../../services/gurdil.audio";
+import { GurdilAudio } from '../../services/gurdil.audio';
+import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
+import { ScoreInterface } from '../../models/score.interface';
 
 
 @Component({
@@ -22,6 +24,7 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
   public timeStart: number;
   public afterGurdil: boolean = false;
   public gurdilFinished: boolean = false;
+  public scores: AngularFireList<ScoreInterface>;
 
 
   @Input()
@@ -43,7 +46,10 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
       public smsService: SMS,
       public storage: Storage,
       public game: Game,
-      public audio: GurdilAudio) {
+      public audio: GurdilAudio,
+      public afDatabase: AngularFireDatabase) {
+      this.scores = this.afDatabase.list('/parties');
+
   }
 
   public ngAfterViewInit() {
@@ -110,9 +116,11 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
          });
          this.game.getGameResume().then((resume: string) => {
              this.smsService.send(phones, resume, this.options);
-             console.log(resume);
-             this.game.removeGame();
-             this.navCtrl.setRoot(HomePage);
+             this.game.saveGameToBDD().then((score: ScoreInterface) => {
+                 this.scores.push(score);
+                 this.game.removeGame();
+                 this.navCtrl.setRoot(HomePage);
+             });
          });
       });
   }

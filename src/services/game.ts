@@ -1,6 +1,8 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { NainInterface } from '../models/nain.interface';
 import { Storage } from '@ionic/storage';
+import { AngularFireList } from "@angular/fire/database";
+import {PlayerInterface, ScoreInterface} from "../models/score.interface";
 
 @Injectable()
 export class Game {
@@ -9,7 +11,8 @@ export class Game {
 
     public constructor(
         public storage: Storage
-    ){}
+    ){
+    }
 
     public setGame(listeNain: NainInterface[]): string {
         let content =  Game.INTRO;
@@ -45,6 +48,29 @@ export class Game {
                 const jeu = this.setGame(players);
                 return jeu + " ; " + content;
             });
+        });
+    }
+
+    public saveGameToBDD(): Promise<ScoreInterface> {
+        return this.storage.get('joueurs').then((liste: string) => {
+            let players = [];
+            if (liste) {
+                players = JSON.parse(liste);
+            }
+            const score: ScoreInterface = {
+                players: []
+            };
+            const now = new Date();
+            players.forEach((nain: NainInterface) => {
+                const player: PlayerInterface = {
+                    nom: nain.name,
+                    phone: nain.phone,
+                    score: nain.beers,
+                    date: now.toLocaleDateString()
+                };
+                score.players.push(player);
+            });
+            return score;
         });
     }
 }
