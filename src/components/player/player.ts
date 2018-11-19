@@ -4,7 +4,7 @@ import { SMS, SmsOptions } from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
 import { Game } from '../../services/game';
 import { Camera, CameraOptions } from "@ionic-native/camera";
-import { SocialSharing } from "@ionic-native/social-sharing";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 
 @Component({
@@ -15,6 +15,7 @@ export class PlayerComponent implements OnInit {
 
   @Input() public nain: NainInterface;
   @Input() public blagues: string[] = [];
+  public htmlImage: string = '';
 
   public options: SmsOptions = {
       android: {
@@ -24,7 +25,7 @@ export class PlayerComponent implements OnInit {
 
   public optionsCamera: CameraOptions = {
         quality: 100,
-        destinationType: this.camera.DestinationType.FILE_URI,
+        destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE
   };
@@ -56,8 +57,9 @@ export class PlayerComponent implements OnInit {
 
   public sendPicture() {
     this.camera.getPicture(this.optionsCamera).then((imageData) => {
-        console.warn(imageData);
-        this.socialSharing.shareViaEmail('', 'Photo Gurdil', [this.nain.email], [], [], imageData);
+        let image  = <HTMLImageElement>document.getElementById('image');
+        imageData = 'data:image/jpeg;base64,' + imageData;
+        image.setAttribute('src', imageData);
     }, (err) => {
         console.log('Erreur camera');
         console.log(err);

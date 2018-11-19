@@ -1,8 +1,7 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { NainInterface } from '../models/nain.interface';
 import { Storage } from '@ionic/storage';
-import { AngularFireList } from "@angular/fire/database";
-import {PlayerInterface, ScoreInterface} from "../models/score.interface";
+import { ScoreInterface } from "../models/score.interface";
 
 @Injectable()
 export class Game {
@@ -57,18 +56,13 @@ export class Game {
             if (liste) {
                 players = JSON.parse(liste);
             }
-            const score: ScoreInterface = {
-                players: []
-            };
             const now = new Date();
+            const score: ScoreInterface = {
+                players: [],
+                date: now.toLocaleDateString()
+            };
             players.forEach((nain: NainInterface) => {
-                const player: PlayerInterface = {
-                    nom: nain.name,
-                    phone: nain.phone,
-                    score: nain.beers,
-                    date: now.toLocaleDateString()
-                };
-                score.players.push(player);
+                score.players.push(nain);
             });
             return score;
         });

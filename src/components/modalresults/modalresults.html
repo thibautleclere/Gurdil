@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button (click)="dismiss()">
+            <ion-icon name="thumbs-up"></ion-icon></button>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ng-container *ngFor="let nain of players">
+      <addingbeers [nain]="nain"></addingbeers>
+    </ng-container>
+  </ion-grid>
+</ion-content>

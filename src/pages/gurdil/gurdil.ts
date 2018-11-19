@@ -47,7 +47,7 @@ export class GurdilPage implements OnInit{
           this.players = JSON.parse(liste);
       });
 
-      this.tempsGurdil = parseInt(this.navparams.get('audioDuration'));
+      this.tempsGurdil = 10;//parseInt(this.navparams.get('audioDuration'));
 
       this.listenEvents();
       this.getJokes();

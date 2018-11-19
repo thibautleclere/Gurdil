@@ -12,4 +12,5 @@ Pages:
     => boutons add bieres a changer 1-8 bieres
     => plugin facebook
     => chanson apres gurdil
+    => tslint a reparer
 

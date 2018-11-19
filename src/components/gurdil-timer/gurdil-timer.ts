@@ -1,15 +1,16 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ITimer } from '../timer-countdown/timer-countdown.interface';
 import { Gurdil } from '../../services/gurdil';
-import { NavController } from 'ionic-angular';
+import { ModalController, NavController } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
 import {SMS, SmsOptions} from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
 import { NainInterface } from '../../models/nain.interface';
 import { Game } from '../../services/game';
 import { GurdilAudio } from '../../services/gurdil.audio';
-import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { ScoreInterface } from '../../models/score.interface';
+import {ModalresultsComponent} from "../modalresults/modalresults";
 
 
 @Component({
@@ -47,7 +48,8 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
       public storage: Storage,
       public game: Game,
       public audio: GurdilAudio,
-      public afDatabase: AngularFireDatabase) {
+      public afDatabase: AngularFireDatabase,
+      public modalCtrl: ModalController) {
       this.scores = this.afDatabase.list('/parties');
 
   }
@@ -58,7 +60,7 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
           this.gurdilservice.emitGurdil();
       }
 
-      this.audio.playAudio(this.srcAudio);
+      //this.audio.playAudio(this.srcAudio);
       this.interval = setInterval(() => {
           if(this.timeLeft > 0) {
               this.timeLeft--;
@@ -122,6 +124,14 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
                  this.navCtrl.setRoot(HomePage);
              });
          });
+      });
+  }
+
+  public setResultsGame(): void {
+      this.storage.get('joueurs').then((listes) => {
+          const joueurs = JSON.parse(listes);
+          const modal = this.modalCtrl.create(ModalresultsComponent, { players: joueurs});
+          modal.present();
       });
   }
 
