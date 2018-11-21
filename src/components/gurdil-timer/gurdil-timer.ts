@@ -34,6 +34,8 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
   public timeAfter: number = 10;
   @Input()
   public srcAudio: string = '';
+  @Input()
+  public srcAudioAfter: string = '';
 
   public options: SmsOptions = {
     android: {
@@ -80,6 +82,8 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
 
   public startAfter() {
     this.timeShown = this.convertTimeToString(this.timeAfter);
+
+    this.audio.playAudio(this.srcAudioAfter);
 
     this.interval = setInterval(() => {
         if(this.timeAfter > 0) {

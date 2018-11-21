@@ -6,12 +6,12 @@ export class GurdilAudio {
 
     public constructor(){}
 
-    public initAudio(src): void {
+    public initAudio(src: string, idElement: string): void {
         const sound = new Audio(src);
         sound.addEventListener('loadedmetadata', function(event) {
             const target: HTMLAudioElement = <HTMLAudioElement>event.currentTarget;
             if (target && target.duration) {
-                let input  = document.getElementById('audioGurdil');
+                let input  = document.getElementById(idElement);
                 input.setAttribute('value', target.duration.toString());
             }
         });

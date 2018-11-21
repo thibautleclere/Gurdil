@@ -5,12 +5,8 @@ Pages:
     https://firebase.google.com/docs/firestore/quickstart?authuser=0
 
     => Fin Partie
-        => Classement des joueurs
-            => resultat envoyé a firebase
-            => chargement des resultats sur l'année
+
     => bouton camera photo a envoyer a un joueur
-    => boutons add bieres a changer 1-8 bieres
     => plugin facebook
-    => chanson apres gurdil
     => tslint a reparer
 

@@ -66,7 +66,8 @@ export class HomePage implements OnInit {
     this.storage.get('nain').then((nain) => this.nain = JSON.parse(nain));
     this.liste = [];
     this.phones = [];
-    this.audio.initAudio('/assets/sounds/gurdil.mp3');
+    this.audio.initAudio('/assets/sounds/gurdil.mp3', 'audioGurdil');
+    this.audio.initAudio('/assets/sounds/aftergurdil.mp3', 'audioAfterGurdil');
   }
 
   public Login() {
@@ -76,8 +77,11 @@ export class HomePage implements OnInit {
   public listeninEventsWithCordova() {
       this.subscriptiononStart10min = this.gurdil.onStartGurdil.subscribe((start: boolean) => {
           const duration = <HTMLInputElement>document.getElementById('audioGurdil');
+          const durationAfter = <HTMLInputElement>document.getElementById('audioAfterGurdil');
+          debugger;
           this.navCtrl.push(GurdilPage, {
-              audioDuration: duration.value
+              audioDuration: duration.value,
+              audioAfter: durationAfter.value
           });
       });
       this.subscriptiononStartGurdil = this.gurdil.onStartCountDown.subscribe((start: boolean) => {

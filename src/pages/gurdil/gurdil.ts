@@ -18,8 +18,8 @@ export class GurdilPage implements OnInit{
   @ViewChild('timerGurdil') timerComponent: GurdilTimerComponent;
   @ViewChildren('listePlayers') playerComponents: QueryList<PlayerComponent>;
 
-  public tempsGurdil: number = 0;
-  public tempsAfter: number = 600;// chanson offspring apres le gurdil
+  public tempsGurdil: number = 1;
+  public tempsAfter: number = 1;// chanson offspring apres le gurdil
 
   public nain: NainInterface;
   public players: NainInterface[] = [];
@@ -47,7 +47,8 @@ export class GurdilPage implements OnInit{
           this.players = JSON.parse(liste);
       });
 
-      this.tempsGurdil = 10;//parseInt(this.navparams.get('audioDuration'));
+      this.tempsGurdil = parseInt(this.navparams.get('audioDuration'));
+      this.tempsAfter = parseInt(this.navparams.get('audioAfter'));
 
       this.listenEvents();
       this.getJokes();
