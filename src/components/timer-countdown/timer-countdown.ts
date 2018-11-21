@@ -34,7 +34,6 @@ export class TimerCountdownComponent implements OnInit{
   public startCountDown() {
       this.timeRunning = true;
       if (this.timeShown && this.timeShown.end) {
-          console.log('gurdil lancer');
           this.gurdilservice.emitGurdil();
       } else {
           this.gurdilservice.emit10minutes();
@@ -45,7 +44,6 @@ export class TimerCountdownComponent implements OnInit{
               } else {
                   this.reset();
                   this.timeShown.end = true;
-                  console.log('fin compte a rebour');
                   this.gurdilservice.emitEnd10minutes();
               }
           }, 1000);

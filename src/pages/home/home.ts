@@ -29,6 +29,7 @@ export class HomePage implements OnInit {
 
   public subscriptionEndCountDown;
   public subscriptiononStartGurdil;
+  public subscriptiononStart10min;
   public subscriptiononDwarfRemoved;
   public subscriptionLogin;
 
@@ -73,15 +74,17 @@ export class HomePage implements OnInit {
   }
 
   public listeninEventsWithCordova() {
-      this.subscriptiononStartGurdil = this.gurdil.onStartGurdil.subscribe((start: boolean) => {
-          this.liste.forEach((nain) => {
-              this.phones.push(nain.phone);
-          });
-          this.socialSharing.send(this.phones, `Gurdil dans 10 minutes! vous êtes convié`, this.options);
+      this.subscriptiononStart10min = this.gurdil.onStartGurdil.subscribe((start: boolean) => {
           const duration = <HTMLInputElement>document.getElementById('audioGurdil');
           this.navCtrl.push(GurdilPage, {
               audioDuration: duration.value
           });
+      });
+      this.subscriptiononStartGurdil = this.gurdil.onStartCountDown.subscribe((start: boolean) => {
+          this.liste.forEach((nain) => {
+              this.phones.push(nain.phone);
+          });
+          this.socialSharing.send(this.phones, `Gurdil dans 10 minutes! vous êtes convié`, this.options);
       });
   }
 
@@ -98,6 +101,7 @@ export class HomePage implements OnInit {
       console.log('will unload');
       this.subscriptionEndCountDown.unsubscribe();
       this.subscriptiononStartGurdil.unsubscribe();
+      this.subscriptiononStart10min.unsubscribe();
       this.subscriptiononDwarfRemoved.unsubscribe();
       this.subscriptionLogin.unsubscribe();
   }
