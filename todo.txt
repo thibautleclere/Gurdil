@@ -8,5 +8,4 @@ Pages:
 
     => bouton camera photo a envoyer a un joueur
     => plugin facebook
-    => tslint a reparer
 

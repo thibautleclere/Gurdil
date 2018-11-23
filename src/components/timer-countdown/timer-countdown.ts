@@ -1,7 +1,7 @@
-import {Component, Input, OnInit, Injectable} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Gurdil } from '../../services/gurdil';
-import { ITimer } from "./timer-countdown.interface";
-import {NainInterface} from "../../models/nain.interface";
+import { ITimer } from './timer-countdown.interface';
+import { NainInterface } from '../../models/nain.interface';
 
 
 @Component({

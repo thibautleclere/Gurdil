@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ContentChildren, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { NainInterface } from '../../models/nain.interface';
 import { Storage } from '@ionic/storage';

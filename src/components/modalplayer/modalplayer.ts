@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NainInterface } from "../../models/nain.interface";
 import { Storage } from '@ionic/storage';
 import { NavParams, ViewController } from "ionic-angular";

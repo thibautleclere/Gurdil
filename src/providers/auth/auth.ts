@@ -1,8 +1,8 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
-import {Http, Headers, RequestOptions} from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
-import { NainInterface } from "../../models/nain.interface";
+import { NainInterface } from '../../models/nain.interface';
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 
 @Injectable()
