@@ -1,6 +1,27 @@
+<ion-header class="gold-back">
+    <ion-card class="gold-back">
+        <ion-card-content>
+            <ion-buttons end>
+                <button ion-button icon-only icon-left color="silver" (click)="changeVolume()">
+                    <ion-icon [hidden]="mute" name="icon-volume-high"></ion-icon>
+                    <ion-icon [hidden]="!mute" name="icon-volume-mute"></ion-icon>
+                </button>
+                <button ion-button icon-right color="silver">
+                    Arreter le Gurdil <ion-icon name="icon-empty"></ion-icon>
+                </button>
+            </ion-buttons>
+        </ion-card-content>
+    </ion-card>
+</ion-header>
 <ion-content padding class="gold-back">
 
-    <gurdil-timer #timerGurdil [timeLeft]="10" [timeAfter]="tempsAfter" [srcAudio]="'/assets/sounds/gurdil.mp3'" [srcAudioAfter]="'/assets/sounds/aftergurdil.mp3'"></gurdil-timer>
+    <gurdil-timer #timerGurdil
+                  [timeLeft]="10"
+                  [timeAfter]="10"
+                  [srcAudio]="'/assets/sounds/gurdil.mp3'"
+                  [srcAudioAfter]="'/assets/sounds/aftergurdil.mp3'"
+                  [muted]="mute"  >
+    </gurdil-timer>
 
     <gurdil-slideup [icon]="'icon-radiation'" [text]="'Voir la liste des nains'" [players]="players" [hidden]="gurdilEnded"></gurdil-slideup>
 

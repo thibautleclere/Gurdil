@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SMS } from '@ionic-native/sms';
 import { Camera } from '@ionic-native/camera';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 
 // Import the AF2 Module
@@ -40,11 +41,11 @@ import { ComponentsModule } from '../components/components.module';
 import { Beer } from '../services/beer';
 import { Game } from '../services/game';
 import { GurdilAudio } from '../services/gurdil.audio';
-import { SocialSharing } from "@ionic-native/social-sharing";
-import { GurdilPageModule } from "../pages/gurdil/gurdil.module";
-import { LoginPageModule } from "../pages/login/login.module";
-import { ParametersPageModule } from "../pages/parameters/parameters.module";
-import { SignupPageModule } from "../pages/signup/signup.module";
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { GurdilPageModule } from '../pages/gurdil/gurdil.module';
+import { LoginPageModule } from '../pages/login/login.module';
+import { ParametersPageModule } from '../pages/parameters/parameters.module';
+import { SignupPageModule } from '../pages/signup/signup.module';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { SignupPageModule } from "../pages/signup/signup.module";
     Camera,
     Game,
     GurdilAudio,
-    SocialSharing
+    SocialSharing,
+    EmailComposer
   ]
 })
 export class AppModule {}

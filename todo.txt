@@ -5,7 +5,12 @@ Pages:
     https://firebase.google.com/docs/firestore/quickstart?authuser=0
 
     => Fin Partie
+    => trim login
+    => ajout email formulaire parametres
+    => arreter le gurdil
 
-    => bouton camera photo a envoyer a un joueur
-    => plugin facebook
+    V2
+    => admin
+        => update data joueur
+            => suppression joueur
 

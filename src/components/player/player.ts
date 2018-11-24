@@ -3,8 +3,8 @@ import { NainInterface } from '../../models/nain.interface';
 import { SMS, SmsOptions } from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
 import { Game } from '../../services/game';
-import { Camera, CameraOptions } from "@ionic-native/camera";
-import {SocialSharing} from "@ionic-native/social-sharing";
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import {EmailComposer} from '@ionic-native/email-composer';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class PlayerComponent implements OnInit {
 
   @Input() public nain: NainInterface;
   @Input() public blagues: string[] = [];
-  public htmlImage: string = '';
+  public message_error; string = '';
 
   public options: SmsOptions = {
       android: {
@@ -35,7 +35,7 @@ export class PlayerComponent implements OnInit {
       public storage: Storage,
       public game: Game,
       public camera: Camera,
-      public socialSharing: SocialSharing) {}
+      public emailService: EmailComposer) {}
 
   public ngOnInit() {
   }
@@ -56,14 +56,25 @@ export class PlayerComponent implements OnInit {
   }
 
   public sendPicture() {
-    this.camera.getPicture(this.optionsCamera).then((imageData) => {
-        let image  = <HTMLImageElement>document.getElementById('image');
-        imageData = 'data:image/jpeg;base64,' + imageData;
-        image.setAttribute('src', imageData);
-    }, (err) => {
-        console.log('Erreur camera');
-        console.log(err);
-    });
+      if (this.nain.email) {
+          this.camera.getPicture(this.optionsCamera).then((imageData) => {
+              imageData = 'base64:gurdil.png//'+imageData;
+              const email = {
+                  to: this.nain.email,
+                  attachments: [
+                      imageData
+                  ],
+                  subject: 'Gurdil Image',
+                  body: `Gurdil!!! Tu as reçu une photo du gurdil ${this.nain.name}! Bisous`,
+                  isHtml: true
+              };
+              this.emailService.open(email);
+          }, (err) => {
+              this.message_error = err;
+          });
+      } else {
+            this.message_error = `Gueux! ${this.nain.name} n'a d'email enregistré, impossible dans ce cas de lui envoyer un email`;
+      }
   }
 
 }

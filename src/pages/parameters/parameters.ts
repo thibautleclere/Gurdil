@@ -15,8 +15,6 @@ import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 export class ParametersPage implements OnInit {
 
 
-  public viawhatsapp: boolean = false;
-  public viasms: boolean = false;
   public dwarfForm: FormGroup;
   public listNains: NainInterface[] = [];
   public savedDwarves: AngularFireList<NainInterface>;
@@ -43,7 +41,8 @@ export class ParametersPage implements OnInit {
       });
       this.dwarfForm = new FormGroup({
           nom: new FormControl('',[Validators.required]),
-          phone: new FormControl('', [Validators.required])
+          phone: new FormControl('', [Validators.required]),
+          email: new FormControl('')
       });
       this.gurdilService.dwarfAdded.subscribe((nain: NainInterface) => {
           const alert = this.alertCtrl.create({
@@ -62,7 +61,11 @@ export class ParametersPage implements OnInit {
 
       const name = this.dwarfForm.controls['nom'].value;
       const phone = this.dwarfForm.controls['phone'].value;
+      const email = this.dwarfForm.controls['email'].value;
       const nain: NainInterface = { name: name, phone: phone };
+      if (email) {
+          nain.email = email;
+      }
       this.listNains.push(nain);
       this.storage.set('nains', JSON.stringify(this.listNains));
       this.dwarfForm.reset();

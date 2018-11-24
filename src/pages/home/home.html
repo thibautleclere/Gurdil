@@ -1,24 +1,17 @@
 <ion-content padding class="gold-back page-home gurdil">
 
-
-  <div class="center">
-    <button *ngIf="!nain" ion-button color="gold" (click)="Login()" title="Page de Connexion" class="silver-text loginBtn">
-      <ion-icon name="person"></ion-icon>
-      Login
-    </button>
-  </div>
+  <ion-card *ngIf="nain" class="header-home gold-back">
+    <ion-card-content>
+      <button ion-button icon-only color="dark">
+        <ion-icon name="icon-user"></ion-icon>
+      </button>
+      <button ion-button color="dark">
+        <h3 class="inline">{{ nain.name }}</h3>
+      </button>
+    </ion-card-content>
+  </ion-card>
 
   <ion-grid *ngIf="nain">
-    <ion-row>
-      <ion-col>
-        <button ion-button icon-only color="dark">
-          <ion-icon name="icon-user"></ion-icon>
-        </button>
-        <button ion-button color="dark">
-          <h3 class="inline">{{ nain.name }}</h3>
-        </button>
-      </ion-col>
-    </ion-row>
     <ion-row><ion-col col-12></ion-col></ion-row>
     <ion-row><ion-col col-12></ion-col></ion-row>
     <ion-row>
@@ -34,6 +27,14 @@
       <addingbeers [nain]="nain"></addingbeers>
     </ng-container>
   </ion-grid>
+
+
+  <div class="center">
+    <button *ngIf="!nain" ion-button color="gold" (click)="Login()" title="Page de Connexion" class="silver-text loginBtn">
+      <ion-icon name="person"></ion-icon>
+      Login
+    </button>
+  </div>
 
   <input type="hidden" id="audioGurdil" value="">
   <input type="hidden" id="audioAfterGurdil" value="">

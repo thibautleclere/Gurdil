@@ -17,10 +17,15 @@ export class GurdilAudio {
         });
     }
 
-    public playAudio(src: string): void {
+    public playAudio(src: string): any {
         const audio = new Audio(src);
         audio.load();
         audio.play();
+        return audio;
+    }
+
+    public muteAudio(audio, mute: boolean): void {
+        audio.muted = true;
     }
 
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnInit} from '@angular/core';
 import { ITimer } from '../timer-countdown/timer-countdown.interface';
 import { Gurdil } from '../../services/gurdil';
 import { ModalController, NavController } from 'ionic-angular';
@@ -11,13 +11,14 @@ import { GurdilAudio } from '../../services/gurdil.audio';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { ScoreInterface } from '../../models/score.interface';
 import {ModalresultsComponent} from "../modalresults/modalresults";
+import {b} from "@angular/core/src/render3";
 
 
 @Component({
   selector: 'gurdil-timer',
   templateUrl: 'gurdil-timer.html'
 })
-export class GurdilTimerComponent implements OnInit, AfterViewInit {
+export class GurdilTimerComponent implements OnInit, AfterViewInit, OnChanges {
 
   public interval;
   public timeShown: ITimer = null;
@@ -26,6 +27,8 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
   public afterGurdil: boolean = false;
   public gurdilFinished: boolean = false;
   public scores: AngularFireList<ScoreInterface>;
+  public gurdilSong: any;
+  public gurdilAfterSong: any;
 
 
   @Input()
@@ -36,6 +39,8 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
   public srcAudio: string = '';
   @Input()
   public srcAudioAfter: string = '';
+  @Input()
+  public muted: boolean = false;
 
   public options: SmsOptions = {
     android: {
@@ -62,7 +67,7 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
           this.gurdilservice.emitGurdil();
       }
 
-      //this.audio.playAudio(this.srcAudio);
+      //this.gurdilSong = this.audio.playAudio(this.srcAudio);
       this.interval = setInterval(() => {
           if(this.timeLeft > 0) {
               this.timeLeft--;
@@ -83,7 +88,7 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
   public startAfter() {
     this.timeShown = this.convertTimeToString(this.timeAfter);
 
-    this.audio.playAudio(this.srcAudioAfter);
+    //this.gurdilAfterSong = this.audio.playAudio(this.srcAudioAfter);
 
     this.interval = setInterval(() => {
         if(this.timeAfter > 0) {
@@ -137,6 +142,15 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit {
           const modal = this.modalCtrl.create(ModalresultsComponent, { players: joueurs});
           modal.present();
       });
+  }
+
+  public ngOnChanges(): void {
+      if (this.gurdilSong) {
+          this.gurdilSong.muted = this.muted;
+      }
+      if (this.gurdilAfterSong) {
+          this.gurdilAfterSong.muted = this.muted;
+      }
   }
 
 }

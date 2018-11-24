@@ -26,6 +26,7 @@ export class GurdilPage implements OnInit{
   public gurdilEnded: boolean = false;
   public jokes: AngularFireList<string>;
   public blagues: string[] = [];
+  public mute: boolean;
 
   public subscriptionEndGurdil;
   public subscriptionAfterGurdil;
@@ -42,6 +43,7 @@ export class GurdilPage implements OnInit{
   }
 
   public ngOnInit() {
+      this.mute = false;
       this.storage.get('nain').then((nain) => this.nain = nain);
       this.storage.get('joueurs').then((liste) => {
           this.players = JSON.parse(liste);
@@ -100,6 +102,10 @@ export class GurdilPage implements OnInit{
       }).catch((reason) => {
           console.warn(reason);
       });
+  }
+
+  public changeVolume(): void {
+      this.mute = !this.mute;
   }
 
 }

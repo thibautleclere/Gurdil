@@ -8,18 +8,6 @@
 
 <ion-content padding class="gold-back">
 
-  <ion-list>
-    <ion-item>
-      <ion-label fixed>via Whatsapp</ion-label>
-      <ion-toggle checked="false" [(ngModel)]="viawhatsapp"></ion-toggle>
-    </ion-item>
-
-    <ion-item>
-      <ion-label fixed>via SMS</ion-label>
-      <ion-toggle checked="false" [(ngModel)]="viasms"></ion-toggle>
-    </ion-item>
-  </ion-list>
-
   <form (ngSubmit)="addDwarf()" [formGroup]="dwarfForm">
     <ion-list>
       <ion-item>
@@ -27,6 +15,9 @@
       </ion-item>
       <ion-item>
         <ion-input placeholder="Mobile" type="telephone" formControlName="phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Email" type="email" formControlName="email"></ion-input>
       </ion-item>
       <ion-item>
         <button ion-button color="dark">Ajouter</button>

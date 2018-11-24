@@ -8,7 +8,7 @@ import { Gurdil } from '../../services/gurdil';
 import { GurdilPage } from '../gurdil/gurdil';
 import { AuthProvider } from '../../providers/auth/auth';
 import { SMS, SmsOptions } from '@ionic-native/sms';
-import { GurdilAudio } from "../../services/gurdil.audio";
+import { GurdilAudio } from '../../services/gurdil.audio';
 
 @Component({
   selector: 'page-home',
@@ -78,7 +78,6 @@ export class HomePage implements OnInit {
       this.subscriptiononStart10min = this.gurdil.onStartGurdil.subscribe((start: boolean) => {
           const duration = <HTMLInputElement>document.getElementById('audioGurdil');
           const durationAfter = <HTMLInputElement>document.getElementById('audioAfterGurdil');
-          debugger;
           this.navCtrl.push(GurdilPage, {
               audioDuration: duration.value,
               audioAfter: durationAfter.value

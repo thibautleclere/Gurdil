@@ -23,4 +23,11 @@
     </button>
   </ion-col>
 </ion-row>
-<img id="image" src="" alt="image captured" />
+<ion-card color="danger" [hidden]="!message_error">
+  <ion-card-header>
+    Erreur
+  </ion-card-header>
+  <ion-card-content>
+    {{ message_error }}
+  </ion-card-content>
+</ion-card>
