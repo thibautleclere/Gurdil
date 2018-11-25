@@ -41,8 +41,8 @@ export class LoginPage {
           console.log(result);
           this.navCtrl.setRoot(HomePage);
       }, (err) => {
+          alert(err);
           this.loading.dismiss();
-          console.log(err);
           this.navCtrl.setRoot(HomePage);
       });
 

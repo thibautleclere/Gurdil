@@ -47,10 +47,11 @@ export class HomePage implements OnInit {
         console.log("event end countdown");
       });
 
-      this.subscriptionLogin = this.authService.onLogin.subscribe((login: boolean) => {
+      this.subscriptionLogin = this.authService.onLogin.subscribe((nain: NainInterface) => {
         const loading = this.loadCtrl.create({
            content: "Chargement des jeux..."
         });
+        this.nain = nain;
         loading.present();
         loading.dismiss();
 

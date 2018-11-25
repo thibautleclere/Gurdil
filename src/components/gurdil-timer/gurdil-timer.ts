@@ -1,17 +1,16 @@
-import {AfterViewInit, Component, Input, OnChanges, OnInit} from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ITimer } from '../timer-countdown/timer-countdown.interface';
 import { Gurdil } from '../../services/gurdil';
 import { ModalController, NavController } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
-import {SMS, SmsOptions} from '@ionic-native/sms';
+import { SMS, SmsOptions } from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
 import { NainInterface } from '../../models/nain.interface';
 import { Game } from '../../services/game';
 import { GurdilAudio } from '../../services/gurdil.audio';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { ScoreInterface } from '../../models/score.interface';
-import {ModalresultsComponent} from "../modalresults/modalresults";
-import {b} from "@angular/core/src/render3";
+import { ModalresultsComponent } from '../modalresults/modalresults';
 
 
 @Component({

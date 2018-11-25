@@ -1,6 +1,6 @@
 <ion-content padding class="gold-back page-home gurdil">
 
-  <div class="center" *ngIf="!nain">
+  <div class="center" [hidden]="nain">
     <button ion-button color="gold" (click)="Login()" title="Page de Connexion" class="silver-text loginBtn">
       <ion-icon name="person"></ion-icon>
       Login
@@ -24,7 +24,7 @@
     <ion-row>
       <ion-col col-12 text-center>
         <div *ngIf="nain">
-          <timercountdown #gurdil10min [hidden]="!nain" [listePLayers]="liste" [timeLeft]="3"></timercountdown>
+          <timercountdown #gurdil10min [hidden]="!nain" [listePLayers]="liste" [timeLeft]="600"></timercountdown>
         </div>
       </ion-col>
     </ion-row>
