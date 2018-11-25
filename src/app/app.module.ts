@@ -41,7 +41,6 @@ import { ComponentsModule } from '../components/components.module';
 import { Beer } from '../services/beer';
 import { Game } from '../services/game';
 import { GurdilAudio } from '../services/gurdil.audio';
-import { SocialSharing } from '@ionic-native/social-sharing';
 import { GurdilPageModule } from '../pages/gurdil/gurdil.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { ParametersPageModule } from '../pages/parameters/parameters.module';
@@ -89,7 +88,6 @@ import { SignupPageModule } from '../pages/signup/signup.module';
     Camera,
     Game,
     GurdilAudio,
-    SocialSharing,
     EmailComposer
   ]
 })
