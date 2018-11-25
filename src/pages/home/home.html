@@ -1,5 +1,12 @@
 <ion-content padding class="gold-back page-home gurdil">
 
+  <div class="center" *ngIf="!nain">
+    <button ion-button color="gold" (click)="Login()" title="Page de Connexion" class="silver-text loginBtn">
+      <ion-icon name="person"></ion-icon>
+      Login
+    </button>
+  </div>
+
   <ion-card *ngIf="nain" class="header-home gold-back">
     <ion-card-content>
       <button ion-button icon-only color="dark">
@@ -27,14 +34,6 @@
       <addingbeers [nain]="nain"></addingbeers>
     </ng-container>
   </ion-grid>
-
-
-  <div class="center">
-    <button *ngIf="!nain" ion-button color="gold" (click)="Login()" title="Page de Connexion" class="silver-text loginBtn">
-      <ion-icon name="person"></ion-icon>
-      Login
-    </button>
-  </div>
 
   <input type="hidden" id="audioGurdil" value="">
   <input type="hidden" id="audioAfterGurdil" value="">

@@ -34,6 +34,8 @@ export class LoginPage {
 
       this.showLoader();
 
+      this.telephone = this.telephone.trim();
+
       this.authService.login(this.telephone).then((result) => {
           this.loading.dismiss();
           console.log(result);

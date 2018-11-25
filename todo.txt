@@ -2,11 +2,7 @@ Pages:
 
     chat https://www.londonappdeveloper.com/how-to-build-a-websocket-multi-client-chat-using-ionic-and-node-js/
 
-    https://firebase.google.com/docs/firestore/quickstart?authuser=0
 
-    => Fin Partie
-    => trim login
-    => ajout email formulaire parametres
     => arreter le gurdil
 
     V2

@@ -67,7 +67,7 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit, OnChanges {
           this.gurdilservice.emitGurdil();
       }
 
-      //this.gurdilSong = this.audio.playAudio(this.srcAudio);
+      this.gurdilSong = this.audio.playAudio(this.srcAudio);
       this.interval = setInterval(() => {
           if(this.timeLeft > 0) {
               this.timeLeft--;
@@ -88,7 +88,7 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit, OnChanges {
   public startAfter() {
     this.timeShown = this.convertTimeToString(this.timeAfter);
 
-    //this.gurdilAfterSong = this.audio.playAudio(this.srcAudioAfter);
+    this.gurdilAfterSong = this.audio.playAudio(this.srcAudioAfter);
 
     this.interval = setInterval(() => {
         if(this.timeAfter > 0) {
@@ -151,6 +151,10 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit, OnChanges {
       if (this.gurdilAfterSong) {
           this.gurdilAfterSong.muted = this.muted;
       }
+  }
+
+  public stop(): void {
+    
   }
 
 }

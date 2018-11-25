@@ -7,6 +7,7 @@ import { GurdilTimerComponent } from '../../components/gurdil-timer/gurdil-timer
 import { PlayerComponent } from '../../components/player/player';
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { Game } from '../../services/game';
+import { HomePage } from '../home/home';
 
 
 @IonicPage()
@@ -106,6 +107,13 @@ export class GurdilPage implements OnInit{
 
   public changeVolume(): void {
       this.mute = !this.mute;
+  }
+
+
+  public stopGurdil(): void {
+      this.timerComponent.stop();
+      this.game.removeGame();
+      this.navCtrl.setRoot(HomePage);
   }
 
 }

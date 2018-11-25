@@ -6,7 +6,7 @@
                     <ion-icon [hidden]="mute" name="icon-volume-high"></ion-icon>
                     <ion-icon [hidden]="!mute" name="icon-volume-mute"></ion-icon>
                 </button>
-                <button ion-button icon-right color="silver">
+                <button ion-button icon-right color="silver" (click)="stopGurdil()">
                     Arreter le Gurdil <ion-icon name="icon-empty"></ion-icon>
                 </button>
             </ion-buttons>
@@ -16,8 +16,8 @@
 <ion-content padding class="gold-back">
 
     <gurdil-timer #timerGurdil
-                  [timeLeft]="10"
-                  [timeAfter]="10"
+                  [timeLeft]="tempsGurdil"
+                  [timeAfter]="tempsAfter"
                   [srcAudio]="'/assets/sounds/gurdil.mp3'"
                   [srcAudioAfter]="'/assets/sounds/aftergurdil.mp3'"
                   [muted]="mute"  >
