@@ -2,11 +2,14 @@ Pages:
 
     chat https://www.londonappdeveloper.com/how-to-build-a-websocket-multi-client-chat-using-ionic-and-node-js/
 
-
-    => arreter le gurdil
+    => icon gurdil en couleur
 
     V2
     => admin
         => update data joueur
             => suppression joueur
+    Firebase
+    => stocker data de firebase en localStorage
+        => si pas internet pas de sauvegarde
+    => chats a ajouter
 

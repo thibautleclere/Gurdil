@@ -62,6 +62,10 @@ export class Game {
                 date: now.toLocaleDateString()
             };
             players.forEach((nain: NainInterface) => {
+                if (!nain.beers) {
+                    nain.beers = 0;
+                }
+
                 score.players.push(nain);
             });
             return score;
