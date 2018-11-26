@@ -1,17 +1,25 @@
 Pages:
 
-    chat https://www.londonappdeveloper.com/how-to-build-a-websocket-multi-client-chat-using-ionic-and-node-js/
-
-    => icon gurdil en couleur
+    v1
+    => retirer chrono
+        => petit ion-card annonçant le lancement d'un gurdil
+    => fixes bugs sur le nombre de bieres dans la liste
+    => bouton call qui remplecera bouton photo
+        => nom + bieres sur une ligne
+            => boutons actions dessous
+                => bouton 6annonces => bouton call phone
+    => http://tphangout.com/angular-2-videochat-using-peerjs/
+    => stocker data de firebase en localStorage
+        => si pas internet pas de sauvegarde
+    => page palmares => ajout menu
+        => chat / stories via firestore
+        => boutons photos envoyant sur firestore
+        => modal affichant les palmares des annees
+        => ionic notifications
 
     V2
     => admin
         => update data joueur
             => suppression joueur
-    Firebase
-    => stocker data de firebase en localStorage
-        => si pas internet pas de sauvegarde
-    => chats a ajouter
-        => chat via firebase
-        => stories via firestore
+
 
