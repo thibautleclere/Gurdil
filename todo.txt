@@ -12,4 +12,6 @@ Pages:
     => stocker data de firebase en localStorage
         => si pas internet pas de sauvegarde
     => chats a ajouter
+        => chat via firebase
+        => stories via firestore
 
