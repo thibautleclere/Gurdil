@@ -1,7 +1,6 @@
 Pages:
 
     v1
-    => fixes bugs sur le nombre de bieres dans la liste
     => bouton call qui remplecera bouton photo
         => nom + bieres sur une ligne
             => boutons actions dessous
@@ -14,6 +13,7 @@ Pages:
         => boutons photos envoyant sur firestore
         => modal affichant les palmares des annees
         => ionic notifications
+    => resources => changer splash.png
 
     V2
     => admin

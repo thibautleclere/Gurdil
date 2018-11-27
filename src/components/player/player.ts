@@ -15,7 +15,8 @@ export class PlayerComponent implements OnInit {
 
   @Input() public nain: NainInterface;
   @Input() public blagues: string[] = [];
-  public message_error; string = '';
+  public message_error: string;
+  public showActions: boolean;
 
   public options: SmsOptions = {
       android: {
@@ -38,6 +39,8 @@ export class PlayerComponent implements OnInit {
       public emailService: EmailComposer) {}
 
   public ngOnInit() {
+      this.message_error = '';
+      this.showActions = false;
   }
 
   public randLombard() {
@@ -75,6 +78,10 @@ export class PlayerComponent implements OnInit {
       } else {
             this.message_error = `Gueux! ${this.nain.name} n'a d'email enregistré, impossible dans ce cas de lui envoyer un email`;
       }
+  }
+
+  public toogleActions(): void {
+      this.showActions = !this.showActions;
   }
 
 }

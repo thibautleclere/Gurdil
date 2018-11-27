@@ -1,10 +1,29 @@
 <ion-row>
-  <ion-col col-5>
+  <ion-col col-7>
     <button ion-button color="dark" class="button-name">
       {{ nain.name }}
     </button>
+  </ion-col>
+  <ion-col col-3>
+    <button ion-button icon-only color="silver" class="light" (click)="toogleActions()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-col>
+  <ion-col col-2>
     <button ion-button color="danger" class="light">
       {{ nain.beers || 0 }}
+    </button>
+  </ion-col>
+</ion-row>
+<ion-row [hidden]="!showActions">
+  <ion-col col-2>
+    <button ion-button icon-only class="silver-text gold-back">
+      <ion-icon name="icon-woman"></ion-icon>
+    </button>
+  </ion-col>
+  <ion-col col-2>
+    <button ion-button icon-only color="secondary" class="silver-text">
+      <ion-icon name="icon-phone"></ion-icon>
     </button>
   </ion-col>
   <ion-col col-2>
@@ -20,6 +39,11 @@
   <ion-col col-2>
     <button ion-button icon-only color="primary" class="silver-text" (click)="randJokes()">
       <ion-icon name="icon-joker-hat"></ion-icon>
+    </button>
+  </ion-col>
+  <ion-col col-2>
+    <button ion-button icon-only color="danger" class="silver-text">
+      <ion-icon name="logo-youtube"></ion-icon>
     </button>
   </ion-col>
 </ion-row>

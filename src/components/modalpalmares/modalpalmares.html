@@ -1,0 +1,37 @@
+<ion-header class="gold-back">
+  <ion-navbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button (click)="dismiss()">
+            <ion-icon name="thumbs-up"></ion-icon></button>
+        </ion-col>
+        <ion-col>
+          <ion-title class="uppercase">
+            PANTHEON
+          </ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+<ion-content class="dark-back">
+  <ion-grid *ngFor="let palm of palmares">
+      <ion-list-header>
+        <ion-title>Palmares sur l'année {{ palm.annee }}</ion-title>
+      </ion-list-header>
+      <ion-list>
+        <ion-row ion-list *ngFor="let nain of palm.joueurs, let i = index">
+          <ion-col col-2>
+            <ion-icon [name]="(i == 0 ? 'icon-gurdil' : 'icon-dwarf')"></ion-icon>
+          </ion-col>
+          <ion-col col-6>
+            {{ nain.name }}
+          </ion-col>
+          <ion-col text-right col-4>
+            {{ nain.beers }}
+          </ion-col>
+        </ion-row>
+      </ion-list>
+  </ion-grid>
+</ion-content>
