@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Gurdil } from '../../services/gurdil';
-import { ITimer } from './timer-countdown.interface';
 import { NainInterface } from '../../models/nain.interface';
 
 
@@ -10,13 +9,10 @@ import { NainInterface } from '../../models/nain.interface';
 })
 export class TimerCountdownComponent implements OnInit{
 
-  public interval;
-  public timeShown: ITimer = null;
-  public startGurdil: string = "GURDIL!!!";
-  public timeRunning: boolean = false;
-  public timeStart: number;
-  public afterGurdil: boolean = false;
   public message_error: string;
+
+  public readyGurdil: boolean;
+  public showmessReady: boolean;
 
   @Input()
   public listePLayers: NainInterface[];
@@ -28,42 +24,20 @@ export class TimerCountdownComponent implements OnInit{
   }
 
   public ngOnInit() {
-      this.timeStart = this.timeLeft;
-      this.timeShown = this.convertTimeToString(this.timeLeft);
+      this.readyGurdil = false;
+      this.showmessReady = false;
   }
 
   public startCountDown() {
       if (this.checkRunCountDown()) {
-          this.timeRunning = true;
-          if (this.timeShown && this.timeShown.end) {
-              this.gurdilservice.emitGurdil();
-          } else {
-              this.gurdilservice.emit10minutes();
-              this.interval = setInterval(() => {
-                  if (this.timeLeft > 0) {
-                      this.timeLeft--;
-                      this.timeShown = this.convertTimeToString(this.timeLeft);
-                  } else {
-                      this.reset();
-                      this.timeShown.end = true;
-                      this.gurdilservice.emitEnd10minutes();
-                  }
-              }, 1000);
-          }
+        if (this.readyGurdil) {
+            this.gurdilservice.emitGurdil();
+        } else {
+            this.showmessReady = true;
+            this.gurdilservice.emitEnd10minutes();
+        }
+        this.readyGurdil = true;
       }
-  }
-
-  public convertTimeToString(time) : ITimer {
-
-    let minutes = Math.floor(time / 60);
-    let secondes = time % 60;
-    return {'minutes': minutes, 'secondes': secondes, begin: true, end: false};
-
-  }
-
-  public reset() {
-      clearInterval(this.interval);
-      this.timeShown = this.convertTimeToString(this.timeStart);
   }
 
   public checkRunCountDown(): boolean {
@@ -76,6 +50,7 @@ export class TimerCountdownComponent implements OnInit{
 
   public remove(): void {
       this.message_error = '';
+      this.showmessReady = false;
   }
 
 }

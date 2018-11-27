@@ -1,8 +1,6 @@
 Pages:
 
     v1
-    => retirer chrono
-        => petit ion-card annonçant le lancement d'un gurdil
     => fixes bugs sur le nombre de bieres dans la liste
     => bouton call qui remplecera bouton photo
         => nom + bieres sur une ligne

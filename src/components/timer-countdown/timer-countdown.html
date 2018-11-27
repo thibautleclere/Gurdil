@@ -1,15 +1,23 @@
 <button ion-button icon-start color="gold" (click)="startCountDown()" class="center-button silver-text">
   <ion-icon name="icon-tap"></ion-icon>
-  <span *ngIf="!timeRunning">
+  <span *ngIf="!readyGurdil">
     Gurdil dans 10 minutes !!!
   </span>
-  <span *ngIf="timeRunning && timeShown && !timeShown.end">
-    {{ timeShown.minutes }} min {{ timeShown.secondes }} s
-  </span>
-  <span *ngIf="timeShown && timeShown.end">
-    {{ startGurdil }}
+  <span *ngIf="readyGurdil">
+    GURDIL!!!
   </span>
 </button>
+
+<ion-card color="silver" [hidden]="!(readyGurdil && showmessReady)">
+  <ion-card-header>
+    <button ion-button icon-right color="light" outline (click)="remove()">
+      Gurdil lancé <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-card-header>
+  <ion-card-content>
+    Vous avez annoncé un gurdil dans 10 minutes, à vous de gérer les "10 minutes"
+  </ion-card-content>
+</ion-card>
 
 <ion-card color="danger" [hidden]="!message_error">
   <ion-card-header>
