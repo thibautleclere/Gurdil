@@ -2,9 +2,7 @@ Pages:
 
     v1
     => bouton call qui remplecera bouton photo
-        => nom + bieres sur une ligne
-            => boutons actions dessous
-                => bouton 6annonces => bouton call phone
+         => bouton 6annonces => bouton call phone
     => http://tphangout.com/angular-2-videochat-using-peerjs/
     => stocker data de firebase en localStorage
         => si pas internet pas de sauvegarde

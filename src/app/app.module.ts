@@ -10,8 +10,9 @@ import { EmailComposer } from '@ionic-native/email-composer';
 
 
 // Import the AF2 Module
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 // AF2 Settings
 export const firebaseConfig = {
@@ -65,7 +66,8 @@ import { SignupPageModule } from '../pages/signup/signup.module';
     ComponentsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
