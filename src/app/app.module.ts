@@ -46,6 +46,9 @@ import { GurdilPageModule } from '../pages/gurdil/gurdil.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { ParametersPageModule } from '../pages/parameters/parameters.module';
 import { SignupPageModule } from '../pages/signup/signup.module';
+import { MurPage } from '../pages/mur/mur';
+import {MurPageModule} from "../pages/mur/mur.module";
+import {AngularFirestore} from "@angular/fire/firestore";
 
 @NgModule({
   declarations: [
@@ -59,6 +62,7 @@ import { SignupPageModule } from '../pages/signup/signup.module';
     LoginPageModule,
     ParametersPageModule,
     SignupPageModule,
+    MurPageModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
@@ -78,6 +82,7 @@ import { SignupPageModule } from '../pages/signup/signup.module';
     LoginPage,
     SignupPage,
     GurdilPage,
+    MurPage
   ],
   providers: [
     StatusBar,
@@ -90,7 +95,8 @@ import { SignupPageModule } from '../pages/signup/signup.module';
     Camera,
     Game,
     GurdilAudio,
-    EmailComposer
+    EmailComposer,
+    AngularFirestore
   ]
 })
 export class AppModule {}

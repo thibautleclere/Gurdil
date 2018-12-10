@@ -23,8 +23,8 @@ export class ModalpalmaresComponent {
     this.palmares = data.get('palmares');
   }
 
-    public dismiss(): void {
-        this.viewCtrl.dismiss();
-    }
+  public dismiss(): void {
+      this.viewCtrl.dismiss();
+  }
 
 }

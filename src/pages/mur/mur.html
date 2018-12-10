@@ -8,5 +8,11 @@
 
 
 <ion-content class="dark-back">
-
+  <ion-list>
+    <ion-item *ngFor="let message of messages">
+      <img src="{{message.imageTrueUrl}}"/>
+      <ion-item-divider></ion-item-divider>
+      {{ message.texte }}
+    </ion-item>
+  </ion-list>
 </ion-content>

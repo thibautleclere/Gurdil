@@ -8,6 +8,8 @@ import { SlideupComponent } from './slideup/slideup';
 import { ModalplayerComponent } from './modalplayer/modalplayer';
 import { ModalresultsComponent } from './modalresults/modalresults';
 import { ModalpalmaresComponent } from './modalpalmares/modalpalmares';
+import { ModalUploadComponent } from './modal-upload/modal-upload';
+import { ProgressBarComponent } from './progress-bar/progress-bar';
 
 @NgModule({
 	declarations: [TimerCountdownComponent,
@@ -18,7 +20,9 @@ import { ModalpalmaresComponent } from './modalpalmares/modalpalmares';
     SlideupComponent,
     ModalplayerComponent,
     ModalresultsComponent,
-    ModalpalmaresComponent],
+    ModalpalmaresComponent,
+    ModalUploadComponent,
+    ProgressBarComponent],
 	imports: [IonicPageModule.forChild(TimerCountdownComponent)],
 	exports: [TimerCountdownComponent,
     GurdilTimerComponent,
@@ -28,8 +32,10 @@ import { ModalpalmaresComponent } from './modalpalmares/modalpalmares';
     SlideupComponent,
     ModalplayerComponent,
     ModalresultsComponent,
-    ModalpalmaresComponent],
+    ModalpalmaresComponent,
+    ModalUploadComponent,
+    ProgressBarComponent],
     schemas: [],
-    entryComponents: [ModalplayerComponent, ModalresultsComponent, ModalpalmaresComponent]
+    entryComponents: [ModalplayerComponent, ModalresultsComponent, ModalpalmaresComponent, ModalUploadComponent]
 })
 export class ComponentsModule {}

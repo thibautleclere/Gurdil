@@ -9,4 +9,9 @@ export class FirebaseService {
         private afdatabase: AngularFireDatabase,
         private afStorage: AngularFireStorage
     ){}
+
+
+    public sendMessageWithImage(): void {
+        
+    }
 }
