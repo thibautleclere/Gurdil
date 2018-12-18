@@ -40,7 +40,8 @@ export class ModalUploadComponent implements OnInit {
       texte:['', Validators.required],
       date: [''],
       imageUrl: [''],
-      phone: [this.nain.phone, Validators.required]
+      phone: [this.nain.phone, Validators.required],
+      name: [this.nain.name, Validators.required]
     };
     this.formMessage = this.formBuilder.group(controlsConfig);
   }
@@ -63,7 +64,8 @@ export class ModalUploadComponent implements OnInit {
             date: time,
             imageUrl: this.filePath,
             phone: this.nain.phone,
-            texte: this.formMessage.controls['texte'].value
+            texte: this.formMessage.controls['texte'].value,
+            name: this.nain.name
           };
           this.savedMessage.push(message);
         });

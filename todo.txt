@@ -8,10 +8,7 @@ Pages:
         => si pas internet pas de sauvegarde
     => page palmares => ajout menu
         => chat / stories via firestore
-        => boutons photos envoyant sur firestore
-        => modal affichant les palmares des annees
         => ionic notifications
-    => resources => changer splash.png
 
     V2
     => admin
