@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
-import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { NainInterface } from '../../models/nain.interface';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
@@ -21,6 +21,7 @@ export class ModalUploadComponent implements OnInit {
   public task: AngularFireUploadTask;
   public progress: any;
   public savedMessage: AngularFireList<IMessage>;
+  public showUploadOK: boolean = false;
 
   constructor(
       public data: NavParams,
@@ -68,6 +69,7 @@ export class ModalUploadComponent implements OnInit {
             name: this.nain.name
           };
           this.savedMessage.push(message);
+          this.showUploadOK = true;
         });
         this.progress = this.task.percentageChanges();
     }

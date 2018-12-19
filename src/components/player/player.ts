@@ -80,8 +80,43 @@ export class PlayerComponent implements OnInit {
       }
   }
 
+  public annonces(): void {
+      const message = `https://www.6annonce.com/ , un petit cadeau pour toi ${this.nain.name}`;
+      this.sms.send(this.nain.phone, message, this.options);
+  }
+
   public toogleActions(): void {
       this.showActions = !this.showActions;
   }
 
 }
+/*export class AppComponent implements OnInit {
+
+    peer;
+    anotherid;
+    mypeerid;
+
+    constructor() {
+    }
+
+    ngOnInit() {
+        this.peer = new Peer({key: '<yourkeyhere>'});
+        setTimeout(() => {
+            this.mypeerid = this.peer.id;
+        },3000);
+
+        this.peer.on('connection', function(conn) {
+            conn.on('data', function(data){
+                console.log(data);
+            });
+        });
+
+    }
+
+    connect(){
+        var conn = this.peer.connect(this.anotherid);
+        conn.on('open', function(){
+            conn.send('Message from that id');
+        });
+    }
+}*/

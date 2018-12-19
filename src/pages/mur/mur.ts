@@ -1,15 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Content, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireStorage } from '@angular/fire/storage';
-import {
-    AngularFireDatabase,
-    AngularFireList,
-    ChildEvent,
-    SnapshotAction,
-    snapshotChanges
-} from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { IMessage } from '../../models/message';
-import {AngularFirestore, QuerySnapshot} from "@angular/fire/firestore";
 import DataSnapshot = firebase.database.DataSnapshot;
 
 @IonicPage()
@@ -17,34 +10,40 @@ import DataSnapshot = firebase.database.DataSnapshot;
   selector: 'page-mur',
   templateUrl: 'mur.html',
 })
-export class MurPage {
+export class MurPage implements OnInit {
 
-  public messages: IMessage[] = [];
+  @ViewChild(Content)
+  public content: Content;
+
+  public messages: IMessage[];
+  public start: number;
+  public end: number;
 
   constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
       public afStorage: AngularFireStorage,
       public afDatabase: AngularFireDatabase,
-      public afStore: AngularFirestore) {
+      public zone: NgZone) {
   }
 
-  public ionViewDidLoad(): void {
-
-  }
-
-  public ionViewDidEnter(): void {
-  }
-
-  public ionViewWillEnter(): void {
-      this.afDatabase.database.ref('/chats').once('value').then((snapShot: DataSnapshot) => {
-        snapShot.forEach((value: any) => {
-            this.toMessage(snapShot);
-        })
-      });
+  public ngOnInit(): void {
+      this.messages = [];
+      this.start = 0;
+      this.end = 10;
+      this.readChats();
       this.afDatabase.database.ref('/chats').on('child_added', (snap: DataSnapshot) => {
-          debugger;
-         this.toMessage(snap);
+          this.zone.run(() => {
+              this.toMessage(snap);
+          });
+      });
+  }
+
+  private readChats(): void {
+      this.afDatabase.database.ref('/chats').startAt(this.start).endAt(this.end).once('value').then((snapShot: DataSnapshot) => {
+          snapShot.forEach((value: DataSnapshot) => {
+              this.toMessage(value);
+          })
       });
   }
 
@@ -63,12 +62,28 @@ export class MurPage {
                   message.imageTrueUrl = url;
               });
           }
-          const isPresent = this.messages.filter((mess: IMessage) => {
+          const isPresent = this.messages.some((mess: IMessage) => {
               return mess.texte === message.texte && mess.phone === message.phone
           });
-          if (!isPresent.length)
+          if (!isPresent)
               this.messages.push(message);
       }
+  }
+
+
+  public atBottom(){
+      return this.content.scrollTop === this.content.scrollHeight - this.content.contentHeight;
+  }
+
+
+  public ngAfterViewInit(): void {
+     this.content.ionScrollEnd.subscribe((event: any) => {
+        if (this.atBottom()) {
+            this.start = this.start + (this.end - this.start);
+            this.end = this.end + (this.end - this.start);
+            this.readChats();
+        }
+     });
   }
 
 }
