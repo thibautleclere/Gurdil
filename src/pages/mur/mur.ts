@@ -1,9 +1,13 @@
 import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
-import { Content, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Content, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { AngularFireDatabase } from '@angular/fire/database';
+import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import { IMessage } from '../../models/message';
 import DataSnapshot = firebase.database.DataSnapshot;
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NainInterface } from '../../models/nain.interface';
+import { ModalUploadComponent } from '../../components/modal-upload/modal-upload';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @IonicPage()
 @Component({
@@ -16,34 +20,65 @@ export class MurPage implements OnInit {
   public content: Content;
 
   public messages: IMessage[];
-  public start: number;
-  public end: number;
+
+  public tabs: any;
+  public formMessage: FormGroup;
+  public nain: NainInterface;
+  public optionsCamera: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE,
+    sourceType: this.camera.PictureSourceType.CAMERA,
+    targetHeight: 300
+  };
+  public error: string;
+  public image: string;
+  public savedMessage: AngularFireList<IMessage>;
 
   constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
       public afStorage: AngularFireStorage,
       public afDatabase: AngularFireDatabase,
-      public zone: NgZone) {
+      public zone: NgZone,
+      public formBuilder: FormBuilder,
+      public camera: Camera,
+      public modalCtrl: ModalController) {
+      this.savedMessage = this.afDatabase.list('/chats');
   }
 
   public ngOnInit(): void {
+      this.nain = this.navParams.get('nain');
+      this.initForm();
       this.messages = [];
-      this.start = 0;
-      this.end = 10;
       this.readChats();
-      this.afDatabase.database.ref('/chats').on('child_added', (snap: DataSnapshot) => {
-          this.zone.run(() => {
-              this.toMessage(snap);
-          });
-      });
+  }
+
+
+    ngForRendred() {
+        console.log('NgFor is Rendered');
+    }
+
+  private initForm(): void {
+      const controlsConfig = {
+          texte:['', Validators.required],
+          date: [''],
+          imageUrl: [''],
+          phone: [this.nain.phone, Validators.required],
+          name: [this.nain.name, Validators.required]
+      };
+      this.formMessage = this.formBuilder.group(controlsConfig);
   }
 
   private readChats(): void {
-      this.afDatabase.database.ref('/chats').startAt(this.start).endAt(this.end).once('value').then((snapShot: DataSnapshot) => {
+      const ref = this.afDatabase.database.ref('/chats');
+      ref.limitToLast(100).once('value').then((snapShot: DataSnapshot) => {
           snapShot.forEach((value: DataSnapshot) => {
-              this.toMessage(value);
-          })
+              this.zone.run(() => {
+                  this.toMessage(value);
+              });
+          });
       });
   }
 
@@ -63,27 +98,60 @@ export class MurPage implements OnInit {
               });
           }
           const isPresent = this.messages.some((mess: IMessage) => {
-              return mess.texte === message.texte && mess.phone === message.phone
+              return mess.texte === message.texte && mess.phone === message.phone && mess.date === message.date
           });
-          if (!isPresent)
+          if (!isPresent) {
               this.messages.push(message);
+          }
       }
   }
 
+  private sortMessages(): IMessage[] {
+      return this.messages.sort((messA: IMessage, messB: IMessage) => {
+         return messA.date > messB.date ? -1 : 1;
+      });
+  }
 
-  public atBottom(){
-      return this.content.scrollTop === this.content.scrollHeight - this.content.contentHeight;
+  public addMessage(): void {
+      for (const key in this.formMessage.controls) {
+          if (!this.formMessage.controls[key].valid) {
+              console.warn('Il faut saisir un message espèce de cuve à vide!');
+          }
+      }
+      const time = (new Date()).getTime();
+      const message : IMessage = {
+          date: time,
+          imageUrl: '',
+          phone: this.nain.phone,
+          texte: this.formMessage.controls['texte'].value,
+          name: this.nain.name
+      };
+      this.messages.push(message);
+      this.savedMessage.push(message);
+      setTimeout(() => this.content.scrollToBottom(500), 100);
   }
 
 
-  public ngAfterViewInit(): void {
-     this.content.ionScrollEnd.subscribe((event: any) => {
-        if (this.atBottom()) {
-            this.start = this.start + (this.end - this.start);
-            this.end = this.end + (this.end - this.start);
-            this.readChats();
-        }
-     });
+  public takePicture(): void {
+
+    this.camera.getPicture(this.optionsCamera).then((imageData) => {
+        this.image = 'data:image/jpg;base64,' + imageData;
+        const time = (new Date()).toLocaleTimeString();
+        const filePath = `imagesGurdil/${this.nain.phone}/${time}.jpg`;
+        const modal = this.modalCtrl.create(ModalUploadComponent, {
+            'filePath': filePath,
+            'image': this.image,
+            'nain': this.nain
+        });
+        modal.present();
+    }, (err) => {
+        console.error(err);
+        this.error = err;
+    });
+  }
+
+  public remove(): void {
+      this.error = null;
   }
 
 }

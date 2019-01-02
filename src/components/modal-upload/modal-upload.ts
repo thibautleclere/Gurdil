@@ -60,7 +60,7 @@ export class ModalUploadComponent implements OnInit {
     if (!this.errors || !this.errors.length) {
         this.task = this.afStorage.ref(this.filePath).putString(this.image, 'data_url');
         this.task.then(() => {
-          const time = (new Date()).toDateString();
+          const time = (new Date()).getTime();
           const message : IMessage = {
             date: time,
             imageUrl: this.filePath,

@@ -7,13 +7,38 @@
 </ion-header>
 
 
-<ion-content class="dark-back">
-  <ion-card *ngFor="let message of messages">
+<ion-content class="dark-back" (change)="updateContent()">
+  <ion-card
+          *ngFor="let message of messages, let even = even; let odd = odd"
+          [ngClass]="{even: even, odd: odd}"
+  >
     <img src="{{message.imageTrueUrl}}"/>
     <ion-card-content>
       {{ message.texte }}
       <div class="auteur">{{ message?.name }} {{ message.phone }}</div>
-      <div class="datation">{{ message.date }}</div>
+      <div class="datation">{{ message.date | date }}</div>
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+<ion-footer>
+  <!-- appending -->
+  <form [formGroup]="formMessage" class="input-add-on">
+    <input class="input-add-on-field" placeholder="message intelligent" formControlName="texte">
+    <button class="input-add-on-item gold-back" ion-button icon-only (click)="addMessage()">
+      <ion-icon name="icon-bubble"></ion-icon>
+    </button>
+    <button class="input-add-on-item gold-back" ion-button icon-only (click)="takePicture()">
+      <ion-icon name="icon-camera"></ion-icon>
+    </button>
+  </form>
+  <ion-card color="danger" [hidden]="!error">
+    <ion-card-header>
+      <button ion-button icon-right color="light" outline (click)="remove()">
+        Erreur <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-card-header>
+    <ion-card-content [innerHtml]="error">
+    </ion-card-content>
+  </ion-card>
+</ion-footer>

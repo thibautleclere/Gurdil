@@ -1,5 +1,5 @@
 export interface IMessage {
-    date: string;
+    date: number;
     phone: string;
     name: string;
     imageUrl?: string;
