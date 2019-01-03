@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import {AfterViewChecked, Component, NgZone, OnInit, ViewChild} from '@angular/core';
 import { Content, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { AngularFireStorage } from '@angular/fire/storage';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
@@ -14,7 +14,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
   selector: 'page-mur',
   templateUrl: 'mur.html',
 })
-export class MurPage implements OnInit {
+export class MurPage implements OnInit, AfterViewChecked {
 
   @ViewChild(Content)
   public content: Content;
@@ -54,11 +54,6 @@ export class MurPage implements OnInit {
       this.messages = [];
       this.readChats();
   }
-
-
-    ngForRendred() {
-        console.log('NgFor is Rendered');
-    }
 
   private initForm(): void {
       const controlsConfig = {
@@ -106,6 +101,11 @@ export class MurPage implements OnInit {
       }
   }
 
+
+  /**
+   * non used
+   * @returns {IMessage[]}
+   */
   private sortMessages(): IMessage[] {
       return this.messages.sort((messA: IMessage, messB: IMessage) => {
          return messA.date > messB.date ? -1 : 1;
@@ -129,6 +129,7 @@ export class MurPage implements OnInit {
       this.messages.push(message);
       this.savedMessage.push(message);
       setTimeout(() => this.content.scrollToBottom(500), 100);
+      this.formMessage.reset();
   }
 
 
@@ -154,4 +155,7 @@ export class MurPage implements OnInit {
       this.error = null;
   }
 
+  public ngAfterViewChecked(): void {
+      this.content.scrollToBottom(500);
+  }
 }

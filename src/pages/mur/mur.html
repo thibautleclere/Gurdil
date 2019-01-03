@@ -9,7 +9,7 @@
 
 <ion-content class="dark-back" (change)="updateContent()">
   <ion-card
-          *ngFor="let message of messages, let even = even; let odd = odd"
+          *ngFor="let message of messages, let even = even; let odd = odd; let last = last;"
           [ngClass]="{even: even, odd: odd}"
   >
     <img src="{{message.imageTrueUrl}}"/>
