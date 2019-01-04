@@ -11,6 +11,7 @@ Pages:
             => url site 6an
             => url youtube video ou autres
             => form blagues
+        => modal => update Player si nain admin (supprimer aussi)
 
 
     V2

@@ -1,0 +1,34 @@
+<ion-header class="gold-back">
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="close()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title color="gold">Paramètres > Boutons Attaques</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="dark-back">
+  <form [formGroup]="formUrl" (input)="saveChanges()">
+    <ion-list>
+        <ion-item>
+          <ion-label>Bouton 6annonces</ion-label>
+          <ion-input placeholder="http://..." type="text" formControlName="annonces6"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Bouton Video</ion-label>
+          <ion-input placeholder="http://..." type="text" formControlName="video"></ion-input>
+        </ion-item>
+        <ion-item-divider class="dark-back"></ion-item-divider>
+        <ion-item>
+          <ion-label>Ajouter une Kaamelott</ion-label>
+          <ion-textarea formControlName="kaamelott" placeholder="Bah une fois j'ai pissé par la fenêtre..."></ion-textarea>
+        </ion-item>
+        <ion-item text-center>
+          <ion-buttons large>
+            <button ion-button>Ajouter</button>
+          </ion-buttons>
+        </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
