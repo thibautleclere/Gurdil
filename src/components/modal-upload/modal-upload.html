@@ -19,7 +19,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Image</ion-label>
-      <img *ngIf="image" [src]="image" class="responsive" alt="Votre image">
+      <img src="{{ image }}" class="responsive" alt="Votre image" item-end />
     </ion-item>
     <button ion-button type="submit" block name="thumbs-up"> Envoyer</button>
   </form>

@@ -6,12 +6,18 @@ Pages:
     => http://tphangout.com/angular-2-videochat-using-peerjs/
     => stocker data de firebase en localStorage
         => si pas internet pas de sauvegarde
-    => page palmares
-        => ionic notifications
+    => parametrage
+        => modal
+            => url site 6an
+            => url youtube video ou autres
+            => form blagues
+
 
     V2
     => admin
         => update data joueur
             => suppression joueur
+    => page palmares
+            => ionic notifications
 
 

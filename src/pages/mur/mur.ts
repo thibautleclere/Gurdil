@@ -25,12 +25,10 @@ export class MurPage implements OnInit, AfterViewChecked {
   public formMessage: FormGroup;
   public nain: NainInterface;
   public optionsCamera: CameraOptions = {
-    quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
-    sourceType: this.camera.PictureSourceType.CAMERA,
-    targetHeight: 300
+    sourceType: this.camera.PictureSourceType.CAMERA
   };
   public error: string;
   public image: string;
@@ -116,6 +114,7 @@ export class MurPage implements OnInit, AfterViewChecked {
       for (const key in this.formMessage.controls) {
           if (!this.formMessage.controls[key].valid) {
               console.warn('Il faut saisir un message espèce de cuve à vide!');
+              return;
           }
       }
       const time = (new Date()).getTime();
@@ -129,14 +128,14 @@ export class MurPage implements OnInit, AfterViewChecked {
       this.messages.push(message);
       this.savedMessage.push(message);
       setTimeout(() => this.content.scrollToBottom(500), 100);
-      this.formMessage.reset();
+      this.formMessage.controls['texte'].reset();
   }
 
 
   public takePicture(): void {
 
     this.camera.getPicture(this.optionsCamera).then((imageData) => {
-        this.image = 'data:image/jpg;base64,' + imageData;
+        this.image = 'data:image/jpeg;base64,' + imageData;
         const time = (new Date()).toLocaleTimeString();
         const filePath = `imagesGurdil/${this.nain.phone}/${time}.jpg`;
         const modal = this.modalCtrl.create(ModalUploadComponent, {
@@ -145,6 +144,10 @@ export class MurPage implements OnInit, AfterViewChecked {
             'nain': this.nain
         });
         modal.present();
+        modal.onDidDismiss(() => {
+           console.warn('dismiss chats');
+           this.readChats();
+        });
     }, (err) => {
         console.error(err);
         this.error = err;
@@ -156,6 +159,10 @@ export class MurPage implements OnInit, AfterViewChecked {
   }
 
   public ngAfterViewChecked(): void {
-      this.content.scrollToBottom(500);
+      this.goBottom();
+  }
+
+  public goBottom(): void {
+      this.content.scrollToBottom();
   }
 }

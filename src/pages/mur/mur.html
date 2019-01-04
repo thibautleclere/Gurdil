@@ -12,7 +12,7 @@
           *ngFor="let message of messages, let even = even; let odd = odd; let last = last;"
           [ngClass]="{even: even, odd: odd}"
   >
-    <img src="{{message.imageTrueUrl}}"/>
+    <img src="{{message.imageTrueUrl}}" (load)="goBottom()"/>
     <ion-card-content>
       {{ message.texte }}
       <div class="auteur">{{ message?.name }} {{ message.phone }}</div>
