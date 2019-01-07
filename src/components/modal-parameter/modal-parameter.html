@@ -13,11 +13,11 @@
     <ion-list>
         <ion-item>
           <ion-label>Bouton 6annonces</ion-label>
-          <ion-input placeholder="http://..." type="text" formControlName="annonces6"></ion-input>
+          <ion-input placeholder="http://..." type="text" formControlName="annonces6" value="{{ urlAnnonces }}"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Bouton Video</ion-label>
-          <ion-input placeholder="http://..." type="text" formControlName="video"></ion-input>
+          <ion-input placeholder="http://..." type="text" formControlName="video" value="{{ urlVideo }}"></ion-input>
         </ion-item>
         <ion-item-divider class="dark-back"></ion-item-divider>
         <ion-item>
@@ -26,7 +26,7 @@
         </ion-item>
         <ion-item text-center>
           <ion-buttons large>
-            <button ion-button>Ajouter</button>
+            <button ion-button (click)="addJoke()">Ajouter</button>
           </ion-buttons>
         </ion-item>
     </ion-list>

@@ -81,12 +81,29 @@ export class PlayerComponent implements OnInit {
   }
 
   public annonces(): void {
-      const message = `https://www.6annonce.com/ , un petit cadeau pour toi ${this.nain.name}`;
-      this.sms.send(this.nain.phone, message, this.options);
+      this.storage.get('6annonces').then((urlAnnonces) => {
+          if (urlAnnonces) {
+              const message = `${urlAnnonces} , un petit cadeau pour toi ${this.nain.name}`;
+              this.sms.send(this.nain.phone, message, this.options);
+          } else {
+              alert(`ton url n'est pas valable, vilain petit renard`);
+          }
+      });
   }
 
   public toogleActions(): void {
       this.showActions = !this.showActions;
+  }
+
+  public sendVideo(): void {
+      this.storage.get('video').then((urlVideo) => {
+          if (urlVideo) {
+              const message = `${urlVideo} , mate moi ça!`;
+              this.sms.send(this.nain.phone, message, this.options);
+          } else {
+              alert(`ton url n'est pas valable, vilain petit canard`);
+          }
+      });
   }
 
 }
