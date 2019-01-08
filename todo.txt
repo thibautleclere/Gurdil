@@ -7,10 +7,7 @@ Pages:
     => stocker data de firebase en localStorage
         => si pas internet pas de sauvegarde
     => parametrage
-        => modal
-            => url site 6an
-            => url youtube video ou autres
-            => form blagues
+        => mur bug sur le scroll
         => modal => update Player si nain admin (supprimer aussi)
 
 
