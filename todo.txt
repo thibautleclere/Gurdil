@@ -1,17 +1,21 @@
 Pages:
 
-    chat https://www.londonappdeveloper.com/how-to-build-a-websocket-multi-client-chat-using-ionic-and-node-js/
+    v1
+    => bouton call qui remplecera bouton photo
+         => bouton call phone
+    => http://tphangout.com/angular-2-videochat-using-peerjs/
+    => stocker data de firebase en localStorage
+        => si pas internet pas de sauvegarde
+    => parametrage
+        => mur bug sur le scroll
+        => modal => update Player si nain admin (supprimer aussi)
 
-    => icon gurdil en couleur
 
     V2
     => admin
         => update data joueur
             => suppression joueur
-    Firebase
-    => stocker data de firebase en localStorage
-        => si pas internet pas de sauvegarde
-    => chats a ajouter
-        => chat via firebase
-        => stories via firestore
+    => page palmares
+            => ionic notifications
+
 

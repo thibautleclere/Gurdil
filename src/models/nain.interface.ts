@@ -6,4 +6,5 @@ export interface NainInterface {
     updated_at?: string;
     phone?: string;
     beers?: number;
+    isAdmin?: boolean;
 }

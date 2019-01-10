@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { NainInterface } from '../../models/nain.interface';
 import { Beer } from '../../services/beer';
 import {Gurdil} from "../../services/gurdil";
@@ -9,27 +9,30 @@ import {Gurdil} from "../../services/gurdil";
   templateUrl: 'addingbeers.html',
   styles: ['addingbeers.scss']
 })
-export class AddingbeersComponent {
+export class AddingbeersComponent implements OnInit {
 
   @Input() public nain: NainInterface;
-
-  public beers: number = 0;
 
   constructor(
       public beerService: Beer,
       public gurdilService: Gurdil
   ) {}
 
+  public ngOnInit() {
+    if (!this.nain.beers) {
+      this.nain.beers = 0;
+    }
+  }
 
   public addBeer() {
-    this.beers++;
-    this.beerService.beerAddedToDwarf(this.beers, this.nain);
+    this.nain.beers++;
+    this.beerService.beerAddedToDwarf(this.nain.beers, this.nain);
   }
 
   public rmBeer() {
-    if (this.beers > 0) {
-      this.beers--;
-      this.beerService.beerAddedToDwarf(this.beers, this.nain);
+    if (this.nain.beers > 0) {
+      this.nain.beers--;
+      this.beerService.beerAddedToDwarf(this.nain.beers, this.nain);
     }
   }
 

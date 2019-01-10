@@ -1,0 +1,48 @@
+<ion-header class="gold-back">
+  <ion-navbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title class="uppercase">
+            Votre Image
+          </ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+<ion-content class="dark-back">
+  <form [formGroup]="formMessage" (ngSubmit)="upload()">
+    <ion-item>
+      <ion-label>Message</ion-label>
+      <ion-textarea formControlName="texte" placeholder="Enter a description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Image</ion-label>
+      <img src="{{ image }}" class="responsive" alt="Votre image" item-end />
+    </ion-item>
+    <button ion-button type="submit" block name="thumbs-up"> Envoyer</button>
+  </form>
+  <ion-card color="danger" [hidden]="!errors.length">
+    <ion-card-header>
+      <button ion-button icon-right color="light" outline (click)="remove()">
+        Erreur <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-card-header>
+    <ion-card-content [innerHtml]="message_error">
+    </ion-card-content>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button [hidden]="!showUploadOK" ion-button (click)="dismiss()">
+          <ion-icon name="thumbs-up"></ion-icon></button>
+      </ion-col>
+      <ion-col>
+        <ng-container *ngIf="progress | async as percent">
+          <progress [value]="percent" max="100"></progress>
+        </ng-container>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

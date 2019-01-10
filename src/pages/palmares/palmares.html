@@ -1,23 +1,29 @@
 <ion-header padding class="gold-back">
-    <h2>Palmarès</h2>
+    <ion-title class="uppercase inline align-baseline">Palmares</ion-title>
+    <ion-buttons class="inline">
+        <button ion-button icon-only class="gold-back" (click)="showWallGurdil()">
+            <ion-icon name="icon-bubbles"></ion-icon>
+        </button>
+        <button ion-button icon-only class="gold-back" (click)="showPalmares()">
+            <ion-icon name="trophy"></ion-icon>
+        </button>
+    </ion-buttons>
 </ion-header>
 <ion-content padding class="gold-back">
-    <ng-container *ngFor="let palm of palmares">
-        <h3>
-            Voici le classement pour cette année {{palm.annee}}
-        </h3>
-        <ion-list>
-            <ion-row ion-list *ngFor="let nain of palm.joueurs, let i = index">
-                <ion-col col-2>
-                    <ion-icon [name]="(i == 0 ? 'icon-gurdil' : 'icon-dwarf')" [ngClass]="{'active': i == 0, 'second': i == 1, 'third': i == 2}"></ion-icon>
-                </ion-col>
-                <ion-col col-6>
-                    {{ nain.name }}
-                </ion-col>
-                <ion-col text-right col-4>
-                    {{ nain.beers }}
-                </ion-col>
-            </ion-row>
-        </ion-list>
-    </ng-container>
+    <h3>
+        Voici le classement pour cette année {{ currentYear }}
+    </h3>
+    <ion-list *ngIf="currentPalmares">
+        <ion-row ion-list *ngFor="let nain of currentPalmares.joueurs, let i = index">
+            <ion-col col-2>
+                <ion-icon [name]="(i == 0 ? 'icon-gurdil' : 'icon-dwarf')" [ngClass]="{'active': i == 0, 'second': i == 1, 'third': i == 2}"></ion-icon>
+            </ion-col>
+            <ion-col col-6>
+                {{ nain.name }}
+            </ion-col>
+            <ion-col text-right col-4>
+                {{ nain.beers }}
+            </ion-col>
+        </ion-row>
+    </ion-list>
 </ion-content>

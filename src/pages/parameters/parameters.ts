@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NainInterface } from '../../models/nain.interface';
 import { Gurdil } from '../../services/gurdil';
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
+import {ModalParameterComponent} from "../../components/modal-parameter/modal-parameter";
 
 
 @IonicPage()
@@ -25,7 +26,8 @@ export class ParametersPage implements OnInit {
       public storage: Storage,
       public gurdilService: Gurdil,
       public alertCtrl: AlertController,
-      public afDatabase: AngularFireDatabase) {
+      public afDatabase: AngularFireDatabase,
+      public modalCtrl: ModalController) {
       this.savedDwarves = this.afDatabase.list('/groupes/players');
     }
 
@@ -74,6 +76,11 @@ export class ParametersPage implements OnInit {
 
   public addDwarfToGurdil(nain: NainInterface) {
       this.gurdilService.addNainToGurdil(nain);
+  }
+
+  public showPlayerButtonsModal(): void {
+      const modal = this.modalCtrl.create(ModalParameterComponent, {});
+      modal.present();
   }
 
 }

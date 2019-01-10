@@ -153,7 +153,15 @@ export class GurdilTimerComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   public stop(): void {
-    
+    this.reset();
+    if (this.gurdilSong) {
+      this.gurdilSong.src = '';
+      this.gurdilSong.load();
+    }
+    if (this.gurdilAfterSong) {
+      this.gurdilAfterSong.src = '';
+      this.gurdilAfterSong.load();
+    }
   }
 
 }

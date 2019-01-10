@@ -15,7 +15,8 @@ export class PlayerComponent implements OnInit {
 
   @Input() public nain: NainInterface;
   @Input() public blagues: string[] = [];
-  public message_error; string = '';
+  public message_error: string;
+  public showActions: boolean;
 
   public options: SmsOptions = {
       android: {
@@ -38,6 +39,8 @@ export class PlayerComponent implements OnInit {
       public emailService: EmailComposer) {}
 
   public ngOnInit() {
+      this.message_error = '';
+      this.showActions = false;
   }
 
   public randLombard() {
@@ -77,4 +80,60 @@ export class PlayerComponent implements OnInit {
       }
   }
 
+  public annonces(): void {
+      this.storage.get('6annonces').then((urlAnnonces) => {
+          if (urlAnnonces) {
+              const message = `${urlAnnonces} , un petit cadeau pour toi ${this.nain.name}`;
+              this.sms.send(this.nain.phone, message, this.options);
+          } else {
+              alert(`ton url n'est pas valable, vilain petit renard`);
+          }
+      });
+  }
+
+  public toogleActions(): void {
+      this.showActions = !this.showActions;
+  }
+
+  public sendVideo(): void {
+      this.storage.get('video').then((urlVideo) => {
+          if (urlVideo) {
+              const message = `${urlVideo} , mate moi ça!`;
+              this.sms.send(this.nain.phone, message, this.options);
+          } else {
+              alert(`ton url n'est pas valable, vilain petit canard`);
+          }
+      });
+  }
+
 }
+/*export class AppComponent implements OnInit {
+
+    peer;
+    anotherid;
+    mypeerid;
+
+    constructor() {
+    }
+
+    ngOnInit() {
+        this.peer = new Peer({key: '<yourkeyhere>'});
+        setTimeout(() => {
+            this.mypeerid = this.peer.id;
+        },3000);
+
+        this.peer.on('connection', function(conn) {
+            conn.on('data', function(data){
+                console.log(data);
+            });
+        });
+
+    }
+
+    connect(){
+        var conn = this.peer.connect(this.anotherid);
+        conn.on('open', function(){
+            conn.send('Message from that id');
+        });
+    }
+}*/

@@ -1,0 +1,25 @@
+page-mur {
+  .auteur, .datation {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 8px;
+  }
+
+  .input-add-on {
+    display: flex;
+    border-radius: 5px;
+    background-color: #6c757d;
+  }
+
+  .input-add-on-field {
+    flex: 1;
+    border: none;
+    background-color: inherit;
+  }
+  .even {
+    background-color: #8f8f8f;
+  }
+  .odd {
+    background-color: #9BA2AB;
+  }
+}
