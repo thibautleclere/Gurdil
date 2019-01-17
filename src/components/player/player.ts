@@ -4,7 +4,9 @@ import { SMS, SmsOptions } from '@ionic-native/sms';
 import { Storage } from '@ionic/storage';
 import { Game } from '../../services/game';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import {EmailComposer} from '@ionic-native/email-composer';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { MediaCapture, MediaFile} from '@ionic-native/media-capture';
+import { CallNumber } from '@ionic-native/call-number';
 
 
 @Component({
@@ -36,7 +38,9 @@ export class PlayerComponent implements OnInit {
       public storage: Storage,
       public game: Game,
       public camera: Camera,
-      public emailService: EmailComposer) {}
+      public emailService: EmailComposer,
+      public mediaCapture: MediaCapture,
+      public call: CallNumber) {}
 
   public ngOnInit() {
       this.message_error = '';
@@ -96,44 +100,18 @@ export class PlayerComponent implements OnInit {
   }
 
   public sendVideo(): void {
-      this.storage.get('video').then((urlVideo) => {
-          if (urlVideo) {
-              const message = `${urlVideo} , mate moi ça!`;
-              this.sms.send(this.nain.phone, message, this.options);
-          } else {
-              alert(`ton url n'est pas valable, vilain petit canard`);
-          }
+
+      this.mediaCapture.captureVideo({ limit: 1 }).then((mediaFiles: MediaFile[]) => {
+          console.log(mediaFiles);
+          }, (err) => {
+          console.warn(err);
       });
   }
 
+  public callDwarf(): void {
+    this.call.callNumber(this.nain.phone, true)
+        .then((res) => console.log('Launched dialer!', res))
+        .catch((err) => console.warn('Error launching dialer', err));
+  }
+
 }
-/*export class AppComponent implements OnInit {
-
-    peer;
-    anotherid;
-    mypeerid;
-
-    constructor() {
-    }
-
-    ngOnInit() {
-        this.peer = new Peer({key: '<yourkeyhere>'});
-        setTimeout(() => {
-            this.mypeerid = this.peer.id;
-        },3000);
-
-        this.peer.on('connection', function(conn) {
-            conn.on('data', function(data){
-                console.log(data);
-            });
-        });
-
-    }
-
-    connect(){
-        var conn = this.peer.connect(this.anotherid);
-        conn.on('open', function(){
-            conn.send('Message from that id');
-        });
-    }
-}*/

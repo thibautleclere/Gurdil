@@ -7,12 +7,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { SMS } from '@ionic-native/sms';
 import { Camera } from '@ionic-native/camera';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { MediaCapture } from '@ionic-native/media-capture';
+import { CallNumber } from '@ionic-native/call-number';
 
 
 // Import the AF2 Module
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 // AF2 Settings
 export const firebaseConfig = {
@@ -47,8 +50,7 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { ParametersPageModule } from '../pages/parameters/parameters.module';
 import { SignupPageModule } from '../pages/signup/signup.module';
 import { MurPage } from '../pages/mur/mur';
-import {MurPageModule} from "../pages/mur/mur.module";
-import {AngularFirestore} from "@angular/fire/firestore";
+import { MurPageModule } from '../pages/mur/mur.module';
 
 @NgModule({
   declarations: [
@@ -96,7 +98,9 @@ import {AngularFirestore} from "@angular/fire/firestore";
     Game,
     GurdilAudio,
     EmailComposer,
-    AngularFirestore
+    AngularFirestore,
+    MediaCapture,
+    CallNumber
   ]
 })
 export class AppModule {}
